@@ -1,0 +1,73 @@
+<%@page_title ||= "充值卡管理"%>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<div class="box-body pad table-responsive">
+				<div>
+					<table class="table table-hover orders_table">
+						<tbody>
+							<tr>
+								<th><label><input type="checkbox" />全选</label></th>
+								<th>卡号</th>
+								<th>面值</th>
+								<th>状态</th>
+								<th>使用用户</th>
+								<th>生成时间</th>
+								<th>使用时间</th>
+								<th>操作</th>
+							</tr>
+							<%@recharge_cards.each do |recharge_card|%>
+							<tr>
+								<td>
+									<div class="row show-grid">
+										<div class="col-md-3 img_box">
+											<div class="check_box">
+												<input type="checkbox" name="recharge_card[]id" value="<%= recharge_card.id%>">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td><%= recharge_card.scode%></td>
+								<td><%= recharge_card.price%></td>
+								<td><%= t "activerecord.recharge_card.states.#{recharge_card.state}"%></td>
+								<td><%= recharge_card.user.try(:name)%></td>
+								<td><%= recharge_card.created_at%></td>
+								<td><%= recharge_card.updated_at%></td>
+								<td>
+                  <%if recharge_card.create?%>
+  									<%= link_to '删除', admin_recharge_card_path(recharge_card), :confirm => '确定要删除吗?', :method => :delete %></td>
+                  <%end%>
+								</td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<a href="<%= new_admin_recharge_card_path%>" class="btn btn-default">添加</a>
+			</div> 
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

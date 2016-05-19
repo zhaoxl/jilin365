@@ -1,0 +1,149 @@
+<%@page_title = "待处理订单" if params[:state] == "payment"%>
+<%@page_title ||= "订单管理"%>
+<%@page_title += "——用户：#{@user.try(:name).to_s}" if @user%>
+
+<style type="text/css" media="screen">
+.table > tbody > tr > td{vertical-align: middle;}
+.check_box{float: left; }
+.img_box{text-align: center; line-height: 83px}
+.inline_label{float: left; margin: 7px auto auto -18px;}
+.input_label{}
+.img-thumbnail{width: 50%;}	
+.filter .col-sm-05{
+	width: 4.166665%; 
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter .col-sm-07{
+	width: 5.833330%;
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter div[class^='col-xs-']{padding-left: 0px;}
+</style>
+
+	<div class="row">
+		<div class="col-xs-12">			
+			<div class="box box-primary">
+				<div class="box-body pad table-responsive">
+					<div class="row">
+						<div class="col-xs-12">
+							<%= form_tag '', method: :get do %>
+							<label>订单号：<input type="text" name="scode" value="<%= params[:scode]%>" /></label>
+							<label>下单用户：<input type="text" name="user" value="<%= params[:user]%>" /></label>
+							<label>订单状态：<%= select_tag :state, options_for_select([["所有状态", nil], ["未付款", "create"], ["已支付", "payment"], ["已发货", "sent"], ["已收货", "receive"]], params[:state])%>
+							<input type="submit" value="搜索" />
+							<%end%>
+						</div>
+					</div>
+					<div>
+						<table class="table table-hover orders_table">
+							<tbody>
+								<tr>
+									<th><label><input type="checkbox" />全选</label></th>
+									<th>下单用户</th>
+									<th>订单号</th>
+									<th>商品</th>
+									<th>金额</th>
+									<th>运费</th>
+									<th>状态</th>
+									<th>下单时间</th>
+									<th>支付时间</th>
+									<th>收货时间</th>
+									<th>操作</th>
+								</tr>
+								<%@orders.each do |order|%>
+								<tr>
+									<td>
+										<div class="row show-grid">
+											<div class="col-md-3 img_box">
+												<div class="check_box">
+													<input type="checkbox" name="order[]id" value="<%= order.id%>">
+												</div>
+											</div>
+										</div>
+									</td>
+									<td><%= order.user.try(:name)%></td>
+									<td><%= order.scode%></td>
+									<td>
+                    <table>
+                      <% order.order_products.each do |order_product|%>
+                      <tr>
+                        <td>
+                          <img src="<%= order_product.logo.url%>" width="100" height="100" />
+                        </td>
+                        <td>
+                          <span><%= order_product.name%></span> x <%= order_product.total%>
+                          <span><%= order_product.amount%></span>
+                        </td>
+                      </tr>
+                      <%end%>
+                    </table>
+                  </td>
+                  <td><%= order.total_fee%></td>
+                  <td><%= order.fare.to_f%></td>
+									<td><%= t "activerecord.order.states.#{order.state}"%></td>
+                  <td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+                  <td><%= order.payment_at ? order.payment_at.strftime("%Y-%m-%d %H:%M:%S") : ''%></td>
+                  <td><%= order.receive_at ? order.receive_at.strftime("%Y-%m-%d %H:%M:%S") : ''%></td>
+									<td>
+                    <%if order.state == "create"%>
+										<a href="<%= edit_admin_order_path(order)%>">修改</a>
+                    <%end%>
+                    <%if order.state == "payment"%>
+										<a href="<%= sent_admin_order_path(order)%>">发货</a>
+                    <%end%>
+                    <%if order.state == "sent"%>
+										<a href="<%= sent_admin_order_path(order)%>">修改物流</a>
+                    <%end%>
+										<a href="<%= state_admin_order_path(order)%>">修改状态</a>
+									</td>
+								</tr>
+								<%end%>
+							</tbody>
+						</table>
+						<div style="margin-left: 10px">
+							<%= paginate @orders, :theme => 'twitter-bootstrap-3' %>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+$(function(){
+	$("#filter_form input").change(function(){
+		$("#filter_form").submit();
+	});
+	$("#filter_form input").keydown(function(e){
+		if(e.keyCode == 13){
+			$("#filter_form").submit();
+		}
+	}); 
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

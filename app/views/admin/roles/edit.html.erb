@@ -1,0 +1,11 @@
+<h4>角色编辑</h4>
+
+	<%= form_for [:admin, @role] do |f|%>
+	<label>角色名：<%= f.text_field :name%></label>
+	<%Permission.where.not(controller: nil).roots.each do |con|%>
+		<div>
+			<h3><%= con.name %></h3>
+		</div>
+	<%end%>
+	<%= f.submit '保存'%>
+<%end%>

@@ -1,0 +1,108 @@
+<%@page_title ||= "团队管理"%>
+
+<style type="text/css" media="screen">
+.table > tbody > tr > td{vertical-align: middle;}
+.check_box{float: left; }
+.img_box{text-align: center; line-height: 83px}
+.inline_label{float: left; margin: 7px auto auto -18px;}
+.input_label{}
+.img-thumbnail{width: 50%;}	
+.filter .col-sm-05{
+	width: 4.166665%; 
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter .col-sm-07{
+	width: 5.833330%;
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter div[class^='col-xs-']{padding-left: 0px;}
+</style>
+
+	<div class="row">
+		<div class="col-xs-12">			
+			<div class="box box-primary">
+				<div class="box-body pad table-responsive">
+					<div>
+						<table class="table table-hover areas_table">
+							<tbody>
+								<tr>
+									<th><label><input type="checkbox" />全选</label></th>
+									<th>团队名称</th>
+									<th>队长</th>
+									<th>状态</th>
+									<th>成员数</th>
+									<th>申请时间</th>
+									<th>操作</th>
+								</tr>
+								<%@teams.each do |team|%>
+								<tr>
+									<td>
+										<div class="row show-grid">
+											<div class="col-md-3 img_box">
+												<div class="check_box">
+													<input type="checkbox" name="area[]id" value="<%= team.id%>">
+												</div>
+											</div>
+										</div>
+									</td>
+									<td><%= team.try(:name)%></td>
+									<td><%= team.leader.try(:name)%></td>
+									<td><%= t "activerecord.team.states.#{team.state}"%></td>
+									<td><%= team.users.count%></td>
+                  <td><%= team.created_at.strftime("%Y-%m-%d")%></td>
+                  <td>
+										<a href="<%= edit_admin_team_path(team)%>">
+                      编辑
+                    </a>
+                  </td>
+								</tr>
+								<%end%>
+							</tbody>
+						</table>
+						<div style="margin-left: 10px">
+							<%= paginate @teams, :theme => 'twitter-bootstrap-3' %>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+$(function(){
+	$("#filter_form input").change(function(){
+		$("#filter_form").submit();
+	});
+	$("#filter_form input").keydown(function(e){
+		if(e.keyCode == 13){
+			$("#filter_form").submit();
+		}
+	}); 
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

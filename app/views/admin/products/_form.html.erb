@@ -1,0 +1,83 @@
+<%= form_for [:admin, product], :html=>{:multipart=>true} do |f| %>
+	<div class="box-body">
+		<div class="form-group">
+			<label for="exampleInputEmail1">所属分类</label>
+			<%= f.select :product_category_id, grouped_options_for_select(ProductCategory.roots.map{|c| [c.name, c.children.map{|cc| [cc.name, cc.id]}]}, product.product_category_id), {}, class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">商品名称</label>
+			<%= f.text_field :name, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">描述</label>
+			<%= f.text_area :description, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">市场价</label>
+			<%= f.text_field :old_price, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">售价</label>
+			<%= f.text_field :price, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">返利比例</label>
+			<div class="input-group">
+				<%= f.text_field :rebate_scale, class: 'form-control'%>
+			  <span class="input-group-addon" id="rebate_price_preview" style="color: red"><%= product.price*product.rebate_scale%>元</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">库存</label>
+			<%= f.text_field :inventory, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">赠送积分</label>
+			<%= f.text_field :handsel_score, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">封面图片</label>
+			<img src="<%= product.front_logo.url%>" />
+			<%= f.file_field :front_logo%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">赠送优惠券</label>
+			<%= f.select :coupon_template_id, options_for_select(CouponTemplate.all.map{|ct| [ct.name, ct.id]}.unshift(["不赠送优惠券", nil]), product.coupon_template_id), {}, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">代理商</label>
+			<%= f.select :agent_id, options_for_select(Agent.all.map{|agent| [agent.name, agent.id]}.unshift(["主站", nil]), product.agent_id), {}, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">推荐</label>
+			<%= f.check_box :recommend%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">置顶</label>
+			<%= f.check_box :sticky%>
+		</div>
+		<%unless product.new_record?%>
+		<div class="form-group">
+			<label for="exampleInputPassword1">显示顺序</label>
+			<%= f.text_field :position, class: 'form-control' %>
+		</div>
+		<%end%>
+		<div class="form-group">
+			<label for="exampleInputPassword1">图文描述</label>
+			<%= f.kindeditor :content %>
+		</div>
+	</div>
+	<div class="box-footer">
+		<button class="btn btn-primary" type="submit">保存</button>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+$(function(){
+	$("#product_rebate_scale").change(function(){
+		var price = parseFloat($("#product_price").val());
+		var rebate_scale = parseFloat($(this).val());
+		$("#rebate_price_preview").html(''+(price*rebate_scale)+'元');
+	});
+});
+</script>

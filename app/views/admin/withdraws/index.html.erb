@@ -1,0 +1,73 @@
+<%@page_title ||= "提现管理"%>
+
+<style type="text/css" media="screen">
+.state_create{color: green;}
+.state_finish{color: red;}
+</style>
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<div class="box-body pad table-responsive">
+				<div>
+					<table class="table table-hover orders_table">
+						<tbody>
+							<tr>
+								<th><label><input type="checkbox" />全选</label></th>
+								<th>用户</th>
+								<th>收益余额</th>
+								<th>提现金额</th>
+								<th>已锁定收益余额</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+							<%@withdraws.each do |withdraw|%>
+							<%next if withdraw.user.blank?%>
+							<tr>
+								<td>
+									<div class="row show-grid">
+										<div class="col-md-3 img_box">
+											<div class="check_box">
+												<input type="checkbox" name="withdraw[]id" value="<%= withdraw.id%>">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td><%= withdraw.user.try(:name)%></td>
+								<td><%= withdraw.user.wallet.try(:income_balance)%></td>
+								<td><%= withdraw.user.wallet.try(:income_lock)%></td>
+								<td><%= withdraw.amount%></td>
+								<td class="state_<%= withdraw.state%>"><%= t "activerecord.withdraw.states.#{withdraw.state}"%></td>
+								<td>
+									<a href="<%= edit_admin_withdraw_path(withdraw)%>">处理</a>
+								</td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+			</div> 
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

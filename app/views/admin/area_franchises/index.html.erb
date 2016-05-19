@@ -1,0 +1,121 @@
+<%@page_title ||= "代理商管理"%>
+
+<style type="text/css" media="screen">
+.table > tbody > tr > td{vertical-align: middle;}
+.check_box{float: left; }
+.img_box{text-align: center; line-height: 83px}
+.inline_label{float: left; margin: 7px auto auto -18px;}
+.input_label{}
+.img-thumbnail{width: 50%;}	
+.filter .col-sm-05{
+	width: 4.166665%; 
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter .col-sm-07{
+	width: 5.833330%;
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter div[class^='col-xs-']{padding-left: 0px;}
+</style>
+
+	<div class="row">
+		<div class="col-xs-12">			
+			<div class="box box-primary">
+				<div class="box-body pad table-responsive">
+					<div>
+						<table class="table table-hover areas_table">
+							<tbody>
+								<tr>
+									<th><label><input type="checkbox" />全选</label></th>
+									<th>代理地区</th>
+									<th>用户</th>
+									<th>状态</th>
+									<th>开始-过期时间</th>
+									<th>操作</th>
+								</tr>
+								<%@franchises.each do |franchise|%>
+								<tr>
+									<td>
+										<div class="row show-grid">
+											<div class="col-md-3 img_box">
+												<div class="check_box">
+													<input type="checkbox" name="area[]id" value="<%= franchise.id%>">
+												</div>
+											</div>
+										</div>
+									</td>
+									<td>
+                    <%if area = franchise.area%>
+                    <%= area.fullname%>
+                    (V<%= area.level%>)
+                    <%else%>
+                    地区不存在
+                    <%end%>
+                  </td>
+									<td><%= franchise.user.try(:name)%></td>
+									<td><%= t "activerecord.area_franchise.states.#{franchise.state}"%></td>
+									<td>
+                    <%if franchise.begin_at.present? && franchise.end_at.present? %>
+                      <%= franchise.begin_at.strftime("%Y-%m-%d")%> - <%= franchise.end_at.strftime("%Y-%m-%d")%>
+                    <%end%>
+                  </td>
+                  <td>
+                    <a href="<%= admin_area_franchise_path(franchise)%>">查看</a>
+										<a href="<%= edit_admin_area_franchise_path(franchise)%>">
+                      编辑
+                    </a>
+                  </td>
+								</tr>
+								<%end%>
+							</tbody>
+						</table>
+      			<div class="box-footer">
+      				<%= link_to '添加代理商', new_admin_area_franchise_path, class: 'btn btn-primary btn-sm margin' %>
+      			</div> 
+						<div style="margin-left: 10px">
+							<%= paginate @franchises, :theme => 'twitter-bootstrap-3' %>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+$(function(){
+	$("#filter_form input").change(function(){
+		$("#filter_form").submit();
+	});
+	$("#filter_form input").keydown(function(e){
+		if(e.keyCode == 13){
+			$("#filter_form").submit();
+		}
+	}); 
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

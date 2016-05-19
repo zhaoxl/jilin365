@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<%= form_for [:admin, @data], url:  admin_distribution_setting_path(@data), method: :patch, :html=>{:multipart=>true} do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputPassword1">V1级所需分数</label>
+						<%= f.text_field :v1, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">V2级所需分数</label>
+						<%= f.text_field :v2, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">V3级所需分数</label>
+						<%= f.text_field :v3, class: 'form-control'%>
+					</div>
+					
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+
+			
+		</div> 
+	</div> 
+</div>
+

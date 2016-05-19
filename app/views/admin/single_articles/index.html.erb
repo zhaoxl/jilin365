@@ -1,0 +1,64 @@
+<%@page_title ||= "单独内容页管理"%>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<div class="box-body pad table-responsive">
+				<div>
+					<table class="table table-hover orders_table">
+						<tbody>
+							<tr>
+								<th><label><input type="checkbox" />全选</label></th>
+								<th>标题</th>
+								<th>操作</th>
+							</tr>
+							<%@single_articles.each do |single_article|%>
+							<tr>
+								<td>
+									<div class="row show-grid">
+										<div class="col-md-3 img_box">
+											<div class="check_box">
+												<input type="checkbox" name="single_article[]id" value="<%= single_article.id%>">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td><%= single_article.title%></td>
+								<td>
+									<a href="<%= edit_admin_single_article_path(single_article)%>">编辑</a>
+                  <%if single_article.can_delete?%>
+  									<%= link_to '删除', admin_single_article_path(single_article), :confirm => '确定要删除吗?', :method => :delete %></td>
+                  <%end%>
+								</td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<a href="<%= new_admin_single_article_path%>" class="btn btn-default">添加内容</a>
+			</div> 
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

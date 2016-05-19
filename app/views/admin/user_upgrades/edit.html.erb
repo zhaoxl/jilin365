@@ -1,0 +1,54 @@
+<%@page_title ||= "处理用户升级申请"%>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<%= form_for [:admin, @data], url:  admin_user_upgrade_path(@data), method: :patch, :html=>{:multipart=>true} do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputPassword1">用户:</label>
+            <%= @data.user.try(:name)%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">上级用户:</label>
+            <%= @data.user.try{|user| user.recommend_user.name}%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">状态:</label>
+            <%= t "activerecord.user_upgrade.states.#{@data.state}"%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">当前等级:</label>
+            <%= t "activerecord.user_level.names.v#{@data.old_level}"%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">申请等级:</label>
+            <%= t "activerecord.user_level.names.v#{@data.level}"%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">申请时间:</label>
+            <%= @data.created_at.strftime("%Y-%m-%d")%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">申请理由:</label>
+            <%= @data.reason%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">结果反馈</label>
+            <%= f.text_area :feedback, class: "form-control"%>
+					</div>
+					
+				</div>
+				<div class="box-footer">
+          <%if @data.state == "create"%>
+					<button class="btn btn-primary" type="submit" name="act" value="pass">通过</button>
+					<button class="btn btn-primary" type="submit" name="act" value="reject">拒绝</button>
+          <%end%>
+					<a href="<%= admin_user_upgrades_path%>" class="btn btn-primary">返回</a>
+				</div>
+			<% end %>
+
+			
+		</div> 
+	</div> 
+</div>

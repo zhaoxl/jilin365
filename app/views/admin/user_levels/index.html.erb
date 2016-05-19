@@ -1,0 +1,31 @@
+<%@page_title ||= "用户等级设置"%>
+
+<%= form_tag admin_user_levels_path, :html=>{:multipart=>true} do%>
+  <%UserLevel.all.each do |user_level|%>
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title"><%= user_level.name%></h3>
+            </div>
+    				<div class="box-body">
+    					<div class="form-group">
+    						<label for="exampleInputPassword1">最低任务</label>
+    						<%= text_field_tag "user_level[#{user_level.id}]lowest_task", user_level.lowest_task, class: 'form-control'%>
+    					</div>
+    					<div class="form-group">
+    						<label for="exampleInputPassword1">基本任务</label>
+    						<%= text_field_tag "user_level[#{user_level.id}]basic_task", user_level.basic_task, class: 'form-control'%>
+    					</div>
+					
+    				</div>
+
+    		</div> 
+    	</div> 
+    </div>
+  <%end%>
+	<div class="box-footer">
+		<button class="btn btn-primary" type="submit">保存</button>
+	</div>
+<% end %>
+

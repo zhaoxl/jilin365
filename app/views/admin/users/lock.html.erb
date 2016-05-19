@@ -1,0 +1,23 @@
+<%@page_title ||= "锁定用户"%>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<%= form_for [:admin, @data], url: lock_save_admin_user_path(@data), method: :patch, :html=>{:multipart=>true} do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputPassword1">锁定原因</label>
+						<%= f.text_area :lock_reason, class: 'form-control'%>
+					</div>
+					
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+
+			
+		</div> 
+	</div> 
+</div>
+

@@ -1,0 +1,229 @@
+<%@page_title ||= "代理商"%>
+
+<div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><%= @all_orders.count%></h3>
+
+              <p>总订单数</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a class="small-box-footer" href="#">更多 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><%= BigDecimal.new(@all_orders.sum("total_fee-fare").to_s)%><sup style="font-size: 20px"></sup></h3>
+
+              <p>总金额</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a class="small-box-footer" href="#">更多 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><%= @all_orders.where("date_format(orders.created_at,'%Y-%m')=date_format(curdate(),'%Y-%m') ").count%></h3>
+
+              <p>本月订单</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a class="small-box-footer" href="#">更多 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><%= BigDecimal.new(@all_orders.where("date_format(orders.created_at,'%Y-%m')=date_format(curdate(),'%Y-%m') ").sum("total_fee-fare").to_s)%></h3>
+
+              <p>本月金额</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a class="small-box-footer" href="#">更多 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      
+      
+      
+      
+      
+      
+            
+            
+            
+                  
+                  <div class="row">
+                          <!-- Left col -->
+                          <section class="col-lg-7 connectedSortable ui-sortable">
+                            <!-- Custom tabs (Charts with tabs)-->
+                            <div class="nav-tabs-custom" style="cursor: move;">
+                              <!-- Tabs within a box -->
+                              <ul class="nav nav-tabs pull-right ui-sortable-handle">
+                                <li class="pull-left header"><i class="fa fa-inbox"></i> 订单状态</li>
+                                <li style="width: 250px">
+                                </li>
+                              </ul>
+                              <div class="tab-content no-padding">
+                                <!-- Morris chart - Sales -->
+                                <div style="position: relative; height: 300px;" id="sales-chart" class="chart tab-pane active">
+                                </div>
+                    
+                              </div>
+                            </div>
+                            <!-- /.nav-tabs-custom -->
+
+                            <!-- Chat box -->
+          
+                            <!-- /.box (chat box) -->
+
+                            <!-- TO DO List -->
+          
+                            <!-- /.box -->
+
+                            <!-- quick email widget -->
+          
+
+                          </section>
+                          <!-- /.Left col -->
+                          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                          <section class="col-lg-5 connectedSortable">
+                            <div class="box box-solid bg-teal-gradient">
+                                        <div class="box-header ui-sortable-handle" style="cursor: move;">
+                                          <i class="fa fa-th">每月走势</i>
+
+                                          <h3 class="box-title"></h3>
+
+                                          <div class="box-tools pull-right">
+                                          </div>
+                                        </div>
+                                        <div class="box-body border-radius-none">
+                                          <div style="height: 250px;" id="line-chart" class="chart"></div>
+                                        <!-- /.box-body -->
+                                        <!-- /.box-footer -->
+                                      </div>
+                          </section>
+                          <!-- right col -->
+                        </div>
+                  <div class="row">
+                          <div class="col-xs-12">
+                            <div class="box">
+                              <div class="box-header">
+                                <h3 class="box-title"></h3>
+
+                                <div class="box-tools">
+                                  <form>
+                                    <div class="input-group input-group-sm">
+                                      <label><input id="reservation" type="text" placeholder="单号" class="form-control pull-right active" name="scode" value="<%= params[:scode]%>" /></label>
+                                      <label><input id="reservation" type="text" placeholder="用户名" class="form-control pull-right active" name="user_name" value="<%= params[:user_name]%>" /></label>
+                                      <label><input type="text" name="date_diff" class="form-control pull-right active" placeholder="Search" id="reservation" value="<%= params[:date_diff]%>" style="width: 180px" /></label>
+                                      <label><%= select_tag :state, options_for_select([["所有状态", nil], ["未付款", "create"], ["已支付", "payment"], ["已发货", "sent"], ["已收货", "receive"]], params[:state]), class: "form-control pull-right active"%></label>
+                                      <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                              <!-- /.box-header -->
+                              <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                  <tbody><tr>
+                                    <th>ID</th>
+                                    <th>下单用户</th>
+                                    <th>订单号</th>
+                                    <th>订单状态</th>
+                                    <th>总金额</th>
+                  									<th>下单时间</th>
+                  									<th>支付时间</th>
+                  									<th>收货时间</th>
+                                    <th>物流信息</th>
+                                  </tr>
+                                  <%state_labels = {cancel: "label-warning", create: "label-primary", payment: "label-info", sent: "label-success", receive: "label-success"}%>
+                                  <%expresses = Express.all%>
+                                  <%@current_orders.each do |order|%>
+                                  <tr>
+                                    <td><%= order.id%></td>
+                                    <td><%= order.user.try(:name)%></td>
+                                    <td><%= order.scode%></td>
+                                    <td><span class="label <%= state_labels[order.state.to_sym]%>"><%= t "activerecord.order.states.#{order.state}"%></span></td>
+                                    <td><%= order.total_fee%></td>
+                                    <td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+                                    <td><%= order.payment_at ? order.payment_at.strftime("%Y-%m-%d %H:%M:%S") : ''%></td>
+                                    <td><%= order.receive_at ? order.receive_at.strftime("%Y-%m-%d %H:%M:%S") : ''%></td>
+                                    <td><%= expresses.find{|ex| ex.code==order.express}.try(:name)%><%= order.express_number%></td>
+                                  </tr>
+                                  <%end%>
+                                </tbody></table>
+                              </div>
+                              <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                          </div>
+                        </div>
+
+                <script src="/admin_lte/js/raphael-min.js" type="text/javascript" charset="utf-8"></script>
+                <script src="/admin_lte/js/morris.min.js" type="text/javascript" charset="utf-8"></script>
+                <%= stylesheet_link_tag    'admin/plugins/daterangepicker-bs3', media: 'all', 'data-turbolinks-track' => true %>
+                <%= javascript_include_tag 'admin/plugins/bootstrap-typeahead', 'data-turbolinks-track' => true %>
+                <%= javascript_include_tag 'admin/plugins/moment.min', 'data-turbolinks-track' => true %>
+                <%= javascript_include_tag 'admin/plugins/daterangepicker', 'data-turbolinks-track' => true %>
+                  
+                  <script type="text/javascript">
+                  $(function(){
+                    $('#reservation').daterangepicker();
+                  });
+                //Donut Chart
+                  var donut = new Morris.Donut({
+                    element: 'sales-chart',
+                    resize: true,
+                    colors: ["#3c8dbc", "#f56954", "#00a65a"],
+                    data: [
+                      {label: "已取消", value: <%= @all_orders.where(state: :cancel).count%>},
+                      {label: "未付款", value: <%= @all_orders.where(state: :create).count%>},
+                      {label: "已付款", value: <%= @all_orders.where(state: :payment).count%>},
+                      {label: "已发货", value: <%= @all_orders.where(state: :sent).count%>},
+                      {label: "已收货", value: <%= @all_orders.where(state: :receive).count%>}
+                    ],
+                    hideHover: 'auto'
+                  });
+                  
+                  var line = new Morris.Line({
+                      element: 'line-chart',
+                      resize: true,
+                      data: <%=raw @all_orders.select("*, date_format(created_at,'%Y-%m') AS month, COUNT(*) AS month_count").group("month").map{|month| {y: month.month.to_s, item1: month.month_count}}.to_json%>
+                      ,
+                      xkey: 'y',
+                      ykeys: ['item1'],
+                      labels: ['Item 1'],
+                      lineColors: ['#efefef'],
+                      lineWidth: 2,
+                      hideHover: 'auto',
+                      gridTextColor: "#fff",
+                      gridStrokeWidth: 0.4,
+                      pointSize: 4,
+                      pointStrokeColors: ["#efefef"],
+                      gridLineColor: "#efefef",
+                      gridTextFamily: "Open Sans",
+                      gridTextSize: 10
+                    });
+                  </script>

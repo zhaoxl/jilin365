@@ -1,0 +1,66 @@
+<%@page_title ||= "添加代理商"%>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<%= form_for [:admin, @data], url:  admin_area_franchises_path(@data), method: :post, :html=>{:multipart=>true} do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputPassword1">代理地区</label>
+            <%franchise_area_ids = AreaFranchise.where(state: ["create", "pass", "lock"]).select("area_id").map(&:area_id)%>
+						<%= f.select :area_id, options_for_select(nested_set_options(Area) {|i| "#{'-' * i.depth} #{franchise_area_ids.include?(i.id) ? "#{i.name}(此地区已被代理)" : i.name}" } ), {}, class: "form-control"%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">用户</label>
+            <input type="text" id="user_name" class="form-control" data-provide="typeahead" autocomplete="off" />
+            <%= f.hidden_field :user_id, id: "user_id"%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">开始结束时间</label>
+            <%= f.text_field :begin_and_end_at, class: "form-control", id: "begin_and_end_at"%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">状态</label>
+            <%= f.select :state, options_for_select([["未审核", :create], ["审核通过", :pass], ["已锁定", :lock]]), {}, class: "form-control"%>
+					</div>
+					
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+
+			
+		</div> 
+	</div> 
+</div>
+<%= stylesheet_link_tag    'admin/plugins/daterangepicker-bs3', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'admin/plugins/bootstrap-typeahead', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'admin/plugins/moment.min', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'admin/plugins/daterangepicker', 'data-turbolinks-track' => true %>
+<script type="text/javascript">
+$(function(){
+  //用户自动完成
+  $('#user_name').typeahead({
+    source: function(query, process) {
+      var parameter = {key: query, authenticity_token: $("meta[name='csrf-token']").attr("content")};
+      $.post('/ajax/user/like', parameter, function (data) {
+        var results = _.map(data, function (user) {
+            return user.id+":"+user.name;
+        });
+        process(results);
+      });
+    },
+    highlighter: function (item) {
+      return item.split(":")[1];
+    },
+    updater: function(item) {
+      $("#user_id").val(item.split(":")[0]);
+      return item.split(":")[1];
+    }
+  });
+  
+  //开始结束时间
+  $('#begin_and_end_at').daterangepicker({format: 'YYYY-MM-DD'});
+});
+</script>

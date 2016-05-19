@@ -1,0 +1,41 @@
+<%@page_title ||= "会员卡充值赠送"%>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<%= form_for @data, url: recharge_card_recharge_handsel_save_admin_settings_path, :html=>{:multipart=>true}, method: :post do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">赠送比例(百分比)</label>
+            <%= f.text_field :value, class: 'form-control'%>
+					</div>
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

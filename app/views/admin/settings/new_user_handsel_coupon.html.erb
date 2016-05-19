@@ -1,0 +1,41 @@
+<%@page_title ||= "新用户赠送优惠券"%>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<%= form_for @data, url: new_user_handsel_coupon_save_admin_settings_path, :html=>{:multipart=>true}, method: :post do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">赠送优惠券</label>
+            <%= f.select :value, options_for_select(CouponTemplate.all.map{|ct| [ct.name, ct.id]}.unshift(["不赠送优惠券", nil]), @data.value), {}, class: 'form-control'%>
+					</div>
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

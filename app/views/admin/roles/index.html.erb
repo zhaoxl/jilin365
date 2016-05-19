@@ -1,0 +1,120 @@
+<%@page_title ||= "角色管理"%>
+
+<style type="text/css" media="screen">
+.table > tbody > tr > td{vertical-align: middle;}
+.check_box{float: left; }
+.img_box{text-align: center; line-height: 83px}
+.inline_label{float: left; margin: 7px auto auto -18px;}
+.input_label{}
+.img-thumbnail{width: 50%;}	
+.filter .col-sm-05{
+	width: 4.166665%; 
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter .col-sm-07{
+	width: 5.833330%;
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter div[class^='col-xs-']{padding-left: 0px;}
+</style>
+
+	<div class="row">
+		<div class="col-xs-12">			
+			<div class="box box-primary">
+				<div class="box-body pad table-responsive">
+					<div class="row">
+						<div class="col-xs-12">
+							<%= form_tag '', method: :get do %>
+							<label>名称：<input type="text" name="name" /></label>
+							<input type="submit" value="搜索" />
+							<%end%>
+						</div>
+					</div>
+					<div>
+						<table class="table table-hover roles_table">
+							<tbody>
+								<tr>
+									<th><label><input type="checkbox" />全选</label></th>
+									<th>名称</th>
+									<th>权限</th>
+									<th>操作</th>
+								</tr>
+								<% @roles.each do |role| %>
+								<tr>
+									<td>
+										<div class="row show-grid">
+											<div class="col-md-3 img_box">
+												<div class="check_box">
+													<input type="checkbox" name="role[]id" value="<%= role.id%>">
+												</div>
+											</div>
+										</div>
+									</td>
+									<td>
+              			<%= role.name %>
+                  </td>
+              		<td>
+										<%role.permissions.group(:name).each do |per|%>
+											<p><%= per.name%></p>
+										<%end%>
+              		</td>
+              		<td>
+										<%unless role.name == Role::ROLE_SYSTEM%>
+                    <%= link_to "分配权限", edit_permissions_admin_role_path(role)%>
+                    <%= link_to "编辑", edit_admin_role_path(role)%>
+                    <%= link_to "删除", admin_role_path(role), method: :delete%>
+										<%end%>
+                  </td>
+								</tr>
+								<%end%>
+							</tbody>
+						</table>
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div>
+  <div class="row">
+    <div class="col-sm-5">
+      <%= link_to '添加角色', new_admin_role_path, class: "btn btn-block btn-primary btn-sm" %>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$(function(){
+	$("#filter_form input").change(function(){
+		$("#filter_form").submit();
+	});
+	$("#filter_form input").keydown(function(e){
+		if(e.keyCode == 13){
+			$("#filter_form").submit();
+		}
+	}); 
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+<%@page_title ||= "Banner管理"%>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<%= form_for @data, url: admin_banners_path, :html=>{:multipart=>true} do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">标题</label>
+						<%= f.text_field :title, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">描述</label>
+						<%= f.text_field :description, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">URL</label>
+						<%= f.text_field :url, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">图片</label>
+						<img src="<%= @data.image.url%>" />
+						<%= f.file_field :image%>
+					</div>
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

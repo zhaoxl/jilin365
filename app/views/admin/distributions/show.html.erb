@@ -1,0 +1,46 @@
+<%@page_title ||= "分销管理"%>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+
+			<div class="box-body pad table-responsive">
+				<div>
+					<table class="table table-hover distributions_table">
+						<tbody>
+							<tr>
+								<th><label><input type="checkbox" />全选</label></th>
+								<th>购买用户</th>
+								<th>订单号</th>
+								<th>内容</th>
+								<th>收益</th>
+								<th>时间</th>
+							</tr>
+							<%@logs.each do |log|%>
+							<tr>
+								<td>
+									<div class="row show-grid">
+										<div class="col-md-3 img_box">
+											<div class="check_box">
+												<input type="checkbox" name="distribution[]id" value="<%= log.id%>">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td><%= log.user.try(:name)%></td>
+								<td><%= log.order.try(:scode)%></td>
+								<td><%=raw log.order.try(:to_s).gsub("、", "<br />")%></td>
+								<td><%= log.amount%></td>
+								<td><%= log.created_at%></td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+			</div>
+      
+      
+		</div> 
+	</div> 
+</div>
+

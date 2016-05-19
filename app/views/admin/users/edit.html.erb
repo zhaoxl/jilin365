@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<%= form_for [:admin, @data], url:  admin_user_path(@data), method: :patch, :html=>{:multipart=>true} do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputPassword1">昵称</label>
+						<%= @data.try(:name)%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">余额</label>
+						<%= f.text_field :balance, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">积分</label>
+						<%= f.text_field :score, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">状态</label>
+						<%= f.select :state, options_for_select(["正常状态", "create"], ["临时锁定", "temp_lock"]), class: 'form-control'%>
+					</div>
+					
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+
+			
+		</div> 
+	</div> 
+</div>
+

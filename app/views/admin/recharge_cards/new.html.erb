@@ -1,0 +1,49 @@
+<%@page_title ||= "充值卡管理"%>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<%= form_tag admin_recharge_cards_path, method: :post do %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">面值</label>
+						<%= text_field_tag :price, nil, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">赠送金额</label>
+						<%= text_field_tag :handsel, nil, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">数量</label>
+						<%= text_field_tag :total, 1, class: 'form-control'%>
+					</div>
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

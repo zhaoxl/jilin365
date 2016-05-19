@@ -1,0 +1,67 @@
+<%@page_title ||= "团队管理"%>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tab_1">基本信息</a></li>
+        <li><a href="<%= users_admin_team_path(@data)%>">团队成员</a></li>
+        <li class="pull-right"><a class="text-muted" href="#"><i class="fa fa-gear"></i></a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="tab_1" class="tab-pane active">
+					<div class="box box-primary">
+						<%= form_for [:admin, @data], url:  admin_team_path(@data), method: :patch, :html=>{:multipart=>true} do |f| %>
+							<div class="box-body">
+								<div class="form-group">
+									<label for="exampleInputPassword1">团队名称:</label>
+			            <%= @data.try(:name)%>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">队长:</label>
+			            <%= @data.leader.try(:name)%>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">状态:</label>
+			            <%= t "activerecord.team.states.#{@data.state}"%>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">成员数:</label>
+			            <%= @data.users.count%>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">申请时间:</label>
+			            <%= @data.created_at.strftime("%Y-%m-%d")%>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">申请理由:</label>
+			            <%= @data.reason%>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">结果反馈</label>
+			            <%= f.text_area :feedback, class: "form-control"%>
+								</div>
+
+							</div>
+							<div class="box-footer">
+			          <%if @data.state == "create"%>
+								<button class="btn btn-primary" type="submit" name="act" value="pass">通过</button>
+								<button class="btn btn-primary" type="submit" name="act" value="reject">拒绝</button>
+			          <%end%>
+								<button class="btn btn-primary" type="submit" name="act" value="update">保存</button>
+								<a href="<%= admin_teams_path%>" class="btn btn-primary">返回</a>
+							</div>
+						<% end %>
+
+
+					</div>
+        </div>
+        <!-- /.tab-pane -->
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+							
+		
+	</div> 
+</div>
