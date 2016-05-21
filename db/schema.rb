@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519145819) do
+ActiveRecord::Schema.define(version: 20160520141320) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -83,17 +83,44 @@ ActiveRecord::Schema.define(version: 20160519145819) do
     t.integer "permission_id"
   end
 
+  create_table "trade_info_categories", force: true do |t|
+    t.string  "name"
+    t.string  "logo"
+    t.integer "position"
+    t.integer "parent_id"
+    t.integer "lft",                        null: false
+    t.integer "rgt",                        null: false
+    t.integer "depth",          default: 0, null: false
+    t.integer "children_count", default: 0, null: false
+  end
+
+  create_table "trade_info_images", force: true do |t|
+    t.integer "user_id"
+    t.integer "trade_info_id"
+    t.string  "image"
+    t.integer "position"
+  end
+
+  create_table "trade_infos", force: true do |t|
+    t.integer  "trade_info_category_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "desc"
+    t.integer  "position"
+    t.decimal  "price",                  precision: 10, scale: 2, default: 0.0
+    t.string   "state"
+    t.datetime "expired_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
-    t.integer  "recommend_user_id"
     t.string   "open_id"
-    t.string   "token",             limit: 500
-    t.string   "headimgurl",        limit: 1000
-    t.string   "qrcode"
+    t.string   "token",         limit: 500
+    t.string   "logo",          limit: 1000
     t.string   "state"
-    t.integer  "level",                          default: 1
-    t.string   "lock_reason",       limit: 1000
     t.string   "truename"
     t.string   "phone"
     t.string   "province_code"
@@ -109,6 +136,15 @@ ActiveRecord::Schema.define(version: 20160519145819) do
     t.decimal "income_balance", precision: 10, scale: 2, default: 0.0
     t.decimal "income_lock",    precision: 10, scale: 2, default: 0.0
   end
+
+  create_table "wechat_sessions", force: true do |t|
+    t.string   "openid",     null: false
+    t.string   "hash_store"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "wechat_sessions", ["openid"], name: "index_wechat_sessions_on_openid", unique: true, length: {"openid"=>100}, using: :btree
 
   create_table "withdraws", force: true do |t|
     t.integer  "user_id"
