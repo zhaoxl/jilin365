@@ -1,0 +1,45 @@
+<ul class="nav nav-pills">
+  <li role="presentation"><a href="<%= edit_admin_trade_info_path(@trade_info)%>">基本信息</a></li>
+  <li role="presentation" class="active"><a href="#">图片</a></li>
+</ul>
+<br>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<%= form_for @data, url: admin_trade_info_trade_info_images_path(@trade_info), :html=>{:multipart=>true} do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">图片</label>
+						<%= f.file_field :image%>
+					</div>
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

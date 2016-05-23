@@ -8,7 +8,13 @@ class CreateTradeInfos < ActiveRecord::Migration
       t.integer     :position
       t.decimal     :price, precision: 10, scale: 2, default: 0.0
       t.string      :state
+      t.text        :content
       t.datetime    :expired_at
+      t.integer     :position
+      t.boolean     :recommend, default: false
+      t.boolean     :sticky, default: false
+      t.datetime    :deleted_at
+      t.integer     :look_count, default: 0
       t.timestamps
     end
   end

@@ -109,7 +109,12 @@ ActiveRecord::Schema.define(version: 20160520141320) do
     t.integer  "position"
     t.decimal  "price",                  precision: 10, scale: 2, default: 0.0
     t.string   "state"
+    t.text     "content"
     t.datetime "expired_at"
+    t.boolean  "recommend",                                       default: false
+    t.boolean  "sticky",                                          default: false
+    t.datetime "deleted_at"
+    t.integer  "look_count",                                      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

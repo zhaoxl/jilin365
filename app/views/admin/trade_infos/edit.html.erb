@@ -1,0 +1,14 @@
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">基本信息</a></li>
+  <li role="presentation"><a href="<%= admin_trade_info_trade_info_images_path(@data)%>">图片</a></li>
+</ul>
+<br>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<%= render :partial => 'form', :locals => { :data => @data }  %>
+		</div> 
+	</div> 
+</div>
+

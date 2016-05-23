@@ -1,0 +1,126 @@
+<%@page_title="供求信息管理"%>
+
+<style type="text/css" media="screen">
+.table > tbody > tr > td{vertical-align: middle;}
+.check_box{float: left; }
+.img_box{text-align: center; line-height: 83px}
+.inline_label{float: left; margin: 7px auto auto -18px;}
+.input_label{}
+.img-thumbnail{width: 50%;}	
+.filter .col-sm-05{
+	width: 4.166665%; 
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter .col-sm-07{
+	width: 5.833330%;
+	float: left;
+	min-height: 1px;
+  padding-left: 15px;
+  padding-right: 0px;
+	padding-top: 7px;
+  position: relative;
+}
+.filter div[class^='col-xs-']{padding-left: 0px;}
+.state_create{color: green;}
+.state_pause{color: red;}
+</style>
+
+	<div class="row">
+		<div class="col-xs-12">			
+			<div class="box box-primary">
+				<div class="box-body pad table-responsive">
+					<div>
+						<table class="table table-hover orders_table">
+							<tbody>
+								<tr>
+									<th><label><input type="checkbox" />全选</label></th>
+									<th>分类</th>
+									<th>供求信息名称</th>
+									<th>图片</th>
+									<th>状态</th>
+									<th>价格</th>
+									<th>发布、到期时间</th>
+									<th>查看数</th>
+									<th>置顶</th>
+									<th>推荐</th>
+									<th>显示顺序</th>
+									<th>操作</th>
+								</tr>
+								<%@datas.each do |data|%>
+								<tr>
+									<td>
+										<div class="row show-grid">
+											<div class="col-md-3 img_box">
+												<div class="check_box">
+													<input type="checkbox" name="data[]id" value="<%= data.id%>">
+												</div>
+											</div>
+										</div>
+									</td>
+									<td><%= data.trade_info_category.try(:name)%></td>
+									<td><%= data.title%></td>
+									<td>
+										<%data.trade_info_images.each do |image|%>
+											<img src="<%= image.image.url%>" width="50" height="50">
+										<%end%>
+									</td>
+									<td class="state_<%= data.state%>"><%= t "activerecord.trade_info.states.#{data.state}"%></td>
+									<td><%= data.price%></td>
+									<td><%= data.created_at.strftime("%Y-%m-%d")%> - <%= data.expired_at.strftime("%Y-%m-%d") rescue "无"%></td>
+									<td><%= data.look_count%></td>
+									<td><%= data.sticky ? '是' : '否'%></td>
+									<td><%= data.recommend ? '是' : '否'%></td>
+									<td><%= data.position%></td>
+									<td>
+										<a href="<%= edit_admin_trade_info_path(data)%>">编辑</a>
+										<a href="<%= move_up_admin_trade_info_path(data)%>">上移</a>
+										<a href="<%= move_down_admin_trade_info_path(data)%>">下移</a>
+										<%= link_to '删除', admin_trade_info(data), :confirm => '确定要删除供求信息吗?', :method => :delete %></td>
+									</td>
+								</tr>
+								<%end%>
+							</tbody>
+						</table>
+						<div style="margin-left: 10px">
+							<%= paginate @datas, :theme => 'twitter-bootstrap-3' %>
+						</div>
+					</div>
+					<a href="<%= new_admin_trade_info_path%>" class="btn btn-default">添加供求信息</a>
+				</div> 
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+$(function(){
+	$("#filter_form input").change(function(){
+		$("#filter_form").submit();
+	});
+	$("#filter_form input").keydown(function(e){
+		if(e.keyCode == 13){
+			$("#filter_form").submit();
+		}
+	}); 
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

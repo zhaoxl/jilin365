@@ -1,0 +1,72 @@
+<ul class="nav nav-pills">
+  <li role="presentation"><a href="<%= edit_admin_trade_info_path(@trade_info)%>">基本信息</a></li>
+  <li role="presentation" class="active"><a href="#">商品图片</a></li>
+</ul>
+<br>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<div class="box-body pad table-responsive">
+				<div>
+					<table class="table table-hover orders_table">
+						<tbody>
+							<tr>
+								<th><label><input type="checkbox" />全选</label></th>
+								<th>图标</th>
+								<th>显示顺序</th>
+								<th>操作</th>
+							</tr>
+							<%@datas.each do |data|%>
+							<tr>
+								<td>
+									<div class="row show-grid">
+										<div class="col-md-3 img_box">
+											<div class="check_box">
+												<input type="checkbox" name="data[]id" value="<%= data.id%>">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td>
+										<img src="<%= data.image.url%>" width="50" height="50">
+								</td>
+								<td><%= data.position%></td>
+								<td>
+									<a href="<%= edit_admin_trade_info_trade_info_image_path(@trade_info, data)%>">编辑</a>
+									<a href="<%= move_up_admin_trade_info_trade_info_image_path(@trade_info, data)%>">上移</a>
+									<a href="<%= move_down_admin_trade_info_trade_info_image_path(@trade_info, data)%>">下移</a>
+									<%= link_to '删除', admin_trade_info_trade_info_image_path(@trade_info, data), :confirm => '确定要删除图片吗?', :method => :delete %></td>
+								</td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<a href="<%= new_admin_trade_info_trade_info_image_path%>" class="btn btn-default">添加图片</a>
+			</div> 
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

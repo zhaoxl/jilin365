@@ -1,0 +1,45 @@
+<%= form_for [:admin, data], :html=>{:multipart=>true} do |f| %>
+	<div class="box-body">
+		<div class="form-group">
+			<label for="exampleInputEmail1">所属分类</label>
+			<%= f.select :trade_info_category_id, grouped_options_for_select(TradeInfoCategory.roots.map{|c| [c.name, c.children.map{|cc| [cc.name, cc.id]}]}, data.trade_info_category_id), {}, class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">用户</label>
+			<%= f.text_field :user_id, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">标题</label>
+			<%= f.text_field :title, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">描述</label>
+			<%= f.text_area :desc, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">价格</label>
+			<%= f.text_field :price, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">推荐</label>
+			<%= f.check_box :recommend%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">置顶</label>
+			<%= f.check_box :sticky%>
+		</div>
+		<%unless data.new_record?%>
+		<div class="form-group">
+			<label for="exampleInputPassword1">显示顺序</label>
+			<%= f.text_field :position, class: 'form-control' %>
+		</div>
+		<%end%>
+		<div class="form-group">
+			<label for="exampleInputPassword1">图文描述</label>
+			<%= f.kindeditor :content %>
+		</div>
+	</div>
+	<div class="box-footer">
+		<button class="btn btn-primary" type="submit">保存</button>
+	</div>
+<% end %>
