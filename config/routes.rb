@@ -111,6 +111,11 @@ Rails.application.routes.draw do
       end
     end
     resources :trade_infos do
+      member do
+        get :move_up
+        get :move_down
+      end
+      
       resources :trade_info_images do
         member do
           get :move_up

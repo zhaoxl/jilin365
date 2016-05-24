@@ -80,7 +80,7 @@
 										<a href="<%= edit_admin_trade_info_path(data)%>">编辑</a>
 										<a href="<%= move_up_admin_trade_info_path(data)%>">上移</a>
 										<a href="<%= move_down_admin_trade_info_path(data)%>">下移</a>
-										<%= link_to '删除', admin_trade_info(data), :confirm => '确定要删除供求信息吗?', :method => :delete %></td>
+										<%= link_to '删除', admin_trade_info_path(data), :confirm => '确定要删除供求信息吗?', :method => :delete %></td>
 									</td>
 								</tr>
 								<%end%>

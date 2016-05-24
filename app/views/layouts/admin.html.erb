@@ -111,45 +111,15 @@
                          </li>
                          <li class="treeview">
                               <a href="#">
-                                   <i class="fa fa-th"></i><span> 交易管理</span><i class="fa fa-angle-left pull-right"></i>
+                                   <i class="fa fa-th"></i><span> 商户</span><i class="fa fa-angle-left pull-right"></i>
+                                   <li><a href="/admin/trade_infos"><i class="fa fa-angle-double-right"></i> 商户管理</a></li>
+                                <li><a href="<%= admin_coupons_path%>"><i class="fa fa-angle-double-right"></i> 优惠券管理</a></li>
+                                <li><a href="<%= admin_coupons_path%>"><i class="fa fa-angle-double-right"></i> 打折卡管理</a></li>
                               </a>
                               <ul class="treeview-menu">
-                                   <li><a href="/admin/orders"><i class="fa fa-angle-double-right"></i> 全部订单</a></li>
-                                   <li><a href="/admin/orders?state=payment"><i class="fa fa-angle-double-right"></i> 待处理订单</a></li>
-                                   <li><a href="/admin/orders?state=sent"><i class="fa fa-angle-double-right"></i> 已发货订单</a></li>
-                              </ul>
-                         </li>
-                         <li class="treeview">
-                              <a href="#">
-                                   <i class="fa fa-th"></i><span> 代理商</span><i class="fa fa-angle-left pull-right"></i>
-                              </a>
-                              <ul class="treeview-menu">
-                                   <li><a href="/admin/areas"><i class="fa fa-angle-double-right"></i> 区域管理</a></li>
-                                   <li><a href="<%= admin_area_franchises_path(state: :create)%>"><i class="fa fa-angle-double-right"></i> 待审核申请</a></li>
-                                   <li><a href="<%= admin_area_franchises_path%>"><i class="fa fa-angle-double-right"></i> 代理商管理</a></li>
-                                   <li><a href="/admin/user_levels"><i class="fa fa-angle-double-right"></i> 用户等级设置</a></li>
-                              </ul>
-                         </li>
-                         <li class="treeview">
-                              <a href="#">
-                                   <i class="fa fa-bar-chart-o"></i>
-                                   <span> 商品管理</span>
-                                   <i class="fa fa-angle-left pull-right"></i>
-                              </a>
-                              <ul class="treeview-menu">
-                                   <li><a href="<%= admin_product_categories_path%>"><i class="fa fa-angle-double-right"></i> 商品分类</a></li>
-                                   <li><a href="<%= admin_products_path%>"><i class="fa fa-angle-double-right"></i> 商品管理</a></li>
-                              </ul>
-                         </li>
-                         <li class="treeview">
-                              <a href="#">
-                                   <i class="fa fa-bar-chart-o"></i>
-                                   <span> 团队</span>
-                                   <i class="fa fa-angle-left pull-right"></i>
-                              </a>
-                              <ul class="treeview-menu">
-                                   <li><a href="<%= admin_teams_path%>"><i class="fa fa-angle-double-right"></i> 团队管理</a></li>
-                                   <li><a href="<%= admin_teams_path(state: :create)%>"><i class="fa fa-angle-double-right"></i> 待审核申请</a></li>
+                                   <li><a href="/admin/trade_info_categories"><i class="fa fa-angle-double-right"></i> 分类管理</a></li>
+                                   <li><a href="/admin/trade_infos"><i class="fa fa-angle-double-right"></i> 供求信息管理</a></li>
+                                   <li><a href="/admin/trade_infos?state=create"><i class="fa fa-angle-double-right"></i> 待审核信息</a></li>
                               </ul>
                          </li>
                          <li class="treeview">
@@ -168,30 +138,16 @@
                          <li class="treeview">
                               <a href="#">
                                    <i class="fa fa-laptop"></i>
-                                   <span> 营销管理</span>
-                                   <i class="fa fa-angle-left pull-right"></i>
-                              </a>
-                              <ul class="treeview-menu">
-                                <li><a href="<%= new_user_handsel_coupon_admin_settings_path%>"><i class="fa fa-angle-double-right"></i> 新用户赠送优惠券</a></li>
-                                <li><a href="<%= recharge_card_recharge_handsel_admin_settings_path%>"><i class="fa fa-angle-double-right"></i> 会员卡充值赠送</a></li>
-                                <li><a href="<%= admin_withdraws_path%>"><i class="fa fa-angle-double-right"></i> 提现管理</a></li>
-                              </ul>
-                         </li>
-                         <li class="treeview">
-                              <a href="#">
-                                   <i class="fa fa-laptop"></i>
                                    <span> 系统设置</span>
                                    <i class="fa fa-angle-left pull-right"></i>
                               </a>
                               <ul class="treeview-menu">
+                                <li><a href="/admin/areas"><i class="fa fa-angle-double-right"></i> 区域管理</a></li>
                                 <li><a href="<%= admin_permissions_path%>"><i class="fa fa-angle-double-right"></i> 功能管理</a></li>
                                 <li><a href="<%= admin_roles_path%>"><i class="fa fa-angle-double-right"></i> 角色管理</a></li>
                               	<li><a href="<%= admin_member_admins_path%>"><i class="fa fa-angle-double-right"></i> 员工管理</a></li>
                               	<li><a href="<%= admin_banners_path%>"><i class="fa fa-angle-double-right"></i> Banner管理</a></li>
-                                <li><a href="<%= admin_coupon_templates_path%>"><i class="fa fa-angle-double-right"></i> 优惠券模板管理</a></li>
                                 <li><a href="<%= admin_single_articles_path%>"><i class="fa fa-angle-double-right"></i> 单独内容页管理</a></li>
-                                <li><a href="<%= admin_recharge_cards_path%>"><i class="fa fa-angle-double-right"></i> 充值卡管理</a></li>
-                                <li><a href="<%= admin_coupons_path%>"><i class="fa fa-angle-double-right"></i> 优惠券管理</a></li>
                               </ul>
                          </li>
                     </ul>

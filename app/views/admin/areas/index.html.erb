@@ -38,8 +38,6 @@
 								<tr>
 									<th><label><input type="checkbox" />全选</label></th>
 									<th>名称</th>
-									<th>级别</th>
-									<th>代理商</th>
 									<th>操作</th>
 								</tr>
 								<%@areas.each do |area|%>
@@ -54,8 +52,6 @@
 										</div>
 									</td>
 									<td><%= area.try(:name)%></td>
-									<td>V<%= area.level%></td>
-									<td><%= area.area_franchise ? area.area_franchise.user.try(:name) : "没有代理商"%></td>
 									<td>
                     <%if area.depth == 0%>
 										<a href="<%= admin_areas_path(parent_id: area.id, title: "#{area.name}")%>">城市</a>
