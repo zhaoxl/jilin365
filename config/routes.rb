@@ -123,6 +123,18 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :store_categories do
+      member do
+        get :move_up
+        get :move_down
+      end
+    end
+    resources :stores do
+      member do
+        get :move_up
+        get :move_down
+      end
+    end
     
     
   end
