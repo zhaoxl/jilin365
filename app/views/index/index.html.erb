@@ -1,14 +1,31 @@
-<div class="header">
-  <div class="area">
+<div id="header">
+  <div class="area col-xs-2 pr font_white">
+    <span class="iconfont">&#xe639;</span>
     北京市
   </div>
   <div class="search">
-    <div style="border:#ff0000 solid 1px;height: 30px; width:300px;  position: relative; border-radius: 15px; overflow: hidden;">
-     <input type="text" style="border:none ;width: 250px; height:28px; line-height: 28px; padding-left: 10px;outline:none">
-     	<span  style="position: absolute; right: 0px; top: 0px; height: 30px; width: 30px;">
-     		搜
-     		<img src="" />
+    <div class="box">
+      <input type="text" class="input" placeholder="请输入关键字" />
+      <span  class="btn iconfont font_white">
+        &#xe625;
      	</span>
     </div>
   </div>
+</div>
+
+<div class="banner-box pr">
+	<ul class="banner-nr" id="banner-ul"><li data-location-href="/clpga/articles/6" class="a-href" style="width: 640px;"><img class="img-responsive" src="http://image.mastergolf.cn/assets/0bb1696d06680e6a9fc4df185b0c61f5.png"></li>
+		
+	</ul>
+	<ul id="banner-dian" class="banner-dian pa" style="margin-left: -10px;">
+		<li class="current"></li>
+	</ul>
+</div>
+
+<div class="trade_categories pr">
+  <ul>
+    <%@trade_categories[0..3].each do |category|%>
+    <li></li>
+    <%end%>
+  </ul>
 </div>
