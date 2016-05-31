@@ -23,9 +23,43 @@
 </div>
 
 <div class="trade_categories pr">
-  <ul>
+  <ul class="pr">
     <%@trade_categories[0..3].each do |category|%>
-    <li></li>
+    <li>
+    	<a href="#">
+				<img src="<%= category.logo.url%>" />
+				<p><%= category.name%></p>
+			</a>
+    </li>
+    <%end%>
+  </ul>
+	<div class="blank05"></div>
+  <ul class="pr">
+    <%@trade_categories[4..-1].each do |category|%>
+    <li>
+    	<a href="#">
+				<img src="<%= category.logo.url%>" />
+				<p><%= category.name%></p>
+			</a>
+    </li>
     <%end%>
   </ul>
 </div>
+<div class="blank05"></div>
+
+<div class="space05 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="info_list">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				热门信息
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

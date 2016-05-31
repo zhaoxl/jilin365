@@ -251,4 +251,28 @@ h1, h2, h3, h4, h5, h6 {
 #header .search .box{border: white solid 1px;height: 1.5rem; width:75%;  position: relative; border-radius: 15px; overflow: hidden;}
 #header .search .input{border:none ;width: 250px; height:28px; line-height: 28px; padding-left: 10px;outline:none; background: #f96751; color: white;}
 #header .search .btn{position: absolute; right: 0px; top: 0px; line-height: 1.5rem; width: 30px;}
+
+.trade_categories ul{margin-top: 1rem;}  
+.trade_categories ul li{width: 25%; float: left; text-align: center;}
+
+
+.space05 {
+  height: 0.5rem;
+  clear: both;
+  overflow: hidden; 
+  border: solid 1px #dddddd;
+  background: #F8F8F8;
+  display: block;
+}
+
+.info_list{width: 100%; }
+.info_list .context{width: 98%; float: right;}
+.info_list .context .header{width: 100%; height: 1.5rem; border-bottom: solid 1px #dddddd; }
+.info_list .context .header .title{border-left: solid 0.1rem #F96751; color: #F96751; padding-left: 0.5rem; line-height: 1.2rem;
+}
+.info_list .context .body{}
+.info_list .context .body .info{}
+  
+  
+  
   
