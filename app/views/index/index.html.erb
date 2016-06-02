@@ -61,9 +61,9 @@
 		<div class="body">
 			<ul class="info">
 				<% @recommend_infos.each do |info|%>
-				<li>
+				<li class="clearfix">
 					<a href="#" class="img">
-						<img src="<%= info.front_image.try(:url)%>" />
+						<img src="<%= info.front_image.try(:image).try(:url)%>" />
 					</a>
 					<div class="content">
 						<p class="title"><%= info.title%></p>
@@ -80,5 +80,77 @@
 	</div>
 </div>
 
+<div class="blank05"></div>
+
+<div class="space05 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="info_list">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				代金券
+			</div>
+		</div>
+		<div class="body">
+			<ul class="info">
+				<% @recommend_infos.each do |info|%>
+				<li class="clearfix">
+					<a href="#" class="img_card">
+						<img src="<%= info.front_image.try(:image).try(:url)%>" />
+					</a>
+					<div class="content">
+						<p class="title">正进供求世界</p>
+						<p class="desc"><%= info.desc%></p>
+						<div class="attrs">
+							<span>电话：18158414543</span>
+						</div>
+					</div>
+				</li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+</div>
 
 
+<div class="blank05"></div>
+
+<div class="space05 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="info_list">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				打折卡
+			</div>
+		</div>
+		<div class="body">
+			<ul class="info">
+				<% @recommend_infos.each do |info|%>
+				<li class="clearfix">
+					<a href="#" class="img_card">
+						<img src="<%= info.front_image.try(:image).try(:url)%>" />
+					</a>
+					<div class="content">
+						<p class="title">正进供求世界</p>
+						<p class="desc"><%= info.desc%></p>
+						<div class="attrs">
+							<span>电话：18158414543</span>
+						</div>
+					</div>
+				</li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="blank05"></div>
+
+<div class="space05 pr"></div>
+<div class="blank2"></div>
+<div class="blank1"></div>

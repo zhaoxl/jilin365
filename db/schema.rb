@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525135135) do
+ActiveRecord::Schema.define(version: 20160602110255) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -112,6 +112,13 @@ ActiveRecord::Schema.define(version: 20160525135135) do
     t.datetime "updated_at"
   end
 
+  create_table "trade_info_attrs", force: true do |t|
+    t.integer "trade_info_id"
+    t.string  "data_type"
+    t.string  "name"
+    t.string  "value"
+  end
+
   create_table "trade_info_categories", force: true do |t|
     t.string  "name"
     t.string  "logo"
@@ -121,6 +128,13 @@ ActiveRecord::Schema.define(version: 20160525135135) do
     t.integer "rgt",                        null: false
     t.integer "depth",          default: 0, null: false
     t.integer "children_count", default: 0, null: false
+  end
+
+  create_table "trade_info_category_attrs", force: true do |t|
+    t.integer "trade_info_category_id"
+    t.string  "data_type"
+    t.string  "name"
+    t.integer "position"
   end
 
   create_table "trade_info_images", force: true do |t|

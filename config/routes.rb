@@ -109,6 +109,12 @@ Rails.application.routes.draw do
         get :move_up
         get :move_down
       end
+      resources :trade_info_category_attrs do
+        member do
+          get :move_up
+          get :move_down
+        end
+      end
     end
     resources :trade_infos do
       member do
