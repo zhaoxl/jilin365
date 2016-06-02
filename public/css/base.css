@@ -274,12 +274,13 @@ h1, h2, h3, h4, h5, h6 {
 .info_list .context .header .title{border-left: solid 0.1rem #F96751; color: #F96751; padding-left: 0.5rem; line-height: 1.2rem;
 }
 .info_list .context .body{width: 100%;}
-.info_list .context .body .info{width: 100%; border-bottom: solid 1px #dddddd;}
-.info_list .context .body .info .img{float: left; width: 20%; height: 5rem;}
-.info_list .context .body .info .content{float: right; width: 80%; height: 5rem;}
-.info_list .context .body .info .content .title{font-weight: bold; font-size: 1.5rem;}
-.info_list .context .body .info .content .desc{}
-.info_list .context .body .info .content .attrs{display: block; float: left; color: #;}
+.info_list .context .body .info li{width: 100%; border-bottom: solid 1px #dddddd;}
+.info_list .context .body .info li .img{float: left; width: 20%; height: 5rem; display: block;}
+.info_list .context .body .info li .img img{width: 100%; height: 100%;}
+.info_list .context .body .info li .content{float: right; width: 80%; height: 5rem;}
+.info_list .context .body .info li .content .title{font-weight: bold; font-size: 1.5rem;}
+.info_list .context .body .info li .content .desc{}
+.info_list .context .body .info li .content .attrs{display: block; float: left;}
   
   
   

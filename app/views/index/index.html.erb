@@ -58,6 +58,25 @@
 				热门信息
 			</div>
 		</div>
+		<div class="body">
+			<ul class="info">
+				<% @recommend_infos.each do |info|%>
+				<li>
+					<a href="#" class="img">
+						<img src="<%= info.front_image.try(:url)%>" />
+					</a>
+					<div class="content">
+						<p class="title"><%= info.title%></p>
+						<p class="desc"><%= info.desc%></p>
+						<div class="attrs">
+							<span>8万元</span>
+							<span>15平米</span>
+						</div>
+					</div>
+				</li>
+				<%end%>
+			</ul>
+		</div>
 	</div>
 </div>
 

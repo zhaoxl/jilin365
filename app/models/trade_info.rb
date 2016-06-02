@@ -30,5 +30,8 @@ class TradeInfo < ActiveRecord::Base
     end
   end
   
+  def front_image
+    self.trade_info_images.first
+  end
   
 end

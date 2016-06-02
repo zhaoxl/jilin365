@@ -1,0 +1,10 @@
+class CreateTradeInfoAttrs < ActiveRecord::Migration
+  def change
+    create_table :trade_info_attrs do |t|
+      t.references  :trade_info
+      t.string      :data_type
+      t.string      :name
+      t.string      :value
+    end
+  end
+end
