@@ -1,0 +1,76 @@
+<ul class="nav nav-pills">
+  <li role="presentation"><a href="<%= edit_admin_trade_info_category_path(@trade_info_category)%>">基本信息</a></li>
+  <li role="presentation" class="active"><a href="#">属性</a></li>
+</ul>
+<br>
+
+<div class="row">
+	<div class="col-xs-12">			
+		<div class="box box-primary">
+			<%= form_for @data, url: admin_trade_info_category_trade_info_category_attr_path(@trade_info_category, @data), :html=>{:multipart=>true} do |f| %>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">名称</label>
+						<%= f.text_field :name, class: 'form-control'%>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">类型</label>
+						<%= f.select :data_type, options_for_select(::TradeInfoCategoryAttr.CONSTS_DATA_TYPE, @data.data_type), {}, class: 'form-control'%>
+					</div>
+					<div class="form-group" id="select_options" style="display: <%= @data.data_type == "SELECT" ? "block" : "none"%>">
+						<label for="exampleInputEmail1">选项</label>
+						<%= f.text_area :options, class: 'form-control'%>
+					</div>
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" type="submit">保存</button>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+$(function(){
+	$("#trade_info_category_attr_data_type").change(function(){
+		var _this = $(this);
+		if(_this.val() == "SELECT")
+		{
+			$("#select_options").show();
+		}
+		else
+		{
+			$("#select_options").hide();
+		}
+	});
+	
+
+  jQuery('#trade_info_category_attr_options').tagsInput({width:'auto'});
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

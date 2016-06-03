@@ -1,55 +1,60 @@
 <ul class="nav nav-pills">
   <li role="presentation"><a href="<%= edit_admin_trade_info_category_path(@trade_info_category)%>">基本信息</a></li>
   <li role="presentation" class="active"><a href="#">属性</a></li>
-  <li role="presentation"><a href="#">附加属性</a></li>
 </ul>
 <br>
 
 <div class="row">
 	<div class="col-xs-12">			
 		<div class="box box-primary">
-			<%= form_for @data, url: updates_admin_trade_info_trade_info_attrs_path(@trade_info_category), :html=>{:multipart=>true} do |f| %>
-				<div class="box-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1">名称</label>
-						<%= f.text_field :name, class: 'form-control'%>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">类型</label>
-						<%= f.select :data_type, options_for_select(::TradeInfoCategoryAttr.CONSTS_DATA_TYPE), {}, class: 'form-control'%>
-					</div>
-					<div class="form-group" id="select_options" style="display: <%= @data.data_type == "SELECT" ? "block" : "none"%>">
-						<label for="exampleInputEmail1">选项</label>
-						<%= f.text_area :options, class: 'form-control'%>
-					</div>
+			<div class="box-body pad table-responsive">
+				<div>
+					<table class="table table-hover orders_table">
+						<tbody>
+							<tr>
+								<th><label><input type="checkbox" />全选</label></th>
+								<th>名称</th>
+								<th>数据类型</th>
+								<th>显示顺序</th>
+								<th>操作</th>
+							</tr>
+							<%@datas.each do |data|%>
+							<tr>
+								<td>
+									<div class="row show-grid">
+										<div class="col-md-3 img_box">
+											<div class="check_box">
+												<input type="checkbox" name="data[]id" value="<%= data.id%>">
+											</div>
+										</div>
+									</div>
+								</td>
+								<td>
+									<%= data.name%>
+								</td>
+								<td>
+									<%= data.data_type%>
+								</td>
+								<td><%= data.position%></td>
+								<td>
+									<a href="<%= edit_admin_trade_info_category_trade_info_category_attr_path(@trade_info_category, data)%>">编辑</a>
+									<a href="<%= move_up_admin_trade_info_category_trade_info_category_attr_path(@trade_info_category, data)%>">上移</a>
+									<a href="<%= move_down_admin_trade_info_category_trade_info_category_attr_path(@trade_info_category, data)%>">下移</a>
+									<%= link_to '删除', admin_trade_info_category_trade_info_category_attr_path(@trade_info_category, data), :confirm => '确定要删除属性吗?', :method => :delete %></td>
+								</td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
 				</div>
-				<div class="box-footer">
-					<button class="btn btn-primary" type="submit">保存</button>
-				</div>
-			<% end %>
+				<a href="<%= new_admin_trade_info_category_trade_info_category_attr_path%>" class="btn btn-default">添加属性</a>
+			</div> 
 		</div>
 	</div>
 </div>
 
 
-<script type="text/javascript">
-$(function(){
-	$("#trade_info_category_attr_data_type").change(function(){
-		var _this = $(this);
-		if(_this.val() == "SELECT")
-		{
-			$("#select_options").show();
-		}
-		else
-		{
-			$("#select_options").hide();
-		}
-	});
-	
 
-  jQuery('#trade_info_category_attr_options').tagsInput({width:'auto'});
-});
-</script>
 
 
 
