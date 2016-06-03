@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    attributes:
+      trade_info_category_attr:
+        data_type:
+          INTEGER: 数字
+          STRING:  字符串
+          TEXT:    长文本
+          IMAGE:   图片
+          SELECT:  选择

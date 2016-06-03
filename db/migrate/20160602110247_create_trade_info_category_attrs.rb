@@ -5,6 +5,7 @@ class CreateTradeInfoCategoryAttrs < ActiveRecord::Migration
       t.string      :data_type
       t.string      :name
       t.integer     :position
+      t.string      :options, limit: 1000
     end
   end
 end

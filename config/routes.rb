@@ -128,6 +128,11 @@ Rails.application.routes.draw do
           get :move_down
         end
       end
+      resources :trade_info_attrs do
+        collection do
+          post :updates
+        end
+      end
     end
     resources :store_categories do
       member do

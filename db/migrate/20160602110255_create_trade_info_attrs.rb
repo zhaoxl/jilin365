@@ -5,6 +5,7 @@ class CreateTradeInfoAttrs < ActiveRecord::Migration
       t.string      :data_type
       t.string      :name
       t.string      :value
+      t.string      :image
     end
   end
 end

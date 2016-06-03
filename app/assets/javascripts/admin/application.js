@@ -22,3 +22,4 @@
 
 //= require kindeditor
 //= require admin/jquery.datetimepicker
+//= require admin/jquery.tagsinput.min

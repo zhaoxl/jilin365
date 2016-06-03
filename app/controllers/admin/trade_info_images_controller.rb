@@ -50,7 +50,7 @@ class Admin::TradeInfoImagesController < Admin::BaseController
   end
   
   def find_data
-    @data = ProductLogo.find(params[:id])
+    @data = TradeInfoImage.find(params[:id])
   end
   
   def post_params
