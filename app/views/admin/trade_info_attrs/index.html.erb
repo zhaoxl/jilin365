@@ -1,5 +1,5 @@
 <ul class="nav nav-pills">
-  <li role="presentation"><a href="<%= edit_admin_trade_info_category_path(@trade_info)%>">基本信息</a></li>
+  <li role="presentation"><a href="<%= edit_admin_trade_info_path(@trade_info)%>">基本信息</a></li>
   <li role="presentation"><a href="<%= admin_trade_info_trade_info_images_path(@trade_info)%>">图片</a></li>
   <li role="presentation" class="active"><a href="#">附加属性</a></li>
 </ul>
@@ -8,12 +8,16 @@
 <div class="row">
 	<div class="col-xs-12">			
 		<div class="box box-primary">
-			<%= form_tag url: updates_admin_trade_info_trade_info_attrs_path(@trade_info), :html=>{:multipart=>true} do |f| %>
+			<%= form_tag updates_admin_trade_info_trade_info_attrs_path(@trade_info), :html=>{:multipart=>true} do |f| %>
+        <%= hidden_field :trade_info_id, params[:trade_info_id]%>
 				<div class="box-body">
-					<%(@trade_info.trade_info_attrs|@trade_info.trade_info_category.trade_info_category_attrs).each do |attr|%>
+					<%(@trade_info.trade_info_attrs.present? ? @trade_info.trade_info_attrs : @trade_info.trade_info_category.trade_info_category_attrs).each do |attr|%>
 					<div class="form-group">
 						<label for="exampleInputEmail1"><%= attr.name%></label>
-						<%= text_field_tag :name, class: 'form-control'%>
+            <%= hidden_field_tag "attrs[]attr_id", attr.try(:trade_info_category_attr_id) || attr.id%>
+            <%= hidden_field_tag "attrs[]attr_name", attr.name%>
+            <%= hidden_field_tag "attrs[]data_type", attr.data_type%>
+						<%= text_field_tag "attrs[]attr_value", attr.try(:value), class: 'form-control'%>
 					</div>
 					<%end%>
 				</div>

@@ -12,20 +12,63 @@
     <link href="/css/base.css" rel="stylesheet" type="text/css">
     <%= csrf_meta_tags %>
   </head>
-  <body class="pr">
-
+  <body>
     <div class="wrap">
+      <%unless @hidden_search_bar%>
+      <div id="header">
+        <div class="area col-xs-2 pr">
+          <a href="<%= areas_path%>" class="font_white">
+            <span class="iconfont">&#xe605;</span>
+            北京市
+          </a>
+        </div>
+        <div class="search">
+          <div class="box">
+            <input type="text" class="input" placeholder="请输入关键字" />
+            <span  class="btn iconfont font_white">
+              &#xe603;
+           	</span>
+          </div>
+        </div>
+      </div>
+      <%end%>
+      
       <%= yield %>
     </div>
+
+
+    <div class="blank05"></div>
+    <div class="space1 pr"></div>
+    <div class="blank1"></div>
+    <div class="blank05"></div>
     
-    <div id="footer" class="pa">
+    <div id="footer" class="wrap pr">
       <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-          <td>客服</td>
-          <td>收藏</td>
-          <td>首页</td>
-          <td>会员</td>
-          <td>找商家</td>
+          <td>
+            <span class="iconfont">&#xe607;</span>
+            客服
+          </td>
+          <td>
+            <span class="iconfont">&#xe604;</span>
+            收藏
+          </td>
+          <td>
+            <div class="index_btn">
+              <a href="/" class="color-white">
+                <span class="iconfont">&#xe601;</span>
+                首页
+              </a>
+            </div>
+          </td>
+          <td>
+            <span class="iconfont">&#xe608;</span>
+            会员
+          </td>
+          <td>
+            <span class="iconfont">&#xe606;</span>
+            找商家
+          </td>
         </tr>
       </table>
     </div>

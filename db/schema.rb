@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602110255) do
+ActiveRecord::Schema.define(version: 20160605115447) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -56,6 +56,22 @@ ActiveRecord::Schema.define(version: 20160602110255) do
     t.string   "url",         limit: 500
     t.string   "image"
     t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cards", force: true do |t|
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.integer  "category"
+    t.string   "name"
+    t.integer  "position"
+    t.integer  "count"
+    t.string   "state"
+    t.string   "logo"
+    t.string   "desc"
+    t.string   "phone"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -113,10 +129,12 @@ ActiveRecord::Schema.define(version: 20160602110255) do
   end
 
   create_table "trade_info_attrs", force: true do |t|
+    t.integer "trade_info_category_attr_id"
     t.integer "trade_info_id"
     t.string  "data_type"
     t.string  "name"
     t.string  "value"
+    t.string  "image"
   end
 
   create_table "trade_info_categories", force: true do |t|
@@ -135,6 +153,7 @@ ActiveRecord::Schema.define(version: 20160602110255) do
     t.string  "data_type"
     t.string  "name"
     t.integer "position"
+    t.string  "options",                limit: 1000
   end
 
   create_table "trade_info_images", force: true do |t|
@@ -158,6 +177,13 @@ ActiveRecord::Schema.define(version: 20160602110255) do
     t.boolean  "sticky",                                          default: false
     t.datetime "deleted_at"
     t.integer  "look_count",                                      default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_cards", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

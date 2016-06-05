@@ -1,0 +1,15 @@
+<div class="blank1"></div>
+<ul class="card_list">
+	<%@cards.each do |card|%>
+	<li class="clearfix">
+		<a href="<%= card_path(card)%>" class="img">
+			<img src="<%= card.logo.try(:url)%>" />
+		</a>
+		<div class="content">
+			<p class="title"><%= card.name%></p>
+			<p class="desc color-gray"><%= card.desc%></p>
+			<p class="phone color-red">电话：<%= card.phone%></p>
+		</div>
+	</li>
+  <%end%>
+</ul>

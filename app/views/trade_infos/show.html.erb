@@ -1,0 +1,100 @@
+<div class="banner-box pr">
+	<ul class="banner-nr" id="banner-ul"><li data-location-href="/clpga/articles/6" class="a-href" style="width: 640px;"><img class="img-responsive" src="http://image.mastergolf.cn/assets/0bb1696d06680e6a9fc4df185b0c61f5.png"></li>
+		
+	</ul>
+	<ul id="banner-dian" class="banner-dian pa" style="margin-left: -10px;">
+		<li class="current"></li>
+	</ul>
+</div>
+
+
+<div class="trade_info_show">
+  <div class="title">
+    <%= @trade_info.title%>
+  </div>
+  <div class="price color-red">
+    ￥<%= @trade_info.price%>
+    <span class="ago color-gray">刚刚发布</span>
+  </div>
+  <ul class="attrs clearfix">
+    <%@trade_info.trade_info_attrs.each do |attr|%>
+    <li class="color-blackgray"><span class="color-gray"><%= attr.name%>&nbsp;:&nbsp;</span><%= attr.value%></li>
+    <%end%>
+  </ul>
+  <div class="act_links clearfix">
+    <span class="left">
+      <a href="#" class="color-gray">
+        <span class="iconfont">
+          &#xe604;
+       	</span>
+        收藏
+      </a>
+    </span>
+    <span class="right">
+      <a href="#" class="color-gray">
+        <span class="iconfont color-red">
+          &#xe600;
+       	</span>
+        点赞
+      </a>
+    </span>
+  </div>
+</div>
+
+<div class="space1 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="trade_info_show_content">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				描述信息
+			</div>
+		</div>
+		<div class="body">
+			<p><%= raw @trade_info.content%></p>
+		</div>
+	</div>
+</div>
+
+<div class="blank05"></div>
+
+<div class="space1 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="info_list">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				相关信息
+			</div>
+		</div>
+		<div class="body">
+			<ul class="info">
+				<% @similarity_trade_infos.each do |info|%>
+				<li class="clearfix">
+					<a href="#" class="img">
+						<img src="<%= info.front_image.try(:image).try(:url)%>" />
+					</a>
+					<div class="content">
+						<p class="title"><%= info.title%></p>
+						<p class="desc color-gray"><%= info.desc%></p>
+						<div class="attrs color-red">
+              <%info.trade_info_attrs.each do |attr|%>
+							<span><%= attr.value%></span>
+              <%end%>
+						</div>
+					</div>
+				</li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="blank05"></div>
+<div class="space1 pr"></div>
+<div class="blank1"></div>
+<div class="blank05"></div>

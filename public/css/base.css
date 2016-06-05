@@ -1,3 +1,4 @@
+body{background: #f8f8f8;}
 a{text-decoration: none}
 a:hover{text-decoration: none;}
 
@@ -30,6 +31,25 @@ html {
 @media screen and (min-width: 415px) {
   html {
     font-size: 18px; } }
+    
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: white;  
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: white;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: white;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: white;
+}
+
 /*开启硬件加速*/
 .Ac {
   -webkit-transform: translate3d(0, 0, 0);
@@ -80,26 +100,35 @@ html {
 .blank05 {
   height: 0.5rem;
   clear: both;
-  overflow: hidden; }
+  overflow: hidden; 
+  background: white;}
 
 .blank1 {
   height: 1rem;
   clear: both;
-  overflow: hidden; }
+  overflow: hidden; 
+  background: white;}
 
 .blank2 {
   height: 2rem;
   clear: both;
-  overflow: hidden; }
+  overflow: hidden; 
+  background: white;}
 
 .bk-white {
   background: #FFFFFF; }
 
-.bkgray {
-    background: #f6f6f6; }
+.bk-gray {
+    background: #f8f8f8; }
 
-.fontgray {
-      background: #999999; }
+.color-white {
+      color: white!important; }      
+
+.color-gray {
+      color: #999999; }
+      
+.color-black_gray {
+      color: #666666; }
 
 .color-red {
   color: #f96751; }
@@ -244,6 +273,7 @@ h1, h2, h3, h4, h5, h6 {
 .icon-fangdajing:before { content: "\e625"; }
 .icon-zhuye:before { content: "\e648"; }
 .icon-xinxi:before { content: "\e604"; }
+.icon-tubiao:before { content: "\e600"; }
   
   
   
@@ -252,15 +282,16 @@ h1, h2, h3, h4, h5, h6 {
 #header{background: #f96751; height: 2.4rem; padding-top: 0.5rem;}
 #header .area{float: left; font-size: 0.6rem; padding-left: 1rem; line-height: 1.5rem;}
 #header .search .box{border: white solid 1px;height: 1.5rem; width:75%;  position: relative; border-radius: 15px; overflow: hidden;}
-#header .search .input{border:none ;width: 250px; height:28px; line-height: 28px; padding-left: 10px;outline:none; background: #f96751; color: white;}
+#header .search .input{border:none ;width: 250px; height:1.5rem; line-height: 1.5rem; padding-left: 10px;outline:none; background: #f96751; color: white;}
 #header .search .btn{position: absolute; right: 0px; top: 0px; line-height: 1.5rem; width: 30px;}
 
 .trade_categories ul{margin-top: 1rem;}  
 .trade_categories ul li{width: 25%; float: left; text-align: center;}
+.trade_categories ul li img{width: 50%;}
 
 
-.space05 {
-  height: 0.5rem;
+.space1 {
+  height: 1rem;
   clear: both;
   overflow: hidden; 
   border: solid 1px #dddddd;
@@ -281,11 +312,66 @@ h1, h2, h3, h4, h5, h6 {
 .info_list .context .body .info li .img_card img{width: 100%; height: 100%;}
 .info_list .context .body .info li .content{float: left; height: 5rem; padding-left: 0.5rem;}
 .info_list .context .body .info li .content .title{font-weight: bold; font-size: 1.5rem;}
-.info_list .context .body .info li .content .desc{}
+.info_list .context .body .info li .content .desc{padding-top: 0.4rem; padding-bottom: 0.4rem;}
 .info_list .context .body .info li .content .attrs{display: block; float: left;}
+
+
+.trade_info_filter .context{width: 98%; float: right;}
+.trade_info_filter .context .header{width: 100%; height: 1.5rem; padding-bottom: 0.3rem; padding-top: 0.3rem;}
+.trade_info_filter .context .header .title{border-left: solid 0.1rem #F96751; color: #F96751; padding-left: 0.5rem; line-height: 1.2rem;
+}
+.trade_info_filter .context .body{width: 100%; border-top: solid 1px #dddddd; }
+.trade_info_filter .context .body a{padding: 0.2rem; margin: 0.5rem 0.5rem 0.5rem 0rem; border: solid 1px #dfdfdf; display: inline-block; color: #999999; background: #f8f8f8;}
+.trade_info_filter .context .body a.current{color: #f96751; background: #fdedeb; border: solid 1px #ec5b45;}
+
+.trade_info_show{margin: 1rem; background: white;}
+.trade_info_show .title{font-size: 1.5rem; font-weight: bold;}
+.trade_info_show .price{padding-top: 0.5rem; padding-bottom: 0.5rem; border-bottom: solid 1px #dddddd;}
+.trade_info_show .price .ago{float: right;}
+.trade_info_show .attrs{width: 100%; border-bottom: solid 1px #dddddd;}
+.trade_info_show .attrs li{width: 50%; float: left; margin: 0.5rem auto 0.5rem auto;}
+.trade_info_show .act_links{width: 100%; margin: 0.5rem auto 0.5rem auto;}
+.trade_info_show .act_links .left{width: 50%; float: left;}
+.trade_info_show .act_links .right{width: 50%; float: right; text-align: right;}
+.trade_info_show_content{width: 100%; }
+.trade_info_show_content .context{width: 98%; float: right;}
+.trade_info_show_content .context .header{width: 100%; height: 1.5rem; padding-bottom: 0.3rem; padding-top: 0.3rem;}
+.trade_info_show_content .context .header .title{border-left: solid 0.1rem #F96751; color: #F96751; padding-left: 0.5rem; line-height: 1.2rem;
+}
+.trade_info_show_content .context .body{width: 100%;}
+
+.card_show{width: 100%; background: white;}
+.card_show .context{margin-left: 0.5rem;}
+.card_show .context .logo{width: 100%;}
+.card_show .context .logo img{height: 8rem;}
+.card_show .context .header{width: 100%; height: 1.5rem; padding-bottom: 0.3rem; padding-top: 0.3rem;}
+.card_show .context .header .title{border-left: solid 0.1rem #F96751; color: #F96751; padding-left: 0.5rem; line-height: 1.2rem;
+}
+.card_show .context .body{width: 100%; border-top: solid 1px #dddddd; }
+
+.card_show .attrs{width: 100%; background: white;}
+.card_show .attrs .context{margin-left: 0.5rem}
+.card_show .attrs .context .attr{padding-top: 0.5rem; padding-bottom: 0.5rem; border-bottom: solid 1px #dddddd;}
+.card_show_receive_btn{width: 90%; height: 3rem; line-height: 3rem; display: block; background: #eb4f38; color: white; font-size: 1.2rem; text-align: center; margin: 1rem auto 1rem auto;}
+
+.card_list{width: 100%; background: white;}
+.card_list li{width: 100%; margin-left: 0.5rem; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: solid 1px #dddddd; }
+.card_list li .img{float: left; width: 35%; height: 5rem; display: block;}
+.card_list li .img img{width: 100%; height: 100%;}
+.card_list li .content{float: left; height: 5rem; padding-left: 0.5rem;}
+.card_list li .content .title{font-weight: bold; font-size: 1.5rem;}
+.card_list li .content .desc{padding-top: 0.4rem; padding-bottom: 0.4rem;}
+.card_list li .content .phone{}
+
+.area_list .header{background: #f96751; padding-left: 0.2rem; padding-top: 0.5rem; padding-bottom: 0.5rem;}
+.area_list .initial_list{padding-left: 0.4rem; background: white;}
+.area_list .initial_list .initial{color: black; font-size: 1.5rem; font-weight: bold; padding-bottom: 0.5rem; border-bottom: solid 1px #dddddd;}
+.area_list .initial_list .initial span{font-size: 1rem; font-weight: normal;}  
   
-#footer{width: 100%; left: 0px; bottom: 0px; height: 2rem;}
+#footer{width: 100%; bottom: 0px; color: #999999; margin-top: -2rem; background: white;}
 #footer table{width: 100%;}
 #footer table tbody tr td{text-align: center; width: 20%;}
-  
+#footer table tbody tr td .iconfont{font-weight: bold; font-size: 2rem; width: 100%; display: inline-block;}
+#footer .index_btn{width: 5rem; height: 4rem; -moz-border-radius: 5rem; -webkit-border-radius: 5rem; border-radius: 5rem; background: #eb4f38; color: white; margin: auto; padding-top: 1rem; text-align: center;}
+#footer a{color: #999999;}  
   

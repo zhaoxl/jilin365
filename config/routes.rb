@@ -159,6 +159,9 @@ Rails.application.routes.draw do
   
   
   root 'index#index'
+  resources :trade_infos
+  resources :cards
+  resources :areas
   resources :wechat do
     collection do
       get :login

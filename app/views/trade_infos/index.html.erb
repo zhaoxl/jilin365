@@ -1,0 +1,70 @@
+<div class="blank05"></div>
+
+<div class="trade_info_filter">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				区县
+			</div>
+		</div>
+  </div>
+</div>
+
+
+<div class="space1 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="trade_info_filter">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				分类
+			</div>
+		</div>
+    <div class="body">
+      <a href="#" class="current">出租信息</a>
+      <a href="#" class="color-red">出售信息</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="space1 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="info_list">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				<%= @root_category.try(:name) || "信息列表"%>
+			</div>
+		</div>
+		<div class="body">
+			<ul class="info">
+				<% @trade_infos.each do |info|%>
+				<li class="clearfix">
+					<a href="<%= trade_info_path(info)%>" class="img">
+						<img src="<%= info.front_image.try(:image).try(:url)%>" />
+					</a>
+					<div class="content">
+						<p class="title"><%= info.title%></p>
+						<p class="desc color-gray"><%= info.desc%></p>
+						<div class="attrs color-red">
+              <%info.trade_info_attrs.each do |attr|%>
+							<span><%= attr.value%></span>
+              <%end%>
+						</div>
+					</div>
+				</li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="blank05"></div>
+<div class="space1 pr"></div>
+<div class="blank1"></div>
+<div class="blank05"></div>

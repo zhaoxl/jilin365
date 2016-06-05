@@ -1,18 +1,3 @@
-<div id="header">
-  <div class="area col-xs-2 pr font_white">
-    <span class="iconfont">&#xe639;</span>
-    北京市
-  </div>
-  <div class="search">
-    <div class="box">
-      <input type="text" class="input" placeholder="请输入关键字" />
-      <span  class="btn iconfont font_white">
-        &#xe625;
-     	</span>
-    </div>
-  </div>
-</div>
-
 <div class="banner-box pr">
 	<ul class="banner-nr" id="banner-ul"><li data-location-href="/clpga/articles/6" class="a-href" style="width: 640px;"><img class="img-responsive" src="http://image.mastergolf.cn/assets/0bb1696d06680e6a9fc4df185b0c61f5.png"></li>
 		
@@ -26,9 +11,9 @@
   <ul class="pr">
     <%@trade_categories[0..3].each do |category|%>
     <li>
-    	<a href="#">
+    	<a href="<%= trade_infos_path(rc: category.id)%>">
 				<img src="<%= category.logo.url%>" />
-				<p><%= category.name%></p>
+				<p class="color-gray"><%= category.name%></p>
 			</a>
     </li>
     <%end%>
@@ -37,17 +22,17 @@
   <ul class="pr">
     <%@trade_categories[4..-1].each do |category|%>
     <li>
-    	<a href="#">
+    	<a href="<%= trade_infos_path(rc: category.id)%>">
 				<img src="<%= category.logo.url%>" />
-				<p><%= category.name%></p>
+				<p class="color-gray"><%= category.name%></p>
 			</a>
     </li>
     <%end%>
   </ul>
 </div>
-<div class="blank05"></div>
+<div class="blank1"></div>
 
-<div class="space05 pr"></div>
+<div class="space1 pr"></div>
 
 <div class="blank05"></div>
 
@@ -62,15 +47,16 @@
 			<ul class="info">
 				<% @recommend_infos.each do |info|%>
 				<li class="clearfix">
-					<a href="#" class="img">
+					<a href="<%= trade_info_path(info)%>" class="img">
 						<img src="<%= info.front_image.try(:image).try(:url)%>" />
 					</a>
 					<div class="content">
 						<p class="title"><%= info.title%></p>
-						<p class="desc"><%= info.desc%></p>
-						<div class="attrs">
-							<span>8万元</span>
-							<span>15平米</span>
+						<p class="desc color-gray"><%= info.desc%></p>
+						<div class="attrs color-red">
+              <%info.trade_info_attrs.each do |attr|%>
+							<span><%= attr.value%></span>
+              <%end%>
 						</div>
 					</div>
 				</li>
@@ -82,7 +68,7 @@
 
 <div class="blank05"></div>
 
-<div class="space05 pr"></div>
+<div class="space1 pr"></div>
 
 <div class="blank05"></div>
 
@@ -95,16 +81,16 @@
 		</div>
 		<div class="body">
 			<ul class="info">
-				<% @recommend_infos.each do |info|%>
+				<% Card.coupon_card.limit(5).each do |card|%>
 				<li class="clearfix">
-					<a href="#" class="img_card">
-						<img src="<%= info.front_image.try(:image).try(:url)%>" />
+					<a href="<%= card_path(card)%>" class="img_card">
+						<img src="<%= card.logo.try(:url)%>" />
 					</a>
 					<div class="content">
-						<p class="title">正进供求世界</p>
-						<p class="desc"><%= info.desc%></p>
-						<div class="attrs">
-							<span>电话：18158414543</span>
+						<p class="title"><%= card.name%></p>
+						<p class="desc color-gray"><%= card.desc%></p>
+						<div class="attrs color-red">
+							<span>电话：<%= card.phone%></span>
 						</div>
 					</div>
 				</li>
@@ -117,7 +103,7 @@
 
 <div class="blank05"></div>
 
-<div class="space05 pr"></div>
+<div class="space1 pr"></div>
 
 <div class="blank05"></div>
 
@@ -130,16 +116,16 @@
 		</div>
 		<div class="body">
 			<ul class="info">
-				<% @recommend_infos.each do |info|%>
+				<% Card.discount_card.limit(5).each do |card|%>
 				<li class="clearfix">
-					<a href="#" class="img_card">
-						<img src="<%= info.front_image.try(:image).try(:url)%>" />
+					<a href="<%= card_path(card)%>" class="img_card">
+						<img src="<%= card.logo.try(:url)%>" />
 					</a>
 					<div class="content">
-						<p class="title">正进供求世界</p>
-						<p class="desc"><%= info.desc%></p>
-						<div class="attrs">
-							<span>电话：18158414543</span>
+						<p class="title"><%= card.name%></p>
+						<p class="desc color-gray"><%= card.desc%></p>
+						<div class="attrs color-red">
+							<span>电话：<%= card.phone%></span>
 						</div>
 					</div>
 				</li>
@@ -148,9 +134,3 @@
 		</div>
 	</div>
 </div>
-
-<div class="blank05"></div>
-
-<div class="space05 pr"></div>
-<div class="blank2"></div>
-<div class="blank1"></div>

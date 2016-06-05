@@ -72,6 +72,8 @@ gem "rolify"
 gem 'rufus-scheduler'
 #log4r
 gem 'log4r'
+#汉子转拼音
+gem 'ruby-pinyin'
 
 
 group :development do

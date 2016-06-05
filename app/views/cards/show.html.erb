@@ -1,0 +1,36 @@
+<div class="blank05"></div>
+
+<div class="card_show clearfix">
+	<div class="context">
+    <div class="logo">
+      <img src="<%= @card.logo.try(:url)%>" />
+    </div>
+    <div class="blank05"></div>
+		<div class="header">
+			<div class="title">
+				使用规则
+			</div>
+		</div>
+		<div class="body color-gray">
+      <div class="blank05"></div>
+			<p><%= raw @card.content%></p>
+		</div>
+	</div>
+  <div class="blank05"></div>
+  <div class="space1"></div>
+  <div class="attrs">
+    <div class="context">
+      <div class="attr color-gray">
+        有效日期：<%= @card.begin_at.strftime("%Y-%m-%d") rescue "无"%> ~ <%= @card.end_at.strftime("%Y-%m-%d") rescue "无"%>
+      </div>
+      <div class="attr color-gray">
+        剩余数量：<%= @card.count.to_i%>张
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+
+<a href="#" class="card_show_receive_btn">领取</a>
+
+
