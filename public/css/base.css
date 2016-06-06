@@ -269,11 +269,17 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;}
 }
-.icon-dingwei:before { content: "\e639"; }
-.icon-fangdajing:before { content: "\e625"; }
-.icon-zhuye:before { content: "\e648"; }
-.icon-xinxi:before { content: "\e604"; }
 .icon-tubiao:before { content: "\e600"; }
+.icon-zhinenghuaxuanpinicon5:before { content: "\e603"; }
+.icon-dianhua:before { content: "\e601"; }
+.icon-pan:before { content: "\e602"; }
+.icon-shoucang:before { content: "\e604"; }
+.icon-zuobiao:before { content: "\e605"; }
+.icon-shouye:before { content: "\e609"; }
+.icon-dingwei:before { content: "\e606"; }
+.icon-xiaoxi:before { content: "\e607"; }
+.icon-huiyuanshu:before { content: "\e608"; }
+
   
   
   
@@ -367,6 +373,18 @@ h1, h2, h3, h4, h5, h6 {
 .area_list .initial_list{padding-left: 0.4rem; background: white;}
 .area_list .initial_list .initial{color: black; font-size: 1.5rem; font-weight: bold; padding-bottom: 0.5rem; border-bottom: solid 1px #dddddd;}
 .area_list .initial_list .initial span{font-size: 1rem; font-weight: normal;}  
+.area_list .initial_list .districts{width: 100%;}
+.area_list .initial_list .districts li{width: 30%; display: inline-block;}
+.area_list .initial_list .districts li a{display: block; color: #666666; text-align: center; line-height: 2rem;}
+
+.store_show_block{padding: 1rem; background: white;}
+.store_show_block .title{font-size: 1.2rem; width: 80%; float: left;}
+.store_show_block .collect{width: 15%; float: right; border-left: solid 1px #dddddd; text-align: center; line-height: 1.5rem; padding-left: 0.2rem; margin-bottom: 1rem;}
+.store_show_block .collect span{display: block; }
+.store_show_block.attrs{background: white; padding-top: 0rem; padding-bottom: 0rem;}
+.store_show_block.attrs ul li{line-height: 3rem; color: #999999;}
+.store_show_block.attrs ul li:first-child{border-bottom: solid 1px #DDDDDD;}
+
   
 #footer{width: 100%; bottom: 0px; color: #999999; margin-top: -2rem; background: white;}
 #footer table{width: 100%;}

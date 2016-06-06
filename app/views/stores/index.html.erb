@@ -1,0 +1,51 @@
+<div class="blank05"></div>
+
+<div class="trade_info_filter">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				分类
+			</div>
+		</div>
+    <div class="body">
+      <a href="#" class="current">出租信息</a>
+      <a href="#" class="color-red">出售信息</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="space1 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="info_list">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				<%= @root_category.try(:name) || "信息列表"%>
+			</div>
+		</div>
+		<div class="body">
+			<ul class="info">
+				<% @stores.each do |store|%>
+				<li class="clearfix">
+					<a href="<%= store_path(store)%>" class="img">
+						<img src="<%= store.front_image.try(:image).try(:url)%>" />
+					</a>
+					<div class="content">
+						<p class="title"><%= store.name%></p>
+						<p class="desc color-gray"><%= store.desc%></p>
+      			<p class="phone color-red">电话：<%= store.phone%></p>
+					</div>
+				</li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="blank05"></div>
+<div class="space1 pr"></div>
+<div class="blank1"></div>
+<div class="blank05"></div>

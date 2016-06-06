@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605115447) do
+ActiveRecord::Schema.define(version: 20160606141649) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20160605115447) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "begin_at"
+    t.datetime "end_at"
   end
 
   create_table "recharges", force: true do |t|
@@ -113,12 +115,18 @@ ActiveRecord::Schema.define(version: 20160605115447) do
     t.integer "position"
   end
 
+  create_table "store_images", force: true do |t|
+    t.integer "user_id"
+    t.integer "store_id"
+    t.string  "image"
+    t.integer "position"
+  end
+
   create_table "stores", force: true do |t|
     t.integer  "user_id"
     t.integer  "store_category_id"
     t.string   "state"
     t.integer  "position"
-    t.string   "logo"
     t.string   "address"
     t.string   "name"
     t.string   "phone"

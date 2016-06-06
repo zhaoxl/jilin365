@@ -162,6 +162,7 @@ Rails.application.routes.draw do
   resources :trade_infos
   resources :cards
   resources :areas
+  resources :stores
   resources :wechat do
     collection do
       get :login

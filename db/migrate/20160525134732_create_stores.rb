@@ -5,7 +5,6 @@ class CreateStores < ActiveRecord::Migration
       t.references  :store_category
       t.string      :state
       t.integer     :position
-      t.string      :logo
       t.string      :address
       t.string      :name
       t.string      :phone

@@ -1,0 +1,62 @@
+<div class="banner-box pr">
+	<ul class="banner-nr" id="banner-ul"><li data-location-href="/clpga/articles/6" class="a-href" style="width: 640px;"><img class="img-responsive" src="http://image.mastergolf.cn/assets/0bb1696d06680e6a9fc4df185b0c61f5.png"></li>
+		
+	</ul>
+	<ul id="banner-dian" class="banner-dian pa" style="margin-left: -10px;">
+		<li class="current"></li>
+	</ul>
+</div>
+
+
+<div class="store_show_block clearfix">
+  <div class="title">
+    <%= @store.name%>
+  </div>
+  <div class="collect clearfix">
+    <a href="#" class="color-gray">
+      <span class="iconfont color-red">
+        &#xe604;
+     	</span>
+      收藏
+    </a>
+  </div>
+</div>
+
+<div class="space1 pr"></div>
+
+<div class="blank05"></div>
+
+<div class="store_show_block attrs">
+  <ul>
+    <li>
+      <span class="iconfont color-red">
+        &#xe605;
+     	</span>
+      <%= @store.address%>
+    </li>
+    <li>
+      <span class="iconfont color-red">
+        &#xe601;
+     	</span>
+      电话：<%= @store.phone%>
+    </li>
+  </ul>
+</div>
+
+<div class="store_show_content">
+	<div class="context">
+		<div class="header">
+			<div class="title">
+				描述信息
+			</div>
+		</div>
+		<div class="body">
+			<p><%= raw @store.content%></p>
+		</div>
+	</div>
+</div>
+
+<div class="blank05"></div>
+<div class="space1 pr"></div>
+<div class="blank1"></div>
+<div class="blank05"></div>
