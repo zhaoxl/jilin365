@@ -8,3 +8,6 @@ zh-CN:
           TEXT:    长文本
           IMAGE:   图片
           SELECT:  选择
+      card:
+        category/0: 打折卡
+        category/1: 代金卷
