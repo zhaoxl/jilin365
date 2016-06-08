@@ -1,0 +1,76 @@
+<%@title = params[:title]||"订单详情"%>
+<style type="text/css" media="screen">
+	.order_block{border-top: solid 10px #F8F8F8; padding-left: 12px;}
+	.action_btn{width: 83px; line-height: 29px; display: block; text-align: center; background: url(/images/member_orders_btn_bg_green.png); color: white; font-weight: bold; font-size: 13px; float: right; margin-left: 5px; margin-bottom: 10px;}
+	.action_btn.white{background: url(/images/member_orders_btn_bg_white.png); color: #999999;}
+	
+	.order_state{width: 100%; background: #82b770; color: white;}
+	.order_state .state{width: 90%; margin: auto auto; line-height: 40px; background: url(/images/member_order_show_state_icon.jpg) no-repeat 0px 50%; border-bottom: dashed 1px #b5d3ac; padding-left: 20px;}
+	.order_state .address{width: 90%; margin: auto auto; background: url(/images/member_order_show_address_icon.jpg) no-repeat 0px 40%; border-bottom: solid 1px #b7d3ae; padding-left: 20px; padding-bottom: 10px;}
+  .order_state .address table tr td{ color: white; padding-top: 10px; font-size: 12px;}
+	.order_state .scode{background: white; padding-left: 12px; line-height: 40px; border-bottom: solid 15px #F8F8F8; color: #999999;}
+</style>
+
+<div class="order_state">
+	<div class="state">
+		<%= t "activerecord.order.states.#{@order.state}"%>
+	</div>
+	<div class="address">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>
+          收货人：<%= @order.receiver_name%>
+        </td>
+        <td>
+          电话：<%= @order.receiver_phone%>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          收货地址：<%= @order.receiver_address%>
+        </td>
+      </tr>
+    </table>
+	</div>
+	<div class="scode">
+		订单编号：<%= @order.scode%>
+		<span style="float: right; margin-right: 12px"><%= @order.created_at.strftime("%Y-%m-%d %H:%M:%S")%></span>
+	</div>
+</div>
+<div class="order_block">
+  <div style="padding-bottom: 20px">
+    <%@order.order_products.each do |op|%>
+      <div style="width: 98%; border-top: solid 1px #F8F8F8; margin: 5px auto auto auto; padding-top: 5px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="left" width="60" style="padding: 0px">
+              <img src="<%= op.logo.url%>" width="50" height="50" style="border: solid 1px #F8F8F8; padding: 0px;" />
+            </td>
+            <td>
+              <p style="height: 40px; margin: 0px;"><%= op.name%></p>
+              <div style="width: 93%; color: red; font-size: 14px; font-weight: bold"><%= op.price%><span style="float: right; color: #F8F8F8"><%= op.total%></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    <%end%>
+  </div>
+  <div style="border-bottom: dashed 1px #F8F8F8; margin: 5px 5px auto auto; text-align: right; color: #999999">
+    共计<%= @order.order_products.sum("total")%>件商品&nbsp;&nbsp;合计：<span style="color: red; font-size: 16px; font-weight: bold"><%= @order.total_fee%></span>（运费：<%= @order.fare.to_f%>）
+  </div>
+  <div style="padding-right: 12px">
+      <%if @order.cancel?%>
+        <a href="<%= delete_member_order_path(@order)%>" class="action_btn white">删除订单</a>
+      <%elsif @order.create?%>
+        <a href="<%= new_member_payment_path(item_type: @order.class.name, item_id: @order.id)%>" class="action_btn">立即支付</a>
+        <a href="<%= set_state_member_order_path(@order, state: :cancel)%>" class="action_btn white">取消订单</a>
+      <%elsif @order.payment?%>
+        
+      <%elsif @order.sent?%>
+	      <a href="/member/orders/<%= @order.id%>/express" class="action_btn white">查看物流</a>
+        <a href="<%= set_state_member_order_path(@order, state: :receive)%>" class="action_btn white">确认收货</a>
+      <%end%>
+			<div style="clear: both"></div>
+  </div>
+</div>
+

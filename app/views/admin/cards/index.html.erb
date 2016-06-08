@@ -1,4 +1,4 @@
-<%@page_title ||= "#{t("activerecord.attributes.card.category/2")}管理"%>
+<%@page_title ||= "#{t("activerecord.attributes.card.category/#{params[:category]}")}管理"%>
 
 <style type="text/css" media="screen">
 .table > tbody > tr > td{vertical-align: middle;}
@@ -41,7 +41,8 @@
 									<th>图片</th>
 									<th>状态</th>
 									<th>联系电话</th>
-									<th>地址</th>
+									<th>剩余数量</th>
+									<th>已领取数量</th>
 									<th>操作</th>
 								</tr>
 								<%@datas.each do |data|%>
@@ -59,13 +60,12 @@
                     <td><img src="<%= data.logo.url%>" width="50" height="50"></td>
   									<td><%= data.state%></td>
   									<td><%= data.phone%></td>
-  									<td><%= data.address%></td>
+  									<td><%= data.count.to_i%></td>
+  									<td><%= data.user_cards.count%></td>
   									<td>
-  										<a href="<%= edit_admin_store_path(data)%>">编辑</a>
-  										<a href="<%= move_up_admin_store_path(data)%>">上移</a>
-  										<a href="<%= move_down_admin_store_path(data)%>">下移</a>
+  										<a href="<%= edit_admin_card_path(data)%>">编辑</a>
   										<%if data.can_delete?%>
-  											<%= link_to '删除', admin_store_path(data), :confirm => '确定要删除商户吗?', :method => :delete %></td>
+  											<%= link_to '删除', admin_card_path(data), :confirm => '确定要删除吗?', :method => :delete %></td>
   										<%end%>
   									</td>
   								</tr>

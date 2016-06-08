@@ -1,0 +1,9 @@
+<h1>申请分销</h1>
+<br><br>
+
+<%form_for @distribution do |f|%>
+	所在城市: <%= f.text_field	:city%>
+	联系电话: <%= f.text_field	:phone%>
+	申请理由: <%= f.text_area	:readme%>
+	<%= f.submit '提交申请'%>
+<%end%>

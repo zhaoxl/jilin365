@@ -1,0 +1,86 @@
+<%@title = params[:title]||"我的族谱"%>
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+
+.live{line-height: 41px; background: #82B770; color: white; padding-left: 12px;}
+.live td{color: white; font-size: 14px; line-height: 41px; }
+.live td .star{width: 16px; height: 16px; display: inline-block; background: url(/images/star_icon.png) no-repeat 2px 2px;}
+.live_bottom_space{width: 100%; height: 13px; background: url(/images/member_bottom_space_bg.jpg) repeat-x;}
+
+.user_box{float: left; width: 150px; height: 60px; padding: 5px; margin-left: 20px;}
+.user_box .logo{width: 50px; margin-right: 10px; float: left;}
+.user_box .attr{float: left; padding-top: 10px;}
+.user_box img{width: 50px;}
+.user_box p{padding: 0px; margin: 0px;}
+.user_box .del{color: red;}
+
+.float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
+</style>
+
+<div class="live">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        推荐我的人：<%= current_user.recommend_user.try(:name)||"无"%><br><br>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="live_bottom_space"></div>
+
+<h3 style="text-align: center">我推荐的人（一级）</h3>
+<%sons = User.where(recommend_user_id: current_user.id)%>
+<%if sons.present?%>
+	<% sons.each do |user|%>
+		<div class="user_box">
+			<div class="logo">
+				<img src="<%= user.try(:headimgurl)%>" />
+			</div>
+			<div class="attr">
+				<p><%= user.try(:name)%></p>
+			</div>
+		</div>
+	<%end%>
+<%else%>
+	<h4 style="text-align: center">无</h4>
+<%end%>
+
+<div style="clear: both"></div>
+
+<h3 style="text-align: center">我推荐的人（二级）</h3>
+<%grandsons = sons.present? ? User.where(recommend_user_id: sons.map(&:id)) : []%>
+<%if grandsons.present?%>
+	<% grandsons.each do |user|%>
+		<div class="user_box">
+			<div class="logo">
+				<img src="<%= user.try(:headimgurl)%>" />
+			</div>
+			<div class="attr">
+				<p><%= user.try(:name)%></p>
+			</div>
+		</div>
+	<%end%>
+<%else%>
+	<h4 style="text-align: center">无</h4>
+<%end%>
+
+
+<div style="clear: both"></div>
+
+<h3 style="text-align: center">我推荐的人（三级）</h3>
+<%grand_grandsons = grandsons.present? ? User.where(recommend_user_id: grandsons.map(&:id)) : []%>
+<%if grand_grandsons.present?%>
+	<% grand_grandsons.each do |user|%>
+		<div class="user_box">
+			<div class="logo">
+				<img src="<%= user.try(:headimgurl)%>" />
+			</div>
+			<div class="attr">
+				<p><%= user.try(:name)%></p>
+			</div>
+		</div>
+	<%end%>
+<%else%>
+	<h4 style="text-align: center">无</h4>
+<%end%>

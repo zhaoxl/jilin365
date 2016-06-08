@@ -1,0 +1,48 @@
+<%@title = params[:title]||"升级申请审核"%>
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+
+.incomes{background: white;}
+.incomes .income_box{padding-left: 12px; border-bottom: solid 1px #F8F8F8; padding-bottom: 10px; padding-top: 10px;}
+.incomes .income_box .title{font-size: 15px; font-weight: bold; padding: 0px; margin: 0px; line-height: 30px;}
+.price{font-size: 15px; font-weight: bold; padding: 0px; margin: 0px; line-height: 30px; color: red;}
+.incomes .attrs{width: 100%;}
+.incomes  .attrs tr td{color: #999999; font-size: 12px;}
+.incomes  .attrs .price{}
+.incomes tr td a{display: block; margin: 5px; border: solid 1px #DDDDDD; text-align: center;}
+
+.float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
+</style>
+
+
+<div class="live_bottom_space"></div>
+
+<div class="incomes">
+  <%@upgrades.each do |upgrade|%>
+  <table class="attrs" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        申请人：<%= upgrade.user.try(:name)%>
+      </td>
+      <td>
+        当前等级：<span class="price"><%= upgrade.user.try(:level)%></span>
+      </td>
+      <td>
+        申请等级：<span class="price"><%= upgrade.level%></span>
+      </td>
+      <td>
+        时间：<%= upgrade.created_at.strftime("%Y.%m.%d")%>
+      </td>
+			<td rowspan="2">
+				<a href="<%= pass_member_user_upgrade_path(upgrade)%>">通过</a>
+				<a href="<%= edit_member_user_upgrade_path(upgrade)%>">拒绝</a>
+			</td>
+    </tr>
+		<tr>
+			<td colspan="4">
+				申请理由：<%= upgrade.reason%>
+			</td>
+		</tr>
+  </table>
+  <%end%>
+</div>

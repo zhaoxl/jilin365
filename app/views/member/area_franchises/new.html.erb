@@ -1,0 +1,41 @@
+<%@title = params[:title]||"申请开通区域代理"%>
+
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+p{margin: 0px; padding: 0px;}
+input[type="text"]{border: none; border-left: solid 2px #E1E1E1;}
+.form{padding-left: 12px; background: white;}
+.form .line{width: 100%; line-height: 42px; border-bottom: solid 1px #F8F8F8;}
+.price{color: red;}
+.float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
+.error{color: red;}
+</style>
+
+<%= form_tag "/member/area_franchises" do%>
+
+  <div class="form">
+    <div class="line">
+      <p>申请理由：<textarea placeholder="请输入申请理由" name="area_franchise[reason]" style="width: 100%; height: 50px"></textarea><span class="error"><%= flash[:error]%></span></p>
+    </div>
+  </div>
+
+  <input type="submit" class="float_bottom_btn" value="提交申请" />
+<%end%>
+
+
+<script type="text/javascript">
+//禁止回车事件响应
+ $(this).keydown( function(e) {
+  var key = window.event?e.keyCode:e.which;
+  //alert(key.toString());
+  if(key.toString() == "13"){
+    return false;
+  }
+});
+</script>
+
+<%if flash[:notice]%>
+  <script type="text/javascript">
+    alert('<%= flash[:notice]%>');
+  </script>
+<%end%>

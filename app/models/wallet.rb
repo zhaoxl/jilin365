@@ -18,9 +18,9 @@ class Wallet < ActiveRecord::Base
   
   
   def self.income(user, amount)
-      wallet = user.wallet||user.build_wallet
-      wallet.income_balance +=  amount
-      wallet.save
+    wallet = user.wallet||user.build_wallet
+    wallet.income_balance +=  amount
+    wallet.save
   end
   
   

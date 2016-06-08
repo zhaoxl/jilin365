@@ -1,0 +1,42 @@
+<%@title = params[:title]||"我收到的邀请"%>
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+
+.list tr td{padding: 5px; font-size: 13px; color: #999999;}
+.list tr td.state_create{color: green;}
+.list tr td.state_used{color: #dddddd;}
+</style>
+
+
+<table width="100%" class="list" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>名称</td>
+    <td>队长</td>
+    <td>邀请时间</td>
+    <td>操作</td>
+  </tr>
+  <%TeamUser.where(user_id: current_user.id, state: :create).each do |team_user|%>
+  <tr>
+    <td>
+      <%= team_user.team.try(:name)%>
+    </td>
+    <td>
+      <%= team_user.team.leader.try(:name)%>
+    </td>
+    <td>
+      <%= team_user.created_at.strftime("%Y-%m-%d")%>
+    </td>
+    <td>
+      <a href="<%=invotes_pass_member_teams_path(team_user_id: team_user.id)%>">接受邀请</a>
+      <a href="<%=invotes_reject_member_teams_path(team_user_id: team_user.id)%>">拒绝邀请</a>
+    </td>
+  </tr>
+  <%end%>
+</table>
+
+
+<%if flash[:notice]%>
+  <script type="text/javascript">
+    alert('<%= flash[:notice]%>');
+  </script>
+<%end%>

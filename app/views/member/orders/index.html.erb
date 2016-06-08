@@ -1,0 +1,97 @@
+<%@title = params[:title]||"我的订单"%>
+<style type="text/css" media="screen">
+  #float_nav{width: 93%; display: block; position: absolute; top: 0px; left: 30px;}
+	#float_nav .handle{width: 100%; height: 35px; background: url(/images/member_orders_menu_icon.png) no-repeat 60% 50%;}
+	#float_nav .body{width: 106%; background: white; position: absolute; left: -30px;}
+	#float_nav .body ul{margin: 0px; padding-left: 12px; }
+	#float_nav .body ul li {list-style: none;}
+	#float_nav .body ul li a{width: 95%; display: block; line-height: 39px; border-bottom: solid 1px #F8F8F8; color: #999999; font-size: 13px;}
+	
+	.order_block{border-top: solid 10px #F8F8F8; padding-left: 12px;}
+	.action_btn{width: 83px; line-height: 29px; display: block; text-align: center; background: url(/images/member_orders_btn_bg_green.png); color: white; font-weight: bold; font-size: 13px; float: right; margin-left: 5px; margin-bottom: 10px;}
+	.action_btn.white{background: url(/images/member_orders_btn_bg_white.png); color: #999999;}
+</style>
+ 
+ <div id="float_nav">
+ 	<div class="handle">
+ 		
+ 	</div>
+	<div class="body" style="display: none">
+		<ul>
+			<li>
+				<a href="/member/orders">全部订单</a>
+			</li>
+			<li>
+				<a href="/member/orders/?state=create&title=待付款">待付款</a>
+			</li>      
+			<li>       
+				<a href="/member/orders/?state=payment&title=待发货">待发货</a>
+			</li>      
+			<li>       
+				<a href="/member/orders/?state=sent&title=已发货">已发货</a>
+			</li>      
+			<li>       
+				<a href="/member/orders/?state=receive&title=已收货">已收货</a>
+			</li>
+		</ul>
+	</div>
+ </div>
+
+<%@orders.each do |order|%>
+  <a href="/member/orders/<%= order.id%>">
+	  <div class="order_block">
+	    <div style="width: 93%; line-height: 40px;">
+	      订单号：<%= order.scode%>
+	      <span style="float: right; color: red"><%= t "activerecord.order.states.#{order.state}"%></span>
+	    </div>
+	    <div style="padding-bottom: 20px">
+	      <%order.order_products.each do |op|%>
+	        <div style="width: 98%; border-top: solid 1px #F8F8F8; margin: 5px auto auto auto; padding-top: 5px;">
+	          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	            <tr>
+	              <td align="left" width="60" style="padding: 0px">
+	                <img src="<%= op.logo.url%>" width="50" height="50" style="border: solid 1px #F8F8F8; padding: 0px;" />
+	              </td>
+	              <td>
+	                <p style="height: 40px; margin: 0px;"><%= op.name%></p>
+	                <div style="width: 93%; color: red; font-size: 14px; font-weight: bold"><%= op.price%><span style="float: right; color: #F8F8F8"><%= op.total%></span></div>
+	              </td>
+	            </tr>
+	          </table>
+	        </div>
+	      <%end%>
+	    </div>
+	    <div style="border-bottom: dashed 1px #F8F8F8; margin: 5px 5px auto auto; text-align: right; color: #999999">
+	      共计<%= order.order_products.sum("total")%>件商品&nbsp;&nbsp;合计：<span style="color: red; font-size: 16px; font-weight: bold"><%= order.total_fee%></span>（运费：<%= order.fare.to_f%>）
+	    </div>
+	    <div style="padding-right: 12px">
+	        <%if order.cancel?%>
+	          <a href="<%= delete_member_order_path(order)%>" class="action_btn white">删除订单</a>
+	        <%elsif order.create?%>
+	          <a href="<%= new_member_payment_path(item_type: order.class.name, item_id: order.id)%>" class="action_btn">立即支付</a>
+	          <a href="<%= set_state_member_order_path(order, state: :cancel)%>" class="action_btn white">取消订单</a>
+	        <%elsif order.payment?%>
+          
+	        <%elsif order.sent?%>
+	          <a href="/member/orders/<%= order.id%>/express" class="action_btn white">查看物流</a>
+	          <a href="<%= set_state_member_order_path(order, state: :receive)%>" class="action_btn white">确认收货</a>
+	        <%end%>
+					<div style="clear: both"></div>
+	    </div>
+	  </div>
+	</a>
+<%end%>
+
+<%if flash[:notice].present?%>
+<script type="text/javascript">
+  alert('<%= flash[:notice]%>');
+</script>
+<%end%>
+
+<script type="text/javascript">
+$(function(){
+	$("#float_nav .handle").click(function(){
+		$("#float_nav .body").toggle();
+	});
+});
+</script>

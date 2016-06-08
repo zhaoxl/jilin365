@@ -1,0 +1,45 @@
+<%@title = params[:title]||"邀请加入团队"%>
+
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+p{margin: 0px; padding: 0px;}
+input[type="text"],textarea{border-bottom: solid 1px #BBBBBB;}
+.form{padding-left: 12px; background: white;}
+.form table tr td{font-size: 12px; padding-top: 5px;}
+.form .line{width: 100%; line-height: 42px; border-bottom: solid 1px #F8F8F8;}
+.price{color: red;}
+.float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
+.error{color: red;}
+</style>
+
+<%= form_tag invote_user_save_member_teams_path do%>
+
+  <div class="form">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tr>
+				<td>用户ID：</td>
+				<td><input type="text" name="user_id" style="width: 100%"></td>
+			</tr>
+		</table>
+  </div>
+
+  <input type="submit" class="float_bottom_btn" value="提交邀请" />
+<%end%>
+
+
+<script type="text/javascript">
+//禁止回车事件响应
+ $(this).keydown( function(e) {
+  var key = window.event?e.keyCode:e.which;
+  //alert(key.toString());
+  if(key.toString() == "13"){
+    return false;
+  }
+});
+</script>
+
+<%if flash[:notice]%>
+  <script type="text/javascript">
+    alert('<%= flash[:notice]%>');
+  </script>
+<%end%>

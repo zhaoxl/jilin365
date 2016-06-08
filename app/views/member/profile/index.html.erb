@@ -1,0 +1,190 @@
+<%@title = params[:title]||"我的资料"%>
+
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+p{margin: 0px; padding: 0px;}
+input[type="text"],textarea{border-bottom: solid 1px #BBBBBB;}
+.form{padding-left: 12px; background: white;}
+.form table tr td{font-size: 12px; padding-top: 5px;}
+.form .line{width: 100%; line-height: 42px; border-bottom: solid 1px #F8F8F8;}
+.price{color: red;}
+.float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
+.error{color: red;}
+</style>
+
+<%= form_for current_user, url:  member_profile_path(current_user), method: :patch, html: {id: "form"} do |f|%>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="form">
+    <tr>
+      <td>
+        <%= f.text_field :truename, placeholder: '真实姓名'%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.text_field :phone, placeholder: '手机号'%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%provinces = Area.roots.map{|province| [province.name, province.code]}%>
+        <%provinces = provinces.unshift(["请选择省份", nil]) if current_user.province_code.blank?%>
+        <%= f.select :province_code, provinces, {}, id: :area_province%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.select :city_code, Area.where(parent_code: current_user.province_code).map{|city| [city.name, city.code]}, {}, id: :area_city, style: "display: #{current_user.province_code.present? ? "block" : "none"}"%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.select :street_code, Area.where(parent_code: current_user.city_code).map{|street| [street.name, street.code]}, {}, id: :area_street, style: "display: #{current_user.street_code.present? ? "block" : "none"}"%>
+      </td>
+    </tr>
+  </table>
+
+
+  <input type="submit" value="保存" class="submit" />
+<%end%>
+
+
+<script type="text/javascript">
+//禁止回车事件响应
+ $(this).keydown( function(e) {
+  var key = window.event?e.keyCode:e.which;
+  //alert(key.toString());
+  if(key.toString() == "13"){
+    return false;
+  }
+});
+</script>
+
+<%if flash[:notice]%>
+  <script type="text/javascript">
+    alert('<%= flash[:notice]%>');
+  </script>
+<%end%>
+
+
+<script type="text/javascript" src="/js/jquery.validate.min.js" ></script>
+<script>
+	var validate = $("#form").validate({
+  	debug: false, //调试模式取消submit的默认提交功能   
+    //errorClass: "label.error", //默认为错误的样式类为：error   
+    focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+    onkeyup: false,
+    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+    	form.submit();   //提交表单   
+    },   
+		errorPlacement: function(error, element) {
+			$("#form input.error").each(function() {
+				if ($(element).is("select"))
+				{
+					$(element).css("color", "red");
+				}
+				else
+				{
+					$(element).attr("placeholder", $(error).html());
+				}
+			});
+		},          
+    rules:{
+			"user[truename]":{
+				required: true
+			},
+			"user[phone]":{
+				required: true,
+        phone: true
+			},
+			"user[province_code]":{
+				area: true
+			},
+			"user[city_code]":{
+				area: true
+			},
+			"user[detail]":{
+				required: true
+			}
+    },
+    messages:{
+      "user[truename]":{
+      	required: "请输入真实姓名"
+      },
+			"user[phone]":{
+				required: "请输入手机号",
+			}
+   	}
+	});    
+  jQuery.validator.addMethod("area", function(value, element) {
+  	if(value == "") return false;
+		return true;
+	}, "请选择地区");  
+  jQuery.validator.addMethod("phone", function(value, element) {
+		var length = value.length;
+		var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+		return this.optional(element) || (length == 11 && mobile.test(value));
+	}, "手机号格式不正确");
+
+</script>
+  
+<script type="text/javascript">
+$(function(){
+	//get cities
+	$("#area_province").change(function(){
+		if($(this).val() == "")
+		{
+			$("#area_city").val("").hide();
+			$("#area_street").val("").hide();
+			return false;
+		} 
+		
+		$.ajax({
+			url: '/ajax/area/cities',
+			type: 'GET',
+			dataType: 'json',
+			data: {provincecode: $(this).val()},
+			success: function(response)
+			{
+				var options = '<option value="">请选择市</option>';
+				$.each(response, function(index, city){
+					options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+				});
+				$("#area_city").html(options).show();
+				$("#area_street").html('').hide();
+			}
+		});
+	});
+
+	//get streets
+	$("#area_city").change(function(){
+		if($(this).val() == "")
+		{
+			$("#area_street").val("").hide();
+			return false;
+		} 
+		
+		$.ajax({
+			url: '/ajax/area/streets',
+			type: 'GET',
+			dataType: 'json',
+			data: {citycode: $(this).val()},
+			success: function(response)
+			{
+				if(response.length == 0)
+				{
+					$("#area_street").html('<option value="" selected></option>').hide();
+					return true;
+				}
+				var options = '<option value="">请选择区/街道</option>';
+				$.each(response, function(index, city){
+					options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+				});
+				$("#area_street").html(options).show();
+			}
+		});
+	});
+  
+  
+  
+});
+</script>

@@ -146,7 +146,8 @@ Rails.application.routes.draw do
         get :move_down
       end
     end
-    
+
+    resources :cards
     
   end
   

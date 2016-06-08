@@ -1,0 +1,61 @@
+<%@title = params[:title]||"我的团队"%>
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+
+.live{line-height: 41px; background: #82B770; color: white; padding-left: 12px;}
+.live td{color: white; font-size: 14px; line-height: 41px; }
+.live td .star{width: 16px; height: 16px; display: inline-block; background: url(/images/star_icon.png) no-repeat 2px 2px;}
+.live_bottom_space{width: 100%; height: 13px; background: url(/images/member_bottom_space_bg.jpg) repeat-x;}
+
+.user_box{float: left; width: 150px; height: 60px; padding: 5px; margin-left: 20px;}
+.user_box .logo{width: 50px; margin-right: 10px; float: left;}
+.user_box .attr{float: left; padding-top: 10px;}
+.user_box img{width: 50px;}
+.user_box p{padding: 0px; margin: 0px;}
+.user_box .del{color: red;}
+
+.float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
+</style>
+
+<div class="live">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        队长：<%= @team.leader.try(:name)%>
+      </td>
+      <td>
+        队员数：<%= @team.users.count%>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="live_bottom_space"></div>
+
+<h3 style="text-align: center">我的队友</h3>
+<div class="team_users">
+  <%@team.team_users.each do |team_user|%>
+	<div class="user_box">
+		<div class="logo">
+			<img src="<%= team_user.user.try(:headimgurl)%>" />
+		</div>
+		<div class="attr">
+			<p><%= team_user.user.try(:name)%></p>
+      <%if team_user.state != "pass"%>
+        <p><%= t "activerecord.team_user.states.#{team_user.state}"%></p>
+      <%end%>
+			<%if @team.leader == current_user && team_user.user_id != current_user.id%>
+			<a href="<%= destroy_user_member_teams_path(user_id: team_user.user_id)%>" class="del">删除队友</a>
+			<%end%>
+		</div>
+	</div>
+  <%end%>
+</div>
+
+<a href="<%= invote_user_member_teams_path%>" class="float_bottom_btn">邀请队友</a>
+
+<%if flash[:notice]%>
+  <script type="text/javascript">
+    alert('<%= flash[:notice]%>');
+  </script>
+<%end%>

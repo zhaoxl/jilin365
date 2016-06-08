@@ -1,0 +1,48 @@
+<%@title = params[:title]||"升级申请"%>
+
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+p{margin: 0px; padding: 0px;}
+input[type="text"],textarea{border-bottom: solid 1px #BBBBBB;}
+.form{padding-left: 12px; background: white;}
+.form table tr td{font-size: 12px; padding-top: 5px;}
+.form .line{width: 100%; line-height: 42px; border-bottom: solid 1px #F8F8F8;}
+.price{color: red;}
+.float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
+.error{color: red;}
+</style>
+
+<div class="form">
+	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+			<td>审核状态：</td>
+			<td><%= t "activerecord.user_upgrade.states.#{@user_upgrade.state}"%></td>
+		</tr>
+		<tr>
+			<td>反馈：</td>
+			<td><%= @user_upgrade.feedback%></td>
+		</tr>
+	</table>
+</div>
+
+<%if UserUpgrade.where(user: current_user, state: "create").count == 0%>
+<a href="<%= new_member_user_upgrade_path%>" class="float_bottom_btn">重新申请</a>
+<%end%>
+
+
+<script type="text/javascript">
+//禁止回车事件响应
+ $(this).keydown( function(e) {
+  var key = window.event?e.keyCode:e.which;
+  //alert(key.toString());
+  if(key.toString() == "13"){
+    return false;
+  }
+});
+</script>
+
+<%if flash[:notice]%>
+  <script type="text/javascript">
+    alert('<%= flash[:notice]%>');
+  </script>
+<%end%>

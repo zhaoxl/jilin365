@@ -1,0 +1,24 @@
+<%@title = params[:title]||"充值"%>
+<style type="text/css" media="screen">
+body{background: #e6e6e6;}
+.pay_method_a{width: 95%; height: 125px; display: block; margin: 12px auto auto auto; padding-top: 70px; background: white;}
+.pay_method_a img{width: 30px; margin: auto; display: block;}
+.pay_method_a p{padding: 10; margin: 0; text-align: center; color: #82b770;}
+</style>
+
+
+<a class="pay_method_a" href="<%= new_member_wallet_path%>">
+  <img src="/images/member_payment_pay_method_icon_1.jpg" />
+  <p>会员卡充值</p>
+</a>
+
+<a class="pay_method_a" href="<%= new_member_recharge_path%>">
+  <img src="/images/member_payment_pay_method_icon_2.png" />
+  <p>微信充值</p>
+</a>
+
+<%if flash[:notice]%>
+  <script type="text/javascript">
+    alert('<%= flash[:notice]%>');
+  </script>
+<%end%>

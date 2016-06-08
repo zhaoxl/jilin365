@@ -1,0 +1,35 @@
+<%@title = params[:title]||"我的优惠券"%>
+
+<style type="text/css" media="screen">
+.list tr td{padding: 5px; font-size: 13px; color: #999999;}
+.list tr td.state_create{color: green;}
+.list tr td.state_used{color: #dddddd;}
+
+.empty{text-align: center; color: #999999; margin: 20px auto auto auto;}
+</style>
+
+<table width="100%" class="list" border="0" cellspacing="0" cellpadding="0">
+  <%@coupons.each do |coupon|%>
+  <tr>
+    <td>
+      <%= coupon.name%>
+    </td>
+    <td>
+      ￥<%= coupon.price%>元
+    </td>
+    <td class="state_<%= coupon.state%>">
+      <%= t "activerecord.coupon.states.#{coupon.state}"%>
+    </td>
+    <td>
+      <%= coupon.desc%>
+    </td>
+  </tr>
+  <%end%>
+</table>
+
+<%if @coupons.blank?%>
+  <div class="empty">
+    暂无优惠券
+  </div>
+<%end%>
+

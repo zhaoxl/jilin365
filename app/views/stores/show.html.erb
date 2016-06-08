@@ -68,22 +68,14 @@
 
 <div class="store_show_content">
   <div class="header">
-    <ul class="tabs">
-      <li><a href="#">最新活动</a></li>
+    <ul class="tabs clearfix">
+      <li class="current"><a href="#">最新活动</a></li>
       <li><a href="#">商户展示</a></li>
       <li><a href="#">商家简介</a></li>
     </ul>
   </div>
-  
 	<div class="context">
-		<div class="header">
-			<div class="title">
-				描述信息
-			</div>
-		</div>
-		<div class="body">
-			<p><%= raw @store.content%></p>
-		</div>
+		<p><%= raw @store.content%></p>
 	</div>
 </div>
 
