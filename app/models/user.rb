@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   
   after_create :after_create_callback
   
-  mount_uploader :logo, UserLogoUploader
+  # mount_uploader :logo, UserLogoUploader
   
   include AASM
 

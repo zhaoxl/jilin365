@@ -62,20 +62,19 @@ ActiveRecord::Schema.define(version: 20160608084043) do
 
   create_table "cards", force: true do |t|
     t.integer  "store_id"
-    t.integer  "user_id"
     t.integer  "category"
     t.string   "name"
     t.integer  "position"
-    t.integer  "count"
     t.string   "state"
     t.string   "logo"
-    t.string   "desc"
     t.string   "phone"
+    t.string   "desc"
     t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.datetime "begin_at"
     t.datetime "end_at"
+    t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "collects", force: true do |t|
@@ -145,8 +144,8 @@ ActiveRecord::Schema.define(version: 20160608084043) do
   end
 
   create_table "trade_info_attrs", force: true do |t|
-    t.integer "trade_info_category_attr_id"
     t.integer "trade_info_id"
+    t.integer "trade_info_category_attr_id"
     t.string  "data_type"
     t.string  "name"
     t.string  "value"

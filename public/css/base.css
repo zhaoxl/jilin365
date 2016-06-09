@@ -276,10 +276,17 @@ h1, h2, h3, h4, h5, h6 {
 .icon-shoucang:before { content: "\e604"; }
 .icon-zuobiao:before { content: "\e605"; }
 .icon-shouye:before { content: "\e609"; }
+.icon-iconsvgtixianjilu:before { content: "\e60b"; }
+.icon-youhuiquan:before { content: "\e60c"; }
 .icon-dayuhao:before { content: "\e60a"; }
+.icon-ecrmExchange:before { content: "\e60d"; }
+.icon-dazheicon:before { content: "\e60e"; }
 .icon-dingwei:before { content: "\e606"; }
 .icon-xiaoxi:before { content: "\e607"; }
 .icon-huiyuanshu:before { content: "\e608"; }
+.icon-shanghu:before { content: "\e60f"; }
+.icon-jiaoyijilu:before { content: "\e610"; }
+
 
 .space1 {
   height: 1rem;
@@ -289,7 +296,14 @@ h1, h2, h3, h4, h5, h6 {
   background: #F8F8F8;
   display: block;
 }
-  
+.line1 {
+  height: 0rem;
+  clear: both;
+  overflow: hidden; 
+  border-bottom: solid 1px #dddddd;
+  display: block;
+}
+
   
   
 

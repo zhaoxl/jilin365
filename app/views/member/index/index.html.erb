@@ -1,189 +1,87 @@
-<style type="text/css" media="screen">
-  a{color: white;}
-  p{font-size: 12px;}
-  body{background: #82b770; }
-  .my_header{padding: 12px;}
-  .my_header table tr td{ color: white;}
-  .my_header .space{border-left: solid 1px #9bc58d;}
-  .nav_link{padding-left: 12px;  background: #95c285}
-  .nav_link a{width: 100%; line-height: 42px; display: block; font-weight: bold; border-bottom: solid 1px #F8F8F8;}
-  .order_links{width: 100%; background: #95c285; line-height: 64px; }
-  .order_links table tr td{text-align: center;}
-  .order_links table tr td a{width: 100%; line-height: 25px; display: block;font-size: 12px; font-weight: none; padding-top: 10px; border-right: solid 1px #EEEEEE; margin-top: 10px; margin-bottom: 10px;}
-  .order_links table tr td a img{width: 35px;}
-  .order_links table tr td a p{padding: 0; margin: 0;}
-  .nav_link .distribution{width: 94%; background: url(/images/member_index_distribution_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
-  .nav_link .address{width: 94%; background: url(/images/member_index_address_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
-  .nav_link .qrcode{width: 94%; background: url(/images/member_index_qrcode_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
-  
-  .main_navs{width: 95%; background: #95c285; margin: 10px auto auto auto;}
-  .main_navs a{width: 70px; display: block; margin: 10 auto; text-align: center;}
-  .main_navs a div{height: 60px;}
-  .main_navs table tr td a img{width: 35px;}
-  .main_navs a p{padding: 0; margin: 0;}
-  
-</style>
+<div class="index">
+  <div class="header">
+    <div class="avatar">
+      <img src="<%= current_user.logo%>" />
+    </div>
+    <p class="name">
+      <%= current_user.truename%>
+    </p>
+    <p class="balance">
+      <font>余额</font>
+      <span>￥<%= current_user.balance%></span>
+    </p>
+  </div>
 
-<div class="my_header">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td width="100">
-        <img src="<%= current_user.headimgurl%>" style="width: 80px; border-radius:50%; overflow:hidden;" />
-      </td>
-      <td>
-        <p>用户ID：<%= current_user.id%></p>
-        <p>用户名：<%= current_user.name%></p>
-        <p>余　额：<%= current_user.balance%></p>
-        <p>收　益：<%= link_to current_user.income_balance, %></p>
-        <p><%= link_to "修改资料>>", member_profile_index_path%></p>
-      </td>
-      <td class="space">
-        &nbsp;
-      </td>
-      <td style="padding-left: 20px">
-        <p>推荐人：<%= User.where(id: current_user.recommend_user_id).first.try(:name)||"无"%></p>
-        <p>积　分：<%= current_user.score%></p>
-        <p>所属团队：
-          <%if current_user.team%>
-            <a href="<%= member_teams_path%>"><%= current_user.team.try(:name)%></a>
-          <%else%>
-            无所属团队
-            <%if TeamUser.where(user_id: current_user.id, state: :create).exists?%>
-            <a href="<%= invotes_member_teams_path%>" style="color: green">(有邀请)</a>
-            <%end%>
-            <br /><a href="<%= new_member_team_path%>" style="color: red; line-height: 20px">创建团队>>
-          <%end%>
-        </p>
-      </td>
-      <td class="space">
-        &nbsp;
-      </td>
-      <td style="padding-left: 20px">
-        <p>用户级别：V<%= current_user.level%></p>
-        <p>
-          代理区域：
-          <% franchises = current_user.area_franchises.where(state: ["pass", "lock"]).includes(:area)%>
-          <%if franchises.present?%>
-            <%franchises.map{|fr| (fr.area.ancestors<<fr.area).map(&:name).join(">")}.each do |fr|%>
-						<br /><%= fr%>
-						<%end%>
-          <%else%>
-            无代理区域
-            <br /><a href="<%= new_member_area_franchise_path%>" style="color: red; line-height: 20px">申请代理>></a>
-          <%end%>
-        </p>
-      </td>
-    </tr>
-  </table>
+  <div class="blank1"></div>
+  
+  <div class="block_nav">
+    <ul class="clearfix">
+      <li>
+        <a href="#">
+          <img src="/images/member_index_nav_1.jpg" />
+          <p>发布信息</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="/images/member_index_nav_2.jpg" />
+          <p>充值</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="/images/member_index_nav_3.jpg" />
+          <p>提现</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="/images/member_index_nav_4.jpg" />
+          <p>信息管理</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="blank1"></div>
+  <div class="space1 pr"></div>
+  
+  <div class="list_nav">
+    <ul class="clearfix">
+      <li>
+        <a href="#"><span class="iconfont" style="color: #ee7b44">&#xe610;</span>消费记录</a>
+      </li>
+      <li>
+        <a href="#"><span class="iconfont" style="color: #b589d4">&#xe60d;</span>充值记录</a>
+      </li>
+    </ul>
+    <div class="line1"></div>
+    <ul class="clearfix">
+      <li>
+        <a href="#"><span class="iconfont" style="color: #5ec85a">&#xe60b;</span>提现记录</a>
+      </li>
+      <li>
+        <a href="#"><span class="iconfont" style="color: #f8ce4c">&#xe60f;</span>商户首页</a>
+      </li>
+    </ul>
+    <div class="space1 pr"></div>
+
+    <ul class="clearfix">
+      <li>
+        <a href="#"><span class="iconfont" style="color: #67c2df">&#xe60c;</span>我的优惠券</a>
+      </li>
+      <li>
+        <a href="#"><span class="iconfont" style="color: #f8ce4c">&#xe60e;</span>我的打折卡</a>
+      </li>
+    </ul>
+    <div class="line1"></div>
+    <ul class="clearfix">
+      <li>
+        <a href="#"><span class="iconfont" style="color: #82b771">&#xe604;</span>我收藏的信息</a>
+      </li>
+      <li>
+        <a href="#"><span class="iconfont" style="color: #f57663">&#xe60f;</span>我收藏的商家</a>
+      </li>
+    </ul>
+  </div>
 </div>
-
-<div class="nav_link">
-  <a href="/member/orders">我的订单</a>
-</div>
-
-<div class="order_links">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td>
-        <a href="/member/orders/?state=create&title=待付款">
-          <img src="/images/member_index_order_icon1.png" />
-          <p>待付款</p>
-        </a>
-      </td>
-      <td>
-        <a href="/member/orders/?state=payment&title=待发货">
-          <img src="/images/member_index_order_icon2.png" />
-          <p>待发货</p>
-        </a>
-      </td>
-      <td>
-        <a href="/member/orders/?state=sent&title=已发货">
-          <img src="/images/member_index_order_icon3.png" />
-          <p>已发货</p>
-        </a>
-      </td>
-      <td>
-        <a href="/member/orders/?state=receive&title=已收货">
-          <img src="/images/member_index_order_icon4.png" />
-          <p>已收货</p>
-        </a>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="main_navs">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td>
-        <a href="/member/distributions">
-          <div><img src="/images/member_nav_icon_1.png"></div>
-          <p>我的推荐</p>
-        </a>
-      </td>
-      <td>
-        <a href="/shippin_address">
-          <div><img src="/images/member_nav_icon_2.png"></div>
-          <p>地址管理</p>
-        </a>
-      </td>
-      <td>
-        <a href="/member/wallets/new">
-          <div><img src="/images/member_nav_icon_3.png"></div>
-          <p>会员卡充值</p>
-        </a>
-      </td>
-      <td>
-        <a href="/member/recharges/new">
-          <div><img src="/images/member_nav_icon_4.png"></div>
-          <p>微信充值</p>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <a href="<%= current_user.level < User::LEVEL_TWO ? "#" : "/member/distributions/qrcode"%>">
-          <div><img src="/images/member_nav_icon_5.png"></div>
-          <p>我要推广</p>
-        </a>
-      </td>
-      <td>
-        <a href="/member/coupons">
-          <div><img src="/images/member_index_order_icon1.png"></div>
-          <p>我的优惠券</p>
-        </a>
-        
-      </td>
-      <td>
-        <a href="<%= current_user.recommend_user.present? ? (["reject", "create"].include?(UserUpgrade.where(user: current_user).last.try(:state)) ? result_member_user_upgrades_path : new_member_user_upgrade_path) : "#"%>">
-          <div><img src="/images/member_nav_icon_1.png"></div>
-          <p>升级申请</p>
-        </a>
-      </td>
-      <td>
-				<%wait_check_upgrade_count = UserUpgrade.where(parent_user_id: current_user, state: "create").count%>
-        <a href="<%= wait_check_upgrade_count>0 ? "/member/user_upgrades" : "#"%>">
-          <div><img src="/images/member_nav_icon_1.png"></div>
-          <p>升级申请审核<%wait_check_upgrade_count>0 ? "<span style='color: red'>(#{wait_check_upgrade_count})</span>" : ""%></p>
-        </a>
-      </td>
-    </tr>
-		<tr>
-      <td>
-        <a href="/member/recommends">
-          <div><img src="/images/member_index_order_icon1.png"></div>
-          <p>我推荐的人</p>
-        </a>    
-      </td>
-		</tr>
-  </table>
-  
-  
-  
-</div>
-
-<%if flash[:notice]%>
-  <script type="text/javascript">
-    alert('<%= flash[:notice]%>');
-  </script>
-<%end%>

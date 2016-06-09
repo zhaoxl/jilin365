@@ -1,4 +1,21 @@
-.index .hedader{
+.index .header{
 	background: url('/images/member_index_header_bg.jpg');
+  padding: 1px;
 }
-.index .hedader .avatar{margin: 2rem auto auto auto; width: 4rem; height: 4rem; border: solid 1px white; -moz-border-radius: 0.3rem; -webkit-border-radius: 0.3rem; border-radius: 0.3rem;}
+.index .header .avatar{margin: 2rem auto auto auto; width: 6rem; height: 6rem; border: solid 1px white; -moz-border-radius: 6rem; -webkit-border-radius: 6rem; border-radius: 6rem; overflow: hidden;}
+.index .header .avatar img{width: 6.7rem; height: 6.7rem; margin: -0.3rem;}
+.index .header .name{margin: 0.5rem auto auto auto; font-weight: bold; color: white; text-align: center;}
+.index .header .balance{margin: 0.5rem auto 1rem auto; color: white; text-align: center;}
+.index .header .balance font{ opacity: 0.8}
+.index .header .balance span{font-weight: bold; display: block;}
+
+.index .block_nav{width: 100%; background: white;}
+.index .block_nav ul{width: 100%;}
+.index .block_nav ul li{width: 25%; float: left; text-align: center;}
+.index .block_nav ul li a{color: #999999}
+.index .block_nav ul li img{width: 70%;}
+
+.index .list_nav ul{width: 100%; background: white;}
+.index .list_nav ul li{width: 50%; float: left; line-height: 3rem;}
+.index .list_nav ul li .iconfont{padding-left: 1rem; padding-right: 0.1rem;}
+.index .list_nav ul li a{color: #999999}
