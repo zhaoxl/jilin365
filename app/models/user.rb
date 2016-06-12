@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
 
   
   has_one   :wallet
+  has_one   :store
+  has_many  :trade_infos
+  has_many  :account_books
+  has_many  :collects
+  has_many  :user_cards
   
   
   after_create :after_create_callback

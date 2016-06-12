@@ -23,7 +23,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="<%= new_member_recharge_path%>">
           <img src="/images/member_index_nav_2.jpg" />
           <p>充值</p>
         </a>
@@ -49,7 +49,7 @@
   <div class="list_nav">
     <ul class="clearfix">
       <li>
-        <a href="#"><span class="iconfont" style="color: #ee7b44">&#xe610;</span>消费记录</a>
+        <a href="<%= member_account_books_path%>"><span class="iconfont" style="color: #ee7b44">&#xe610;</span>消费记录</a>
       </li>
       <li>
         <a href="#"><span class="iconfont" style="color: #b589d4">&#xe60d;</span>充值记录</a>
@@ -61,26 +61,26 @@
         <a href="#"><span class="iconfont" style="color: #5ec85a">&#xe60b;</span>提现记录</a>
       </li>
       <li>
-        <a href="#"><span class="iconfont" style="color: #f8ce4c">&#xe60f;</span>商户首页</a>
+        <a href="<%= member_stores_path%>"><span class="iconfont" style="color: #f8ce4c">&#xe60f;</span>商户首页</a>
       </li>
     </ul>
     <div class="space1 pr"></div>
 
     <ul class="clearfix">
       <li>
-        <a href="#"><span class="iconfont" style="color: #67c2df">&#xe60c;</span>我的优惠券</a>
+        <a href="<%= member_cards_path(category: 0)%>"><span class="iconfont" style="color: #67c2df">&#xe60c;</span>我的优惠券</a>
       </li>
       <li>
-        <a href="#"><span class="iconfont" style="color: #f8ce4c">&#xe60e;</span>我的打折卡</a>
+        <a href="<%= member_cards_path(category: 1)%>"><span class="iconfont" style="color: #f8ce4c">&#xe60e;</span>我的打折卡</a>
       </li>
     </ul>
     <div class="line1"></div>
     <ul class="clearfix">
       <li>
-        <a href="#"><span class="iconfont" style="color: #82b771">&#xe604;</span>我收藏的信息</a>
+        <a href="<%= member_collects_path(type: :info)%>"><span class="iconfont" style="color: #82b771">&#xe604;</span>我收藏的信息</a>
       </li>
       <li>
-        <a href="#"><span class="iconfont" style="color: #f57663">&#xe60f;</span>我收藏的商家</a>
+        <a href="<%= member_collects_path(type: :store)%>"><span class="iconfont" style="color: #f57663">&#xe60f;</span>我收藏的商家</a>
       </li>
     </ul>
   </div>

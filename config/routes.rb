@@ -160,7 +160,11 @@ Rails.application.routes.draw do
   
   
   root 'index#index'
-  resources :trade_infos
+  resources :trade_infos do
+    member do
+      get :like
+    end
+  end
   resources :cards
   resources :areas
   resources :stores
@@ -224,10 +228,25 @@ Rails.application.routes.draw do
     end
   end
   resources :single_articles
+  resources :collects do
+    collection do
+      get :create
+    end
+  end
+  resources :user_cards do
+    collection do
+      get :create
+    end
+  end
   
   namespace :member do
     root 'index#index'
+    resources :account_books
     resources :index
+    resources :collects
+    resources :trade_infos
+    resources :stores
+    resources :cards
     resources :orders do
       member do
         get :set_state

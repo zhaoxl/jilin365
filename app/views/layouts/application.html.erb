@@ -47,8 +47,10 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td>
-            <span class="iconfont">&#xe609;</span>
-            首页
+            <a href="/">
+              <span class="iconfont">&#xe609;</span>
+              首页
+            </a>
           </td>
           <td>
             <span class="iconfont">&#xe602;</span>
@@ -63,8 +65,10 @@
             </div>
           </td>
           <td>
-            <span class="iconfont">&#xe608;</span>
-            会员
+            <a href="<%= member_root_path%>">
+              <span class="iconfont">&#xe608;</span>
+              会员
+            </a>
           </td>
           <td>
             <a href="/stores">
@@ -77,6 +81,11 @@
     </div>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%if flash[:notice].present?%>
+    <script type="text/javascript">
+      alert('<%= flash[:notice]%>');
+    </script>
+    <%end%>
     
   </body>
 </html>

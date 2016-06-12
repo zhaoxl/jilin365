@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Jilin365</title>
+    <title>用户中心<%= @title.present? ? "——#{@title}" : ""%></title>
 	<meta charset="utf-8" />
   	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
   	<meta content="yes" name="apple-mobile-web-app-capable">
@@ -18,5 +18,10 @@
       <%= yield %>
 		</div>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%if flash[:notice].present?%>
+    <script type="text/javascript">
+      alert('<%= flash[:notice]%>');
+    </script>
+    <%end%>
   </body>
 </html>

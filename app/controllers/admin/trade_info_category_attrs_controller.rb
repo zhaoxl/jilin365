@@ -14,6 +14,8 @@ class Admin::TradeInfoCategoryAttrsController < Admin::BaseController
   
   def create
     @data = @trade_info_category.trade_info_category_attrs.build(post_params)
+    @data.require = params[:require] == "true"
+    @data.list_display = params[:list_display] == "true"
     @data.save!
     
     redirect_to admin_trade_info_category_trade_info_category_attrs_path(@trade_info_category), notice: '添加成功'
@@ -24,7 +26,10 @@ class Admin::TradeInfoCategoryAttrsController < Admin::BaseController
   end
   
   def update
-    @data.update_attributes(post_params)
+    @data.assign_attributes(post_params)
+    @data.require = params[:require] == "true"
+    @data.list_display = params[:list_display] == "true"
+    @data.save
     
     redirect_to admin_trade_info_category_trade_info_category_attrs_path(@trade_info_category), notice: '编辑成功'
   end

@@ -18,20 +18,31 @@
   </div>
   <ul class="attrs clearfix">
     <%@trade_info.trade_info_attrs.each do |attr|%>
-    <li class="color-blackgray"><span class="color-gray"><%= attr.name%>&nbsp;:&nbsp;</span><%= attr.value%></li>
+      <%if attr.data_type == "LSTRING"%>
+      <li class="color-blackgray" style="width: 100%"><span class="color-gray"><%= attr.name%>&nbsp;:&nbsp;</span><%= attr.value%></li>
+      <%else%>
+      <li class="color-blackgray"><span class="color-gray"><%= attr.name%>&nbsp;:&nbsp;</span><%= attr.value%></li>
+      <%end%>
     <%end%>
   </ul>
   <div class="act_links clearfix">
     <span class="left">
-      <a href="#" class="color-gray">
+      <a href="<%= collects_path(t: @trade_info.class.name, id: @trade_info.id)%>" class="color-gray">
+      <%if @collected%>
+        <span class="iconfont color-red">
+          &#xe604;
+       	</span>
+        取消收藏
+      <%else%>
         <span class="iconfont">
           &#xe604;
        	</span>
         收藏
+      <%end%>
       </a>
     </span>
     <span class="right">
-      <a href="#" class="color-gray">
+      <a href="<%= like_trade_info_path(id: @trade_info.id)%>" class="color-gray">
         <span class="iconfont color-red">
           &#xe600;
        	</span>
@@ -45,7 +56,7 @@
 
 <div class="blank05"></div>
 
-<div class="trade_info_show_content">
+<div class="trade_info_show_content clearfix">
 	<div class="context">
 		<div class="header">
 			<div class="title">
@@ -75,18 +86,20 @@
 			<ul class="info">
 				<% @similarity_trade_infos.each do |info|%>
 				<li class="clearfix">
-					<a href="#" class="img">
-						<img src="<%= info.front_image.try(:image).try(:url)%>" />
-					</a>
-					<div class="content">
-						<p class="title"><%= info.title%></p>
-						<p class="desc color-gray"><%= info.desc%></p>
-						<div class="attrs color-red">
-              <%info.trade_info_attrs.each do |attr|%>
-							<span><%= attr.value%></span>
-              <%end%>
-						</div>
-					</div>
+					<a href="<%= trade_info_path(info)%>">
+  					<div class="img">
+  						<img src="<%= info.front_image.try(:image).try(:url)%>" />
+  					</div>
+  					<div class="content">
+  						<p class="title"><%= info.title%></p>
+  						<p class="desc color-gray"><%= info.desc%></p>
+  						<div class="attrs color-red">
+                <%info.trade_info_attrs.where(list_display: true).each do |attr|%>
+  							<span><%= attr.value%></span>
+                <%end%>
+  						</div>
+  					</div>
+          </a>
 				</li>
 				<%end%>
 			</ul>

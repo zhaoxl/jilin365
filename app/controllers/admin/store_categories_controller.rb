@@ -38,6 +38,16 @@ class Admin::StoreCategoriesController < Admin::BaseController
     redirect_to :back 
   end
   
+  def move_down
+    @data.move_lower
+    redirect_to :back
+  end
+  
+  def move_up
+    @data.move_higher
+    redirect_to :back
+  end
+  
   private
   def find_data
     @data = StoreCategory.find(params[:id])

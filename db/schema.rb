@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608084043) do
+ActiveRecord::Schema.define(version: 20160612135952) do
+
+  create_table "account_books", force: true do |t|
+    t.integer  "user_id"
+    t.string   "category"
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.string   "title"
+    t.string   "remark",     limit: 1000
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -62,19 +73,20 @@ ActiveRecord::Schema.define(version: 20160608084043) do
 
   create_table "cards", force: true do |t|
     t.integer  "store_id"
+    t.integer  "user_id"
     t.integer  "category"
     t.string   "name"
     t.integer  "position"
+    t.integer  "count"
     t.string   "state"
     t.string   "logo"
-    t.string   "phone"
     t.string   "desc"
+    t.string   "phone"
     t.text     "content"
-    t.datetime "begin_at"
-    t.datetime "end_at"
-    t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "begin_at"
+    t.datetime "end_at"
   end
 
   create_table "collects", force: true do |t|
@@ -144,12 +156,14 @@ ActiveRecord::Schema.define(version: 20160608084043) do
   end
 
   create_table "trade_info_attrs", force: true do |t|
-    t.integer "trade_info_id"
     t.integer "trade_info_category_attr_id"
+    t.integer "trade_info_id"
     t.string  "data_type"
     t.string  "name"
     t.string  "value"
     t.string  "image"
+    t.boolean "list_display"
+    t.string  "placeholder"
   end
 
   create_table "trade_info_categories", force: true do |t|
@@ -157,10 +171,13 @@ ActiveRecord::Schema.define(version: 20160608084043) do
     t.string  "logo"
     t.integer "position"
     t.integer "parent_id"
-    t.integer "lft",                        null: false
-    t.integer "rgt",                        null: false
-    t.integer "depth",          default: 0, null: false
-    t.integer "children_count", default: 0, null: false
+    t.integer "lft",                                                    null: false
+    t.integer "rgt",                                                    null: false
+    t.integer "depth",                                   default: 0,    null: false
+    t.integer "children_count",                          default: 0,    null: false
+    t.boolean "show_price",                              default: true
+    t.string  "price_unit"
+    t.decimal "price",          precision: 10, scale: 2
   end
 
   create_table "trade_info_category_attrs", force: true do |t|
@@ -169,6 +186,10 @@ ActiveRecord::Schema.define(version: 20160608084043) do
     t.string  "name"
     t.integer "position"
     t.string  "options",                limit: 1000
+    t.boolean "require",                             default: false
+    t.integer "maxlength"
+    t.boolean "list_display"
+    t.string  "placeholder"
   end
 
   create_table "trade_info_images", force: true do |t|
@@ -194,6 +215,8 @@ ActiveRecord::Schema.define(version: 20160608084043) do
     t.integer  "look_count",                                      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "total_fee",              precision: 10, scale: 2
+    t.integer  "like_count"
   end
 
   create_table "user_cards", force: true do |t|

@@ -129,6 +129,9 @@ textarea::-webkit-input-placeholder {
       
 .color-black_gray {
       color: #666666; }
+      
+.color-white_gray {
+      color: #DDDDDD; }
 
 .color-red {
   color: #f96751; }

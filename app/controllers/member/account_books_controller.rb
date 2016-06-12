@@ -1,6 +1,6 @@
-class Member::AccountBooksController < ApplicationController
-  def balance_logs
-    
+class Member::AccountBooksController < Member::BaseController
+  def index
+    @logs = current_user.account_books.where(category: params[:category])
   end
   
   def income_logs

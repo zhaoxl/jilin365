@@ -15,6 +15,9 @@
 								<th><label><input type="checkbox" />全选</label></th>
 								<th>名称</th>
 								<th>数据类型</th>
+								<th>必填项</th>
+								<th>限制字数</th>
+								<th>列表显示</th>
 								<th>显示顺序</th>
 								<th>操作</th>
 							</tr>
@@ -34,6 +37,15 @@
 								</td>
 								<td>
 									<%= data.data_type%>
+								</td>
+								<td>
+									<%= data.require? ? "是" : "否"%>
+								</td>
+								<td>
+									<%= data.maxlength.to_i < 1 ? "不限" : data.maxlength %>
+								</td>
+								<td>
+									<%= data.list_display? ? "是" : "否"%>
 								</td>
 								<td><%= data.position%></td>
 								<td>

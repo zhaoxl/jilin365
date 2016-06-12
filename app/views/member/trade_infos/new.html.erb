@@ -1,0 +1,35 @@
+<%@title = params[:title]||"发布信息"%>
+
+<div class="trade_info">
+  <div class="form">
+    <div class="input">
+      <span class="require">*</span><span class="title">信息标题：</span><input type="text" name="title" placeholder="请输入信息标题" />
+    </div>
+    <div class="input">
+      <span class="title">出售价格：</span><input type="text" name="price" placeholder="请输入出售价格" />
+    </div>
+    <%@attrs.each do |attr|%>
+    <div class="input">
+      <span class="title"><%= attr.name%>：</span><input type="text" name="<%= attr.name%>" placeholder="<%= attr.placeholder%>" />
+    </div>
+    <%end%>
+    <div class="input">
+      <span class="title">发布天数：</span>
+      <select name="day">
+        <%30.times.each do |i|%>
+        <option value="<%= i+1%>"><%= i+1%>天（推广价格<%= @category.price*(i+1)%>元）</option>
+        <%end%>
+      </select>
+    </div>
+    <div class="input">
+      <span class="title">上传照片：</span>
+    </div>
+    <div class="input">
+      <span class="title">详细信息：</span><textarea name="content" placeholder="请输入详细信息" ></textarea>
+    </div>
+    <div class="btn">
+      <input type="submit" value="发布" />
+    </div>
+  </div>
+</div>
+

@@ -19,3 +19,66 @@
 .index .list_nav ul li{width: 50%; float: left; line-height: 3rem;}
 .index .list_nav ul li .iconfont{padding-left: 1rem; padding-right: 0.1rem;}
 .index .list_nav ul li a{color: #999999}
+
+
+.account_book .list{width: 100%;}
+.account_book .list li{background: white; padding: 1rem;}
+.account_book .list li .date{float: right;}
+
+
+.recharge .new{background: white; padding: 1rem;}
+.recharge .new .money{line-height: 3rem;}
+.recharge .new .money input{border: none;}
+.recharge .new .btn{}
+.recharge .new .btn input[type=submit]{width: 100%; margin: 0.5rem auto 0.5rem auto; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none;}
+
+
+.collect .index .list{width: 100%;}
+.collect .index .list li{padding: 1rem; background: white; border-bottom: solid 1px #dddddd;}
+.collect .index .list li .img{float: left; width: 20%; height: 5rem; display: block;}
+.collect .index .list li .img img{width: 100%; height: 100%;}.collect .context .body .info li .content{float: left; height: 5rem; padding-left: 0.5rem;}
+.collect .index .list li .content{float: left; height: 5rem; padding-left: 0.5rem; width: 78%}
+.collect .index .list li .content .title{font-weight: bold; font-size: 1.2rem;}
+.collect .index .list li .content .title .date{float: right; font-weight: initial; font-size: 1rem; color: #DDDDDD;}
+.collect .index .list li .content .desc{padding-top: 0.4rem; padding-bottom: 0.4rem;}
+.collect .index .list li .content .attrs{display: block; float: left;}
+.collect .index .list li .btns{width: 100%; padding-top: 1rem; padding-bottom: 1rem; clear: both;}
+.collect .index .list li .btns .del{padding: 0.2rem; background: #fff5f4; border: solid 1px #f96751; color: #f96751; text-align: center; float: right; padding-left: 1rem; padding-right: 1rem;}
+
+.trade_info .form{padding: 1rem; background: white;}
+.trade_info .form .input{border-bottom: solid 1px #dddddd; padding: 0.3rem;}
+.trade_info .form .require{color: red;}
+.trade_info .form .title{color: #999999; line-height: 2rem; padding-left: 0.2rem; padding-right: 0.5rem;}
+.trade_info .form input{color: #dddddd; line-height: 2rem; border: none;}
+.trade_info .form textarea{color: #dddddd; line-height: 2rem; border: none; width: 77%;}
+.trade_info .form .btn input[type=submit]{width: 100%; margin: 0.5rem auto 0.5rem auto; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none;}
+.trade_info .index .list{width: 100%;}
+.trade_info .index .list li{padding: 1rem; background: white; border-bottom: solid 1px #dddddd;}
+.trade_info .index .list li .img{float: left; width: 20%; height: 5rem; display: block;}
+.trade_info .index .list li .img img{width: 100%; height: 100%;}.collect .context .body .info li .content{float: left; height: 5rem; padding-left: 0.5rem;}
+.trade_info .index .list li .content{float: left; height: 5rem; padding-left: 0.5rem; width: 78%}
+.trade_info .index .list li .content .title{font-weight: bold; font-size: 1.2rem;}
+.trade_info .index .list li .content .title .date{float: right; font-weight: initial; font-size: 1rem; color: #DDDDDD;}
+.trade_info .index .list li .content .desc{padding-top: 0.4rem; padding-bottom: 0.4rem;}
+.trade_info .index .list li .content .attrs{display: block; float: left;}
+.trade_info .index .list li .btns{width: 100%; padding-top: 1rem; padding-bottom: 1rem; clear: both;}
+.trade_info .index .list li .btns .del{padding: 0.2rem; background: #fff5f4; border: solid 1px #f96751; color: #f96751; text-align: center; float: right; padding-left: 1rem; padding-right: 1rem;}
+.trade_info .index .list li .btns .edit{padding: 0.2rem; background: #fff5f4; border: solid 1px #f96751; color: #f96751; text-align: center; float: right; padding-left: 1rem; padding-right: 1rem; margin-right: 1rem;}
+
+.store .form{}
+.store .form{padding: 1rem; background: white;}
+.store .form .input{border-bottom: solid 1px #dddddd; padding: 0.3rem;}
+.store .form .require{color: red;}
+.store .form .title{color: #999999; line-height: 2rem; padding-left: 0.2rem; padding-right: 0.5rem;}
+.store .form input{color: #dddddd; line-height: 2rem; border: none;}
+.store .form textarea{color: #dddddd; line-height: 2rem; border: none; width: 77%;}
+.store .form .btn input[type=submit]{width: 100%; margin: 0.5rem auto 0.5rem auto; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none;}
+
+.card .index .list{width: 100%; background: white;}
+.card .index .list li{width: 100%; margin-left: 0.5rem; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: solid 1px #dddddd; }
+.card .index .list li .img{float: left; width: 35%; height: 5rem; display: block;}
+.card .index .list li .img img{width: 100%; height: 100%;}
+.card .index .list li .content{float: left; height: 5rem; padding-left: 0.5rem;}
+.card .index .list li .content .title{font-weight: bold; font-size: 1.5rem;}
+.card .index .list li .content .desc{padding-top: 0.4rem; padding-bottom: 0.4rem;}
+.card .index .list li .content .phone{}

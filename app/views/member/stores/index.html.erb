@@ -1,0 +1,28 @@
+<div class="store">
+  <div class="form">
+    <%= form_for @store, url: member_stores_path, method: :post do |f|%>
+    <div class="input">
+      <span class="require">*</span><span class="title">商户分类：</span>
+      <%= f.select :store_category_id, options_for_select(StoreCategory.all.map{|sc| [sc.name, sc.id]})%>
+    </div>
+    <div class="input">
+      <span class="require">*</span><span class="title">商户名称：</span>
+      <%= f.text_field :name%>
+    </div>
+    <div class="input">
+      <span class="require">*</span><span class="title">商户电话：</span>
+      <%= f.text_field :phone%>
+    </div>
+    <div class="input">
+      <span class="require">*</span><span class="title">联系地址：</span>
+      <%= f.text_field :address%>
+    </div>
+    <div class="input">
+      <span class="require">*</span><span class="title">上传照片：</span>
+    </div>
+    <div class="btn">
+      <input type="submit" value="提交" />
+    </div>
+    <%end%>
+  </div>
+</div>

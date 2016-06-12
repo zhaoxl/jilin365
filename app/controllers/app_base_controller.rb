@@ -1,4 +1,5 @@
 class AppBaseController < ActionController::Base
+  layout "application"
   
   def current_user
     begin

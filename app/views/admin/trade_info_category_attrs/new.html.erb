@@ -17,10 +17,34 @@
 						<label for="exampleInputEmail1">类型</label>
 						<%= f.select :data_type, options_for_select(::TradeInfoCategoryAttr.CONSTS_DATA_TYPE, @data.data_type), {}, class: 'form-control'%>
 					</div>
-					<div class="form-group" id="select_options" style="display: <%= @data.data_type == "SELECT" ? "block" : "none"%>">
-						<label for="exampleInputEmail1">选项</label>
-						<%= f.text_area :options, class: 'form-control'%>
-					</div>
+          <div class="form-group">
+						<label for="exampleInputEmail1">必填项</label>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="require" value="true" <%= @data.require? ? "checked" : ""%> />
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+						<label for="exampleInputEmail1">列表显示</label>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="list_display" value="true" "<%= @data.list_display? ? "checked" : ""%> />
+              </label>
+            </div>
+          </div>
+  				<div class="box-body">
+  					<div class="form-group">
+  						<label for="exampleInputEmail1">字数限制</label>
+  						<%= f.text_field :maxlength, class: 'form-control'%>
+  					</div>
+          </div>
+  				<div class="box-body">
+  					<div class="form-group">
+  						<label for="exampleInputEmail1">提示文字</label>
+  						<%= f.text_field :placeholder, class: 'form-control'%>
+  					</div>
+          </div>
 				</div>
 				<div class="box-footer">
 					<button class="btn btn-primary" type="submit">保存</button>

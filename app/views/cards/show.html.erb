@@ -31,6 +31,9 @@
 </div>
 <div class="clearfix"></div>
 
-<a href="#" class="card_show_receive_btn">领取</a>
-
+<%if @received%>
+  <a href="#" class="card_show_receive_btn">已领取</a>
+<%else%>
+  <a href="<%= user_cards_path(id: @card.id)%>" class="card_show_receive_btn">领取</a>
+<%end%>
 
