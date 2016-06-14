@@ -3,13 +3,13 @@ set :stage, :staging
 set :branch, 'master'
 set :rvm_type, :user
 set :rvm_ruby_version, '2.0.0'
-set :deploy_user, 'root'
+set :deploy_user, 'jilin365'
 set :rails_env, "development"
 
-server 'w.yuji.la', user: 'root', roles: %w{web app db}, primary: true
+server 'w.jilin365.cn', user: 'jilin365', roles: %w{web app db}, primary: true
 
 
-set :deploy_to, "/srv/www/w.yuji.la"
+set :deploy_to, "/home/www/w.jilin365.cn"
 
 
 

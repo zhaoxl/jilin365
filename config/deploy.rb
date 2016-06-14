@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.5.0'
 
 set :application, 'w.jilin365.cn'
 set :repo_url, 'git@github.com:zhaoxl/jilin365.git'
@@ -63,7 +63,7 @@ set :keep_releases, 5
 
 task :restart do
   on roles(:web) do
-    execute "cd /srv/www/w.jilin365.cn/current && kill -USR2 `cat tmp/pids/unicorn.pid`"
+    execute "cd /srv/www/w.jilin365.cn /current && kill -USR2 `cat tmp/pids/unicorn.pid`"
   end
 end
 after "deploy:published", "restart"
