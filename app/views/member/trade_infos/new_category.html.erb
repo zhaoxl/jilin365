@@ -1,0 +1,33 @@
+<%@title = params[:title]||"发布信息"%>
+
+<div class="trade_info">
+  <div class="new_category">
+    <div id="firstpane" class="menu_list">
+      <%TradeInfoCategory.roots.each do |root|%>
+      <p class="menu_head">
+        <span class="left_arrow iconfont">&#xe612;</span>
+        <%= root.name%>
+        <span class="right_arrow iconfont">&#xe614;</span>
+      </p>
+      <div class="menu_body">
+        <%root.children.each do |child_category|%>
+  	    <a href="/member/trade_infos/new?c=<%= child_category.id%>"><%= child_category.name%></a>
+        <%end%>
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+<%content_for :javascript do%>
+<script type="text/javascript">
+$("#firstpane p.menu_head").click(function()
+{
+    $(this).find(".left_arrow").html("&#xe613;");
+    $(this).find(".right_arrow").html("&#xe611;");
+    $(this).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+    $(this).siblings().find(".right_arrow").html("&#xe614;");
+    $(this).siblings().find(".left_arrow").html("&#xe612;");
+});
+</script>
+<%end%>

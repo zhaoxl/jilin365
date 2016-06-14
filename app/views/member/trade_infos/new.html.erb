@@ -1,23 +1,38 @@
 <%@title = params[:title]||"发布信息"%>
 
 <div class="trade_info">
+  <%= form_for @trade_info, url: member_trade_infos_path do |f|%>
+  <%= hidden_field_tag :c, params[:c]%>
   <div class="form">
     <div class="input">
-      <span class="require">*</span><span class="title">信息标题：</span><input type="text" name="title" placeholder="请输入信息标题" />
+      <span class="require">*</span><span class="title">信息标题：</span><input type="text" name="title" placeholder="请输入信息标题" maxlength="20" />
     </div>
     <div class="input">
-      <span class="title">出售价格：</span><input type="text" name="price" placeholder="请输入出售价格" />
+      <span class="require">*</span><span class="title">描述：</span><input type="text" name="desc" placeholder="请输入描述" maxlength="100" />
+    </div>
+    <div class="input">
+      <span class="title">出售价格：</span><input type="text" name="price" placeholder="请输入出售价格" maxlength="10" />
     </div>
     <%@attrs.each do |attr|%>
     <div class="input">
-      <span class="title"><%= attr.name%>：</span><input type="text" name="<%= attr.name%>" placeholder="<%= attr.placeholder%>" />
+      <%= hidden_field_tag "attrs[]attr_id", attr.id%>
+      <%= hidden_field_tag "attrs[]attr_name", attr.name%>
+      <%= hidden_field_tag "attrs[]data_type", attr.data_type%>
+      <%= hidden_field_tag "attrs[]list_display", attr.list_display%>
+      <%= hidden_field_tag "attrs[]placeholder", attr.placeholder%>
+      <span class="title"><%= attr.name%>：</span>
+      <%if attr.data_type != "TEXT"%>
+        <input type="text" name="attrs[]<%= attr.name%>" placeholder="<%= attr.placeholder%>" maxlength="<%= attr.maxlength.to_i > 0 ? attr.maxlength : 999999%>" />
+      <%else%>
+        <textarea name="attrs[]<%= attr.name%>" placeholder="<%= attr.placeholder%>" maxlength="<%= attr.maxlength.to_i > 0 ? attr.maxlength : 999999%>"></textarea>
+      <%end%>
     </div>
     <%end%>
     <div class="input">
       <span class="title">发布天数：</span>
       <select name="day">
         <%30.times.each do |i|%>
-        <option value="<%= i+1%>"><%= i+1%>天（推广价格<%= @category.price*(i+1)%>元）</option>
+        <option value="<%= i+1%>"><%= i+1%>天（推广价格<%= @category.price.to_f*(i+1)%>元）</option>
         <%end%>
       </select>
     </div>
@@ -31,5 +46,6 @@
       <input type="submit" value="发布" />
     </div>
   </div>
+  <%end%>
 </div>
 

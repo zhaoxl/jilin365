@@ -280,15 +280,20 @@ h1, h2, h3, h4, h5, h6 {
 .icon-zuobiao:before { content: "\e605"; }
 .icon-shouye:before { content: "\e609"; }
 .icon-iconsvgtixianjilu:before { content: "\e60b"; }
+.icon-jiantou-copy:before { content: "\e611"; }
 .icon-youhuiquan:before { content: "\e60c"; }
 .icon-dayuhao:before { content: "\e60a"; }
 .icon-ecrmExchange:before { content: "\e60d"; }
 .icon-dazheicon:before { content: "\e60e"; }
 .icon-dingwei:before { content: "\e606"; }
 .icon-xiaoxi:before { content: "\e607"; }
+.icon-icon-copy-copy:before { content: "\e612"; }
+.icon-icon-copy-copy1:before { content: "\e613"; }
 .icon-huiyuanshu:before { content: "\e608"; }
 .icon-shanghu:before { content: "\e60f"; }
+.icon-arrowRight-copy:before { content: "\e614"; }
 .icon-jiaoyijilu:before { content: "\e610"; }
+
 
 
 .space1 {
@@ -296,6 +301,8 @@ h1, h2, h3, h4, h5, h6 {
   clear: both;
   overflow: hidden; 
   border: solid 1px #dddddd;
+  border-left: none;
+  border-right: none;
   background: #F8F8F8;
   display: block;
 }

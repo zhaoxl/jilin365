@@ -244,7 +244,11 @@ Rails.application.routes.draw do
     resources :account_books
     resources :index
     resources :collects
-    resources :trade_infos
+    resources :trade_infos do 
+      collection do 
+        get :new_category
+      end
+    end
     resources :stores
     resources :cards
     resources :orders do
