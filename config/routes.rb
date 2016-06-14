@@ -245,6 +245,9 @@ Rails.application.routes.draw do
     resources :index
     resources :collects
     resources :trade_infos do 
+      member do
+        get :delete
+      end
       collection do 
         get :new_category
       end

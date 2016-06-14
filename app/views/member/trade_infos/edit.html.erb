@@ -1,0 +1,13 @@
+<%@title = params[:title]||"编辑信息"%>
+
+<div class="trade_info">
+  <%= form_for @trade_info, url: member_trade_info_path(@trade_info) do |f|%>
+    <div class="form">
+		  <%= render :partial => 'form', :locals => {f: f, trade_info: @trade_info, attrs: @attrs, info_attrs: @info_attrs }  %>
+      <div class="btn">
+        <input type="submit" value="保存" />
+      </div>
+    </div>
+  <%end%>
+</div>
+
