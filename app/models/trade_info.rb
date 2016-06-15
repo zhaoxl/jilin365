@@ -1,4 +1,5 @@
 class TradeInfo < ActiveRecord::Base
+  acts_as_paranoid
   acts_as_list  scope: :trade_info_category_id
   
   belongs_to  :trade_info_category
@@ -10,7 +11,7 @@ class TradeInfo < ActiveRecord::Base
   aasm column: :state do
     state :cancel
     state :create, :initial => true
-    state :pass
+    state :payment
     state :lock
     state :expire
     
@@ -18,8 +19,8 @@ class TradeInfo < ActiveRecord::Base
       transitions :from => :create, :to => :cancel
     end
     
-    event :set_state_pass do
-      transitions :from => [:create, :lock], :to => :pass
+    event :set_state_payment do
+      transitions :from => [:create], :to => :payment
     end
     
     event :set_state_lock do

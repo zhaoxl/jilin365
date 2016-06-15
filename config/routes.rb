@@ -249,6 +249,9 @@ Rails.application.routes.draw do
         get :delete
       end
       collection do 
+        get :upload_image
+        post :upload_image_save
+        delete :upload_image_destroy
         get :new_category
       end
     end

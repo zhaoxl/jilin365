@@ -71,6 +71,23 @@ class Member::TradeInfosController < Member::BaseController
     redirect_to :back
   end
   
+  def upload_image
+    @images = []
+    info = current_user.trade_infos.find(params[:id]) rescue nil
+    
+    @images << TradeInfoImage.where(trade_info: info)
+    @images << TradeInfoImage.where("trade_info_id IS NULL AND user_id=?", current_user.id)
+    @images.flatten!
+  end
+  
+  def upload_image_save
+    info = current_user.trade_infos.find(params[:id]) rescue nil
+    image = TradeInfoImage.new(user: current_user, image: params[:file], trade_info: info)
+    image.save
+    
+    redirect_to :back
+  end
+  
   
   private  
   def post_params
