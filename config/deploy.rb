@@ -63,7 +63,7 @@ set :keep_releases, 5
 
 task :restart do
   on roles(:web) do
-    execute "cd /srv/www/w.jilin365.cn /current && kill -USR2 `cat tmp/pids/unicorn.pid`"
+    execute :service, "cd /home/www/w.jilin365.cn/current && kill -USR2 `cat tmp/pids/unicorn.pid`"
   end
 end
 after "deploy:published", "restart"
