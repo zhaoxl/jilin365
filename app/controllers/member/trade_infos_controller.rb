@@ -31,6 +31,8 @@ class Member::TradeInfosController < Member::BaseController
       )
     end
     info.save
+    #所有暂存图片转入本条消息
+    TradeInfoImage.where(user: current_user).update_all({trade_info_id: info.id})
     flash[:notice] = "添加成功"
     redirect_to member_trade_infos_path
   end
@@ -60,6 +62,9 @@ class Member::TradeInfosController < Member::BaseController
       info_attr.save
     end
     info.save
+    #所有暂存图片转入本条消息
+    TradeInfoImage.where(user: current_user).update_all({trade_info_id: info.id})
+    
     flash[:notice] = "修改成功"
     redirect_to member_trade_infos_path
   end
@@ -84,6 +89,15 @@ class Member::TradeInfosController < Member::BaseController
     info = current_user.trade_infos.find(params[:id]) rescue nil
     image = TradeInfoImage.new(user: current_user, image: params[:file], trade_info: info)
     image.save
+    
+    redirect_to :back
+  end
+  
+  def upload_image_destroy
+    begin
+      TradeInfoImage.where(user: current_user).find(params[:image]).destroy!
+    rescue
+    end
     
     redirect_to :back
   end

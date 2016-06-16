@@ -46,7 +46,7 @@
 				<% @trade_infos.each do |info|%>
 				<li class="clearfix">
 					<a href="<%= trade_info_path(info)%>" class="img">
-						<img src="<%= info.front_image.try(:image).try(:url)%>" />
+						<img src="<%= info.front_image.try(:url)%>" />
 					</a>
 					<div class="content">
 						<p class="title"><%= info.title%></p>

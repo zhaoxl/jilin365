@@ -33,7 +33,7 @@ class TradeInfo < ActiveRecord::Base
   end
   
   def front_image
-    self.trade_info_images.first
+    self.trade_info_images.first.try(:image)
   end
   
 end

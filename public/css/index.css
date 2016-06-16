@@ -103,10 +103,3 @@
 .store_show_content .context{padding: 1rem; color: #999999;}
   
 	
-
-#footer{width: 100%; bottom: 0px; color: #999999; margin-top: -2rem; background: white;}
-#footer table{width: 100%;}
-#footer table tbody tr td{text-align: center; width: 20%;}
-#footer table tbody tr td .iconfont{font-weight: bold; font-size: 2rem; width: 100%; display: inline-block;}
-#footer .index_btn{width: 5rem; height: 4rem; -moz-border-radius: 5rem; -webkit-border-radius: 5rem; border-radius: 5rem; background: #eb4f38; color: white; margin: auto; padding-top: 1rem; text-align: center;}
-#footer a{color: #999999;}  

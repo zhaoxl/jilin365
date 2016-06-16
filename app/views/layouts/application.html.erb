@@ -53,8 +53,10 @@
             </a>
           </td>
           <td>
-            <span class="iconfont">&#xe602;</span>
-            发布
+						<a href="<%= new_category_member_trade_infos_path%>">
+	            <span class="iconfont">&#xe602;</span>
+	            发布
+						</a>
           </td>
           <td>
             <div class="index_btn">
@@ -82,10 +84,43 @@
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%if flash[:notice].present?%>
-    <script type="text/javascript">
-      alert('<%= flash[:notice]%>');
-    </script>
+		<script type="text/javascript">
+			removePrompt = function(url,callback,delaytime) {
+				if(!Boolean(delaytime)){
+					delaytime=1000;
+				}
+				var _prompt_box = $(document).find(".prompt");
+				setTimeout(function() {
+					_prompt_box.css({
+						'-webkit-transition': '' + 0.2 + 's  linear',
+						'transition': '' + 0.2 + 's  linear',
+						'-webkit-transform': 'scale(0,0)',
+						'transform': 'scale(0,0)'
+					})
+					_prompt_box.bind('webkitTransitionEnd transitionend', function() {
+						this.remove()
+						if(callback){
+					   	callback(url)
+							}
+					})
+				}, delaytime);
+			};
+	
+			var _html = '';
+			_html += '<div class="prompt-box pf prompt" id="prompt-box">';
+			_html += '<p class="back-prompt-p"><%= flash[:notice]%></p>';
+			_html += '</div>';
+			$('body').append(_html)
+			<%if session[:goto].present?%>
+			removePrompt('<%= session.delete(:goto)%>');
+			<%else%>
+			removePrompt();
+			<%end%>
+		</script>
     <%end%>
     
   </body>
 </html>
+
+
+

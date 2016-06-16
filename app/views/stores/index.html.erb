@@ -31,7 +31,7 @@
 				<% @stores.each do |store|%>
 				<li class="clearfix">
 					<a href="<%= store_path(store)%>" class="img">
-						<img src="<%= store.front_image.try(:image).try(:url)%>" />
+						<img src="<%= store.front_image.try(:url)%>" />
 					</a>
 					<div class="content">
 						<p class="title"><%= store.name%></p>
