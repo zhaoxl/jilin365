@@ -94,10 +94,9 @@ class Member::TradeInfosController < Member::BaseController
   end
   
   def upload_image_destroy
-    begin
+    
       TradeInfoImage.where(user: current_user).find(params[:image]).destroy!
-    rescue
-    end
+
     
     redirect_to :back
   end

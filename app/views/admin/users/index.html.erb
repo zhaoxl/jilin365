@@ -48,9 +48,7 @@
 									<th>头像</th>
 									<th>用户名</th>
 									<th>余额</th>
-									<th>当前等级</th>
-									<th>订单数</th>
-									<th>推荐成功数</th>
+									<th>信息数</th>
 									<th>状态</th>
 									<th>操作</th>
 								</tr>
@@ -65,15 +63,12 @@
 											</div>
 										</div>
 									</td>
-									<td><img src="<%= user.headimgurl%>" style="width: 40px; border-radius:50%; overflow:hidden;" /></td>
+									<td><img src="<%= user.logo%>" style="width: 40px; border-radius:50%; overflow:hidden;" /></td>
 									<td><%= user.try(:name)%></td>
 									<td><%= user.balance%></td>
-									<td><%= t "activerecord.user_level.names.v#{user.level}"%></td>
-									<td><%= user.orders.count%></td>
-									<td><%= User.where(recommend_user_id: user).count%></td>
+									<td><%= user.trade_infos.count%></td>
 									<td><%= t "activerecord.user.states.#{user.state}"%></td>
 									<td>
-										<a href="<%= admin_orders_path(user_id: user.id)%>">订单</a>
 										<a href="<%= edit_admin_user_path(user)%>">编辑</a>
 										<%if user.state == "create"%>
 											<a href="<%= lock_admin_user_path(user)%>">锁定</a>

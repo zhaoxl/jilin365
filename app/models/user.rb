@@ -37,10 +37,6 @@ class User < ActiveRecord::Base
   end
   
   
-  def is_distribution?
-    self.distribution && !["cancel", "create"].include?(self.distribution.state)
-  end
-  
   def balance
     self.wallet.try(:balance).to_f
   end

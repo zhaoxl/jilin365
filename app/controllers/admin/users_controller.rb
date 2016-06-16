@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::BaseController
   before_filter :find_data, except: [:index, :new, :create]
     
   def index
-    @users = User.where("").includes(:distribution).includes(:wallet)
+    @users = User.where("").includes(:wallet)
     @users = @users.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
     @users = @users.where(state: params[:state]) if params[:state].present?
     @users = @users.page(params[:page]).per(50)

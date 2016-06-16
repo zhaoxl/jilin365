@@ -11,8 +11,8 @@
 
 
 
-.info_list{width: 100%; background: white;}
-.info_list .context{width: 98%; float: right; background: white;}
+.info_list{padding: 0.5rem; background: white;}
+.info_list .context{width: 100%; }
 .info_list .context .header{width: 100%; height: 1.5rem; padding-bottom: 0.3rem; padding-top: 0.3rem;}
 .info_list .context .header .title{border-left: solid 0.1rem #F96751; color: #F96751; padding-left: 0.5rem; line-height: 1.2rem;
 }
@@ -28,7 +28,7 @@
 .info_list .context .body .info li .content .attrs{display: block; float: left;}
 
 
-.trade_info_filter .context{width: 98%; float: right;}
+.trade_info_filter .context{background: white; padding: 0.5rem;}
 .trade_info_filter .context .header{width: 100%; height: 1.5rem; padding-bottom: 0.3rem; padding-top: 0.3rem;}
 .trade_info_filter .context .header .title{border-left: solid 0.1rem #F96751; color: #F96751; padding-left: 0.5rem; line-height: 1.2rem;
 }

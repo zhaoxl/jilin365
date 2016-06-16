@@ -1,7 +1,8 @@
 class StoresController < ApplicationController
   def index
-    @root_category = TradeInfoCategory.find(params[:rc]) rescue nil
-    @stores = Store.all
+    @category = StoreCategory.find(params[:c]) rescue nil
+    @stores = Store.where("")
+    @stores = @stores.where(store_category_id: @category.id) if @category.present?
   end
   
   def show

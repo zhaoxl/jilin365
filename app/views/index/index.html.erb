@@ -52,7 +52,7 @@
               <img src="<%= info.front_image.try(:image).try(:url)%>" />
             </div>
   					<div class="content">
-  						<p class="title"><%= info.title%></p>
+  						<p class="title"><%= truncate_u(info.title, 12, '')%></p>
   						<p class="desc color-gray"><%= info.desc%></p>
   						<div class="attrs color-red">
                 <%info.trade_info_attrs.where(list_display: true).each do |attr|%>

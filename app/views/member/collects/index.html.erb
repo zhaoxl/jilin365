@@ -2,6 +2,7 @@
 
 <div class="collect">
   <div class="index">
+    <%if @collects.present?%>
     <ul class="list">
       <%@collects.each do |collect|%>
       <%info = collect.item%>
@@ -28,6 +29,11 @@
       </li>
       <%end%>
     </ul>
+    <%else%>
+    <div class="list_empty">
+      这里什么都没有~~<<%= link_to "返回", :back%>>
+    </div>
+    <%end%>
   </div>
 </div>
 

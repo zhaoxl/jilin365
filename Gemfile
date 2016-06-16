@@ -74,6 +74,8 @@ gem 'rufus-scheduler'
 gem 'log4r'
 #汉子转拼音
 gem 'ruby-pinyin'
+#微信登录
+gem "omniauth-wechat-oauth2"
 
 
 group :development do

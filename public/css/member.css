@@ -106,4 +106,5 @@
 .card .index .list li .content .desc{padding-top: 0.4rem; padding-bottom: 0.4rem;}
 .card .index .list li .content .phone{}
   
-  
+.list_empty{padding-top: 5rem; padding-bottom: 5rem; background: white; text-align: center;}
+.list_empty a{color: red;}

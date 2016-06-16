@@ -2,6 +2,7 @@
 
 <div class="card">
   <div class="index">
+    <%if @cards.present?%>
     <ul class="list">
       <%@cards.each do |card|%>
     	<li class="clearfix">
@@ -16,6 +17,11 @@
     	</li>
       <%end%>
     </ul>
+    <%else%>
+    <div class="list_empty">
+      这里什么都没有~~<<%= link_to "返回", :back%>>
+    </div>
+    <%end%>
   </div>
 </div>
 
