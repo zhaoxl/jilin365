@@ -1,6 +1,6 @@
 class WechatController < AppBaseController
   before_action :current_user, only: [:pay]
-  skip_before_filter :verify_authenticity_token, :only => [:pay_notify, :login_get_code_callback]
+  skip_before_filter :verify_authenticity_token, :only => [:pay_notify, :omniauth_login_callback]
   
   
   layout false
@@ -18,6 +18,10 @@ class WechatController < AppBaseController
     open_id = auth_hash["openid"]
     nickname = auth_hash["info"]["nickname"]
     logo = auth_hash["info"]["headimgurl"]
+    
+    
+    Rails.logger.info auth_hash["credentials"]
+    Rails.logger.info auth_hash["info"]
     
     Rails.logger.info "omniauth_login_callback:user_info:result=>#{auth_hash}"
     unless user = User.where(open_id: open_id).first
