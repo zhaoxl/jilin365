@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resource :wechat, only: [:show, :create]
   devise_for :users
   devise_for :admins, :controllers => {sessions: "admin/admins/sessions", passwords: "admin/admins/passwords"},path_names: {sign_out: 'logout'}, path: 'admin/admins'
+  get "auth/wechat/callback"=>"wechat#omniauth_login_callback"
   
   namespace :admin do
     root 'index#index'
@@ -171,11 +172,11 @@ Rails.application.routes.draw do
   resources :wechat do
     collection do
       get :login
-      get :login_get_code_callback
+      get :omniauth_login_callback
+      get :failure
       get :pay
       post :pay_notify
       post :pay_exception_notify
-      get :test
     end
   end
   resources :index do

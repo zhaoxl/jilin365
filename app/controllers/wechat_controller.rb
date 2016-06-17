@@ -1,51 +1,41 @@
 class WechatController < AppBaseController
   before_action :current_user, only: [:pay]
-  skip_before_filter :verify_authenticity_token, :only => [:pay_notify]
+  skip_before_filter :verify_authenticity_token, :only => [:pay_notify, :login_get_code_callback]
   
   
   layout false
   
   def login
     session[:goto] = params[:goto]
-    redirect_to "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{Settings.wechat.appid}&redirect_uri=#{Settings.base}/wechat/login_get_code_callback&response_type=code&scope=snsapi_userinfo&state=#{params[:recommend].to_i}#wechat_redirect"
+    redirect_to "/auth/wechat"
   end
+    
   
-  def login_get_code_callback
-    code = params[:code]
-    url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=#{Settings.wechat.appid}&secret=#{Settings.wechat.secret}&code=#{code}&grant_type=authorization_code"
+  def omniauth_login_callback
+    Rails.logger.info "omniauth_login_callback BEGIN----------"
+    Rails.logger.info "omniauth_login_callback:provider=>#{auth_hash["provider"]}"
+    token = auth_hash["credentials"]["token"]
+    open_id = auth_hash["openid"]
+    nickname = auth_hash["info"]["nickname"]
+    logo = auth_hash["info"]["headimgurl"]
     
-    result = JSON.parse(URI.parse(url).read)
-    open_id = result["openid"]
-    token = result["access_token"]
-    
-    
+    Rails.logger.info "omniauth_login_callback:user_info:result=>#{auth_hash}"
     unless user = User.where(open_id: open_id).first
-      #获取用户资料
-      url = "https://api.weixin.qq.com/sns/userinfo?access_token=#{token}&openid=#{open_id}&lang=zh_CN"
-      result = JSON.parse(URI.parse(url).read)
-      nickname = result["nickname"]
-      headimgurl = result["headimgurl"]
-      
-      user = User.new(open_id: open_id, token: token, name: nickname, headimgurl: headimgurl, level: 1)
-      user.save!
-      
-      # #新用户赠送优惠券
-      # if setting = Setting.where(key: :new_user_handsel_coupon).first
-      #   if setting.value.to_i > 0
-      #     if coupon_template = CouponTemplate.where(id: setting.value).first
-      #       Coupon.create(user: user, coupon_template: coupon_template, name: coupon_template.name, price: coupon_template.price)
-      #     end
-      #   end
-      # end
+      user = User.new(open_id: open_id, token: token, name: nickname, logo: logo)
     end
+    user.save
+    Rails.logger.info "omniauth_login_callback:user=>#{user.inspect}"
+    Rails.logger.info "omniauth_login_callback END----------"
+
     session[:user_id] = user.id
     
-    if session[:goto].present?
-      redirect_to session.delete(:goto) and return
-    else
-      redirect_to "/?recommend=#{params[:state]}" and return
-    end
+    redirect_to session.delete(:goto)||index_index_path
   end
+  
+  def failure
+    redirect_to index_index_path
+  end
+  
   
   def pay
     payment = Payment.find(params[:id])
@@ -113,5 +103,15 @@ class WechatController < AppBaseController
     end
     Rails.logger.debug("wechat pay_notify end=======================")
   end
+
+  
+  
+  protected
+
+  def auth_hash
+    request.env['omniauth.auth']
+  end
+  
+  
   
 end
