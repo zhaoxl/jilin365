@@ -29,14 +29,16 @@
 			<ul class="info">
 				<% @stores.each do |store|%>
 				<li class="clearfix">
-					<a href="<%= store_path(store)%>" class="img">
-						<img src="<%= store.front_image.try(:url)%>" />
+					<a href="<%= store_path(store)%>">
+						<div class="img">
+							<img src="<%= store.front_image.try(:url)%>" />
+						</div>
+						<div class="content">
+							<p class="title"><%= store.name%></p>
+							<p class="desc color-gray"><%= store.desc%></p>
+	      			<p class="phone color-red">电话：<%= store.phone%></p>
+						</div>
 					</a>
-					<div class="content">
-						<p class="title"><%= store.name%></p>
-						<p class="desc color-gray"><%= store.desc%></p>
-      			<p class="phone color-red">电话：<%= store.phone%></p>
-					</div>
 				</li>
 				<%end%>
 			</ul>
