@@ -83,6 +83,8 @@ class Member::TradeInfosController < Member::BaseController
     @images << TradeInfoImage.where(trade_info: info)
     @images << TradeInfoImage.where("trade_info_id IS NULL AND user_id=?", current_user.id)
     @images.flatten!
+    
+    render layout: false
   end
   
   def upload_image_save

@@ -21,7 +21,8 @@
     <div class="space1 pr"></div>
     <div class="blank1"></div>
     <div class="blank05"></div>
-    
+		
+    <%unless @hide_footer%>
     <div id="footer" class="wrap pr">
       <table border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -60,6 +61,7 @@
         </tr>
       </table>
     </div>
+		<%end%>
 		
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= yield :javascript%>
