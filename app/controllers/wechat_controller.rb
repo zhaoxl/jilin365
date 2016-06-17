@@ -20,10 +20,10 @@ class WechatController < AppBaseController
     logo = auth_hash["info"]["headimgurl"]
     
     
-    Rails.logger.info token
-    Rails.logger.info open_id
-    Rails.logger.info nickname
-    Rails.logger.info logo
+    Rails.logger.info auth_hash["info"]["openid"]
+    Rails.logger.info auth_hash["info"]["uid"]
+    Rails.logger.info auth_hash["uid"]
+    Rails.logger.info auth_hash["openid"]
     
     Rails.logger.info "omniauth_login_callback:user_info:result=>#{auth_hash}"
     unless user = User.where(open_id: open_id).first
