@@ -33,7 +33,7 @@
 .trade_info_filter .context .header .title{border-left: solid 0.1rem #F96751; color: #F96751; padding-left: 0.5rem; line-height: 1.2rem;
 }
 .trade_info_filter .context .body{width: 100%; border-top: solid 1px #dddddd; }
-.trade_info_filter .context .body a{padding: 0.2rem; margin: 0.5rem 0.5rem 0.5rem 0rem; border: solid 1px #dfdfdf; display: inline-block; color: #999999; background: #f8f8f8;}
+.trade_info_filter .context .body a{padding: 0.2rem; margin: 0.5rem 0.5rem 0.5rem 0rem; border: solid 1px #dfdfdf; display: block; color: #999999; background: #f8f8f8; float: left;}
 .trade_info_filter .context .body a.current{color: #f96751; background: #fdedeb; border: solid 1px #ec5b45;}
 
 .trade_info_show{padding: 1rem; padding-bottom: 0.2rem; background: white;}
