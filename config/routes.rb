@@ -167,7 +167,11 @@ Rails.application.routes.draw do
     end
   end
   resources :cards
-  resources :areas
+  resources :areas do
+    collection do
+      get :use
+    end
+  end
   resources :stores
   resources :wechat do
     collection do
@@ -211,8 +215,7 @@ Rails.application.routes.draw do
   namespace :ajax do
     resources :area do
       collection do
-        get :cities
-        get :streets
+        get :children
       end
     end
     resources :user do

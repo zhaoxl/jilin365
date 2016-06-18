@@ -2,24 +2,27 @@
 
 <div class="trade_info">
   <div class="index">
+		<%if @infos.present?%>
     <ul class="list">
       <%@infos.each do |info|%>
       <li class=" clearfix">
-				<a href="<%= edit_trade_info_path(info)%>" class="img">
-					<img src="<%= info.front_image.try(:url)%>" />
-				</a>
-				<div class="content">
-					<p class="title">
-					  <%= truncate_u(info.title, 10, '')%>
-            <span class="date"><%= info.created_at.strftime "%Y-%m-%d"%></span>
-					</p>
-					<p class="desc color-gray"><%= truncate_u(info.desc, 14, '')%></p>
-					<div class="attrs color-red">
-            <%info.trade_info_attrs.where(list_display: true).each do |attr|%>
-						<span><%= attr.value%></span>
-            <%end%>
+				<a href="<%= trade_info_path(info)%>">
+					<div class="img">
+						<img src="<%= info.front_image.try(:url)%>" />
 					</div>
-				</div>
+					<div class="content">
+						<p class="title">
+						  <%= truncate_u(info.title, 10, '')%>
+	            <span class="date"><%= info.created_at.strftime "%Y-%m-%d"%></span>
+						</p>
+						<p class="desc color-gray"><%= truncate_u(info.desc, 14, '')%></p>
+						<div class="attrs color-red">
+	            <%info.trade_info_attrs.where(list_display: true).each do |attr|%>
+							<span><%= attr.value%></span>
+	            <%end%>
+						</div>
+					</div>
+				</a>
         <div class="btns clearfix">
           <%= link_to "删除信息", delete_member_trade_info_path(info), class: "btn"%>
           <%= link_to "编辑信息", edit_member_trade_info_path(info), class: "btn"%>
@@ -27,6 +30,11 @@
       </li>
       <%end%>
     </ul>
+    <%else%>
+    <div class="list_empty">
+      这里什么都没有~~<<%= link_to "返回", :back%>>
+    </div>
+    <%end%>
   </div>
 </div>
 

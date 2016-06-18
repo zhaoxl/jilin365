@@ -55,6 +55,7 @@
 .trade_info .form .btn input[type=submit]{width: 100%; margin: 0.5rem auto 0.5rem auto; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none;}
 .trade_info .index .list{width: 100%;}
 .trade_info .index .list li{padding: 1rem; background: white; border-bottom: solid 1px #dddddd;}
+.trade_info .index .list li a{color: black;}
 .trade_info .index .list li .img{float: left; width: 20%; height: 5rem; display: block;}
 .trade_info .index .list li .img img{width: 100%; height: 100%;}.collect .context .body .info li .content{float: left; height: 5rem; padding-left: 0.5rem;}
 .trade_info .index .list li .content{float: left; height: 5rem; padding-left: 0.5rem; width: 78%}

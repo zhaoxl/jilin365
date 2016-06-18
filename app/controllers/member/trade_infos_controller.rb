@@ -19,7 +19,7 @@ class Member::TradeInfosController < Member::BaseController
     
     info = current_user.trade_infos.build(title: post_params[:title], desc: post_params[:desc], price: post_params[:price], content: post_params[:content])
     info.expired_at = Time.now +  params[:day].to_i.days
-    info.total_fee = params[:day].to_i * category.price
+    info.total_fee = params[:day].to_i * category.price.to_f
     
     (params[:attrs]||[]).each do |attr|
       info.trade_info_attrs << info.trade_info_attrs.build(
@@ -32,8 +32,8 @@ class Member::TradeInfosController < Member::BaseController
     end
     info.save
     #所有暂存图片转入本条消息
-    TradeInfoImage.where(user: current_user).update_all({trade_info_id: info.id})
-    flash[:notice] = "添加成功"
+    TradeInfoImage.where(user: current_user).where(trade_info_id: nil).update_all({trade_info_id: info.id})
+    flash[:notice] = "发布成功"
     redirect_to member_trade_infos_path
   end
   
@@ -63,7 +63,7 @@ class Member::TradeInfosController < Member::BaseController
     end
     info.save
     #所有暂存图片转入本条消息
-    TradeInfoImage.where(user: current_user).update_all({trade_info_id: info.id})
+    TradeInfoImage.where(user: current_user).where(trade_info_id: nil).update_all({trade_info_id: info.id})
     
     flash[:notice] = "修改成功"
     redirect_to member_trade_infos_path
@@ -80,7 +80,7 @@ class Member::TradeInfosController < Member::BaseController
     @images = []
     info = current_user.trade_infos.find(params[:id]) rescue nil
     
-    @images << TradeInfoImage.where(trade_info: info)
+    @images << TradeInfoImage.where(trade_info: info) if info.present?
     @images << TradeInfoImage.where("trade_info_id IS NULL AND user_id=?", current_user.id)
     @images.flatten!
     

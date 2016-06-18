@@ -30,6 +30,17 @@
       <%= select_tag :day, options_for_select(30.times.map{|i| ["#{i+1}天（推广价格#{@category.price.to_f*(i+1)}元）", i+1]})%>
     </div>
     <div class="input">
+      <span class="title">地区：</span>
+      <%= select_tag :city_code, options_for_select(Area.find(607).children.order("pinyin ASC").map{|area| [area.name, area.code]}, @trade_info.city_code||cookies[:city_code]), id: "area_city"%>
+			<%if @trade_info.city_code.present?%>
+      	<%= select_tag :district_code, options_for_select(Area.where(parent_code: @info.city_code).map{|area| [area.name, area.code]}, @trade_info.district_code), id: "area_district"%>
+			<% elsif cookies[:city_code].present?%>
+				<%= select_tag :district_code, options_for_select(Area.where(parent_code: cookies[:city_code]).map{|area| [area.name, area.code]}), id: "area_district"%>
+			<%else%>
+				<%= select_tag :district_code, {}, id: "area_district", style: "display: none"%>
+			<%end%>
+    </div>
+    <div class="input">
       <span class="title">上传照片：</span>
       <div class="iframe">
       	<iframe src="<%= upload_image_member_trade_infos_path(id: @trade_info.try(:id))%>" frameborder="no" scrolling="no" style="height: 2.4rem"></iframe>
@@ -39,3 +50,41 @@
       <span class="title">详细信息：</span>
       <%= f.text_area :content, placeholder: "请输入详细信息"%>
     </div>
+
+<%= content_for :javascript do%>
+<script>
+$(function(){
+	//get streets
+	$("#area_city").change(function(){
+		if($(this).val() == "")
+		{
+			$("#area_district").val("").hide();
+			return false;
+		} 
+		
+		$.ajax({
+			url: '/ajax/area/children',
+			type: 'GET',
+			dataType: 'json',
+			data: {code: $(this).val()},
+			success: function(response)
+			{
+				if(response.length == 0)
+				{
+					$("#area_district").html('<option value="" selected></option>').hide();
+					return true;
+				}
+				var options = '';
+				$.each(response, function(index, city){
+					options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+				});
+				$("#area_district").html(options).show();
+			}
+		});
+	});
+  
+  
+  
+});
+</script>
+<%end%>

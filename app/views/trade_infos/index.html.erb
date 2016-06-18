@@ -6,6 +6,11 @@
 			<div class="title">
 				区县
 			</div>
+	    <div class="body">
+				<%@areas.each do |area|%>
+	      <a href="<%= trade_infos_path(rc: params[:rc], c: params[:c], a: area.id)%>" class="<%= area.id == params[:a].to_i ? "current" : ""%>"><%= area.name%></a>
+				<%end%>
+	    </div>
 		</div>
   </div>
 </div>
@@ -23,8 +28,9 @@
 			</div>
 		</div>
     <div class="body">
-      <a href="#" class="current">出租信息</a>
-      <a href="#" class="color-red">出售信息</a>
+			<%@sub_categories.each do |category|%>
+      <a href="<%= trade_infos_path(rc: params[:rc], c: category.id, a: params[:a])%>" class="<%= category.id == params[:c].to_i ? "current" : ""%>"><%= category.name%></a>
+			<%end%>
     </div>
   </div>
 </div>

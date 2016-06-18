@@ -1,7 +1,11 @@
 class TradeInfosController < AppBaseController
   def index
     @root_category = TradeInfoCategory.find(params[:rc]) rescue nil
-    @trade_infos = TradeInfo.all
+    @sub_categories = @root_category.children rescue []
+    @areas = []
+    
+    @trade_infos = TradeInfo.where(trade_info_category_id: params[:rc]) if params[:c].blank?
+    @trade_infos = TradeInfo.where(trade_info_category_id: params[:rc]) if params[:c].present?
   end
   
   def show

@@ -1,36 +1,22 @@
 <%@hidden_search_bar = true%>
+
 <div class="area_list">
   <div class="header color-white">
     按字母顺序
   </div>
-  
+	<%@cities.each do |group|%>
   <div class="initial_list">
     <div class="initial">
-      A<span class="color-gray">（以A开头的城市）</span>
+      <%= group[0].upcase%><span class="color-gray">（以开<%= group[0].upcase%>头的城市）</span>
     </div>
     <ul class="districts">
-      <li><a href="#">按图</a></li>
-      <li><a href="#">按图</a></li>
-      <li><a href="#">按图</a></li>
-      <li><a href="#">按图</a></li>
-      <li><a href="#">按图</a></li>
+			<%group[1].each do |city|%>
+      <li><a href="<%= use_areas_path(code: city.code, name: city.name)%>"><%= city.name%></a></li>
+			<%end%>
     </ul>
   </div>
-
-
   <div class="blank05"></div>
   <div class="space1"></div>
-  
-  <div class="initial_list">
-    <div class="initial">
-      A<span class="color-gray">（以A开头的城市）</span>
-    </div>
-    <ul class="districts">
-      <li><a href="#">按图</a></li>
-      <li><a href="#">按图</a></li>
-      <li><a href="#">按图</a></li>
-      <li><a href="#">按图</a></li>
-      <li><a href="#">按图</a></li>
-    </ul>
-  </div>
+	<%end%>
+
 </div>
