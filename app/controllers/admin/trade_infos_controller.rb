@@ -1,7 +1,7 @@
 class Admin::TradeInfosController < Admin::BaseController
   # authorize_resource :class => false
   
-  before_filter :find_data, except: [:index, :new, :create]
+  before_filter :find_data, except: [:index, :new, :create, :new_category]
     
   def index
     @datas = TradeInfo.order("id desc")
@@ -11,7 +11,7 @@ class Admin::TradeInfosController < Admin::BaseController
   end
   
   def new
-    @data = TradeInfo.new
+    @data = TradeInfo.new(trade_info_category_id: params[:category_id])
   end
   
   def create
@@ -59,6 +59,10 @@ class Admin::TradeInfosController < Admin::BaseController
       flash[:notice] = "设置失败"
     end
     redirect_to :back
+  end
+  
+  def new_category
+    
   end
   
   private

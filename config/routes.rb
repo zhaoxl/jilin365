@@ -114,10 +114,15 @@ Rails.application.routes.draw do
         member do
           get :move_up
           get :move_down
+          get :new_category
         end
       end
     end
     resources :trade_infos do
+      collection do
+        get :new_category
+      end
+      
       member do
         get :move_up
         get :move_down
@@ -256,7 +261,6 @@ Rails.application.routes.draw do
         get :upload_image
         post :upload_image_save
         delete :upload_image_destroy
-        get :new_category
       end
     end
     resources :stores

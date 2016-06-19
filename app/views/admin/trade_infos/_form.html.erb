@@ -2,7 +2,7 @@
 	<div class="box-body">
 		<div class="form-group">
 			<label for="exampleInputEmail1">所属分类</label>
-			<%= f.select :trade_info_category_id, grouped_options_for_select(TradeInfoCategory.roots.map{|c| [c.name, c.children.map{|cc| [cc.name, cc.id]}]}, data.trade_info_category_id), {}, class: 'form-control' %>
+			<%= f.select :trade_info_category_id, grouped_options_for_select(TradeInfoCategory.roots.map{|c| [c.name, c.children.map{|cc| [cc.name, cc.id]}]}, data.trade_info_category_id), {}, class: 'form-control', disabled: 'disabled' %>
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">用户</label>

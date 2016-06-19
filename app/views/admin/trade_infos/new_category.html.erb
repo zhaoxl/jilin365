@@ -1,0 +1,24 @@
+<div class="col-md-12">
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <i class="fa fa-text-width"></i>
+
+      <h3 class="box-title">选择分类</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <dl class="dl-horizontal">
+        <%TradeInfoCategory.roots.each do |root|%>
+        <dt><%= root.name%></dt>
+        <dd>
+          <%root.children.each do |child_category|%>
+          <a href="<%= new_admin_trade_info_path(category_id: child_category.id)%>"><%= child_category.name%></a>
+          <%end%>
+        </dd>
+        <%end%>
+      </dl>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
