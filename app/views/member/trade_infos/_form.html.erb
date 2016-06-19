@@ -31,13 +31,13 @@
     </div>
     <div class="input">
       <span class="title">地区：</span>
-      <%= select_tag :city_code, options_for_select(Area.find(607).children.order("pinyin ASC").map{|area| [area.name, area.code]}, @trade_info.city_code||cookies[:city_code]), id: "area_city"%>
+      <%= f.select :city_code, options_for_select(Area.find(607).children.order("pinyin ASC").map{|area| [area.name, area.code]}, @trade_info.city_code||cookies[:city_code]), id: "area_city"%>
 			<%if @trade_info.city_code.present?%>
-      	<%= select_tag :district_code, options_for_select(Area.where(parent_code: @info.city_code).map{|area| [area.name, area.code]}, @trade_info.district_code), id: "area_district"%>
+      	<%= f.select :district_code, options_for_select(Area.where(parent_code: @trade_info.city_code).map{|area| [area.name, area.code]}, @trade_info.district_code), id: "area_district"%>
 			<% elsif cookies[:city_code].present?%>
-				<%= select_tag :district_code, options_for_select(Area.where(parent_code: cookies[:city_code]).map{|area| [area.name, area.code]}), id: "area_district"%>
+				<%= f.select :district_code, options_for_select(Area.where(parent_code: cookies[:city_code]).map{|area| [area.name, area.code]}), id: "area_district"%>
 			<%else%>
-				<%= select_tag :district_code, {}, id: "area_district", style: "display: none"%>
+				<%= f.select :district_code, {}, id: "area_district", style: "display: none"%>
 			<%end%>
     </div>
     <div class="input">
