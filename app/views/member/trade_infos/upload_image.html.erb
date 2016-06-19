@@ -58,7 +58,7 @@ body{background: white;}
   <%= form_tag upload_image_save_member_trade_infos_path, id: "form", :multipart=>true do%>
   <a href="javascript:;" class="a-upload " id="skin">
     <span class="iconfont">&#xe615;</span>
-    <input type="file" name="file" id="file">
+    <input type="file" name="file" id="file" accept="image/*">
   </a>
   <%end%>
 </div>

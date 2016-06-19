@@ -5,10 +5,13 @@ class Member::TradeInfosController < Member::BaseController
   end
   
   def new_category
+    current_user
     
   end
   
   def new
+    current_user
+    
     @trade_info = TradeInfo.new
     @category = TradeInfoCategory.find(params[:c])
     @attrs = @category.try(:trade_info_category_attrs)
