@@ -84,7 +84,8 @@
 }
 .trade_info .new_category .menu_body a {
   display: inline-block;
-  margin-left: 1rem;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
   color: #999999;
 }
 .trade_info .new_category .right_arrow{float: right; color: #999999;}

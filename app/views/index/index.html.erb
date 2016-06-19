@@ -7,7 +7,9 @@
 		<%end%>
 	</ul>
 	<ul id="banner-dian" class="banner-dian pa" style="margin-left: -10px;">
-		<li class="current"></li>
+    <%Banner.order("position asc").each do |banner|%>
+  		<li class="current"></li>
+    <%end%>
 	</ul>
 </div>
 
