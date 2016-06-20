@@ -126,6 +126,7 @@ Rails.application.routes.draw do
       member do
         get :move_up
         get :move_down
+        get :set_state
       end
       
       resources :trade_info_images do

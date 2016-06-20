@@ -5,6 +5,6 @@ class IndexController < ApplicationController
     cookies[:city_name] = "长春市" if cookies[:city_code].blank?
     
     @trade_categories = TradeInfoCategory.roots.limit(8)
-    @recommend_infos = TradeInfo.where(recommend: true).order("position ASC").limit(5)
+    @recommend_infos = TradeInfo.where(state: :payment).where(recommend: true).order("position ASC").limit(5)
   end
 end

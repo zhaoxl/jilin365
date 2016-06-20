@@ -43,6 +43,7 @@
 .collect .index .list li .content .desc{padding-top: 0.4rem; padding-bottom: 0.4rem;}
 .collect .index .list li .content .attrs{display: block; float: left;}
 .collect .index .list li .btns{width: 100%; padding-top: 1rem; padding-bottom: 1rem; clear: both;}
+.collect .index .list li .btns .state{line-height: 1.7rem;}
 .collect .index .list li .btns .del{padding: 0.2rem; background: #fff5f4; border: solid 1px #f96751; color: #f96751; text-align: center; float: right; padding-left: 1rem; padding-right: 1rem;}
 
 .trade_info .form{padding: 1rem; background: white;}
@@ -79,6 +80,7 @@
 }
 .trade_info .new_category .menu_body {
 	padding: 1rem;
+	padding-top: 0rem;
 	display:none;
   background: #f8f8f8;
 }

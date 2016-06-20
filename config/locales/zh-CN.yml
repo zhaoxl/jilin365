@@ -12,3 +12,10 @@ zh-CN:
       card:
         category/0: 优惠券
         category/1: 打折卡
+      trade_info:
+        states:
+          cancel: 已作废
+          create: 待审核
+          payment: 正常
+          lock: 已锁定
+          expire: 已过期

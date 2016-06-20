@@ -1,12 +1,17 @@
 <div class="banner-box pr">
-	<ul class="banner-nr" id="banner-ul"><li data-location-href="/clpga/articles/6" class="a-href" style="width: 640px;"><img class="img-responsive" src="http://image.mastergolf.cn/assets/0bb1696d06680e6a9fc4df185b0c61f5.png"></li>
-		
+	<ul class="banner-nr" id="banner-ul">
+    <%@trade_info.trade_info_images.order("position asc").each do |banner|%>
+    <li data-location-href="#" class="a-href" style="width: 640px;">
+      <img class="img-responsive" src="<%= banner.image.url%>" alt="#">
+    </li>
+		<%end%>
 	</ul>
 	<ul id="banner-dian" class="banner-dian pa" style="margin-left: -10px;">
-		<li class="current"></li>
+		<%@trade_info.trade_info_images.order("position asc").each_with_index do |banner, index|%>
+		<li class="<%= index == 0 ? "current" : ""%>"></li>
+		<%end%>
 	</ul>
 </div>
-
 
 <div class="trade_info_show">
   <div class="title">
@@ -107,7 +112,9 @@
 	</div>
 </div>
 
-<div class="blank05"></div>
-<div class="space1 pr"></div>
-<div class="blank1"></div>
-<div class="blank05"></div>
+<%= content_for :javascript do%>
+    <%= javascript_include_tag 'banner', 'data-turbolinks-track' => true %>
+		<script type="text/javascript">
+			$.fn.slideBox();
+		</script>
+<%end%>

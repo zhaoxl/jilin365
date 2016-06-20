@@ -12,3 +12,5 @@
 //
 //= require turbolinks
 //= require zeptoandtouch
+//= require fx
+//= require fx_methods

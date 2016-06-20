@@ -26,10 +26,6 @@
     </div>
     <%end%>
     <div class="input">
-      <span class="title">发布天数：</span>
-      <%= select_tag :day, options_for_select(30.times.map{|i| ["#{i+1}天（推广价格#{@category.price.to_f*(i+1)}元）", i+1]})%>
-    </div>
-    <div class="input">
       <span class="title">地区：</span>
       <%= f.select :city_code, options_for_select(Area.find(607).children.order("pinyin ASC").map{|area| [area.name, area.code]}, @trade_info.city_code||cookies[:city_code]), id: "area_city"%>
 			<%if @trade_info.city_code.present?%>

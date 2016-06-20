@@ -25,7 +25,7 @@ $("#firstpane p.menu_head").click(function()
 {
     $(this).find(".left_arrow").html("&#xe613;");
     $(this).find(".right_arrow").html("&#xe611;");
-    $(this).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
+    $(this).next("div.menu_body").show().siblings("div.menu_body").hide();
     $(this).siblings().find(".right_arrow").html("&#xe614;");
     $(this).siblings().find(".left_arrow").html("&#xe612;");
 });

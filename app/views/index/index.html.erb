@@ -55,7 +55,7 @@
 				<li class="clearfix">
 					<a href="<%= trade_info_path(info)%>">
             <div class="img">
-              <img src="<%= info.front_image.try(:image).try(:url)%>" />
+              <img src="<%= info.front_image.try(:url)%>" />
             </div>
   					<div class="content">
   						<p class="title"><%= truncate_u(info.title, 12, '')%></p>
