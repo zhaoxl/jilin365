@@ -24,10 +24,12 @@
         </div>
         <div class="search">
           <div class="box">
-            <input type="text" class="input" placeholder="请输入关键字" />
-            <span  class="btn iconfont font_white">
+            <%= form_tag trade_infos_path do%>
+            <input type="text" class="input" placeholder="请输入关键字" name="k" />
+            <span  class="btn iconfont font_white search_btn">
               &#xe603;
            	</span>
+						<%end%>
           </div>
         </div>
       </div>
@@ -112,7 +114,13 @@
 			_html += '<div class="prompt-box pf prompt" id="prompt-box">';
 			_html += '<p class="back-prompt-p"><%= flash[:notice]%></p>';
 			_html += '</div>';
-			$('body').append(_html)
+			$('body').append(_html);
+			
+			//搜索
+			$(".search_btn").click(function(){
+				if($(this).prev().val() != "")
+					$(this).parent().submit();
+			});
 			<%if session[:goto].present?%>
 			removePrompt('<%= session.delete(:goto)%>');
 			<%else%>
