@@ -84,6 +84,7 @@
 		<%end%>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= yield :javascript%>
     <%if flash[:notice].present?%>
 		<script type="text/javascript">
 			removePrompt = function(url,callback,delaytime) {

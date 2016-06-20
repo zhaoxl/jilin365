@@ -7,9 +7,9 @@
 		<%end%>
 	</ul>
 	<ul id="banner-dian" class="banner-dian pa" style="margin-left: -10px;">
-    <%Banner.order("position asc").each do |banner|%>
-  		<li class="current"></li>
-    <%end%>
+		<%Banner.order("position asc").each_with_index do |banner, index|%>
+		<li class="<%= index == 0 ? "current" : ""%>"></li>
+		<%end%>
 	</ul>
 </div>
 
@@ -146,3 +146,10 @@
 		</div>
 	</div>
 </div>
+
+<%= content_for :javascript do%>
+    <%= javascript_include_tag 'banner', 'data-turbolinks-track' => true %>
+		<script type="text/javascript">
+			$.fn.slideBox();
+		</script>
+<%end%>
