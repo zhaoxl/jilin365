@@ -8,7 +8,7 @@
 			</div>
 	    <div class="body clearfix">
 				<%@areas.each do |area|%>
-	      <a href="<%= trade_infos_path(rc: params[:rc], c: params[:c], a: area.code)%>" class="<%= area.code.to_i == params[:a].to_i ? "current" : ""%>"><%= area.name%></a>
+	      <a href="<%= trade_infos_path(rc: params[:rc], c: params[:c], a: area.code, k: params[:k])%>" class="<%= area.code.to_i == params[:a].to_i ? "current" : ""%>"><%= area.name%></a>
 				<%end%>
 	    </div>
 		</div>
@@ -29,7 +29,7 @@
 		</div>
     <div class="body">
 			<%@sub_categories.each do |category|%>
-      <a href="<%= trade_infos_path(rc: params[:rc], c: category.id, a: params[:a])%>" class="<%= category.id == params[:c].to_i ? "current" : ""%>"><%= category.name%></a>
+      <a href="<%= trade_infos_path(rc: params[:rc], c: category.id, a: params[:a], k: params[:k])%>" class="<%= category.id == params[:c].to_i ? "current" : ""%>"><%= category.name%></a>
 			<%end%>
     </div>
   </div>

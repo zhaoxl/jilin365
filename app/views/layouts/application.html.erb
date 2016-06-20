@@ -24,8 +24,8 @@
         </div>
         <div class="search">
           <div class="box">
-            <%= form_tag trade_infos_path do%>
-            <input type="text" class="input" placeholder="请输入关键字" name="k" />
+            <%= form_tag trade_infos_path, method: :get do%>
+            <input type="text" class="input" placeholder="请输入关键字" name="k" <%= params[:k].present? ? "value=#{params[:k]}" : ""%> />
             <span  class="btn iconfont font_white search_btn">
               &#xe603;
            	</span>
@@ -42,51 +42,28 @@
     <div class="blank05"></div>
     <div class="space1 pr"></div>
     <div class="blank1"></div>
+    <div class="blank1"></div>
+    <div class="blank1"></div>
+    <div class="blank1"></div>
     <div class="blank05"></div>
     
     <%unless @hide_footer%>
-    <div id="footer" class="wrap pr">
-      <table border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td>
-            <a href="/">
-              <span class="iconfont">&#xe609;</span>
-              首页
-            </a>
-          </td>
-          <td>
-						<a href="<%= new_category_member_trade_infos_path%>">
-	            <span class="iconfont">&#xe602;</span>
-	            发布
-						</a>
-          </td>
-          <td>
-            <div class="index_btn">
-              <a href="/" class="color-white">
-                <span class="iconfont">&#xe607;</span>
-                客服
-              </a>
-            </div>
-          </td>
-          <td>
-            <a href="<%= member_root_path%>">
-              <span class="iconfont">&#xe608;</span>
-              会员
-            </a>
-          </td>
-          <td>
-            <a href="/stores">
-              <span class="iconfont">&#xe606;</span>
-              找商家
-            </a>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <%= render partial: "/layouts/footer.html.erb"%>
 		<%end%>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= yield :javascript%>
+		
+		<script type="text/javascript">
+		$(function(){
+			//搜索
+			$(".search_btn").click(function(){
+				if($(this).prev().val() != "")
+					$(this).parent().submit();
+			});
+			
+		</script>
+		
     <%if flash[:notice].present?%>
 		<script type="text/javascript">
 			removePrompt = function(url,callback,delaytime) {
@@ -116,11 +93,6 @@
 			_html += '</div>';
 			$('body').append(_html);
 			
-			//搜索
-			$(".search_btn").click(function(){
-				if($(this).prev().val() != "")
-					$(this).parent().submit();
-			});
 			<%if session[:goto].present?%>
 			removePrompt('<%= session.delete(:goto)%>');
 			<%else%>

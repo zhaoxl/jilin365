@@ -40,6 +40,7 @@
 								<tr>
 									<th><label><input type="checkbox" />全选</label></th>
 									<th>分类</th>
+									<th>地区</th>
 									<th>供求信息名称</th>
 									<th>图片</th>
 									<th>状态</th>
@@ -63,6 +64,10 @@
 										</div>
 									</td>
 									<td><%= data.trade_info_category.try(:name)%></td>
+									<td>
+										<%= Area.where(code: data.city_code).first.try(:name)%>
+										<%= Area.where(code: data.district_code).first.try(:name)%>
+									</td>
 									<td><%= data.title%></td>
 									<td>
 										<%data.trade_info_images.each do |image|%>
