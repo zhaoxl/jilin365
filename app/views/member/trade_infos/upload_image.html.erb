@@ -47,7 +47,7 @@ body{background: white;}
     <%@images.each do |image|%>
     <li>
       <img src="<%= image.image.url%>" />
-      <%= link_to "删除", upload_image_destroy_member_trade_infos_path(image: image.id), method: :delete%>
+      <%= link_to "删除", upload_image_destroy_member_trade_infos_path(image: image.id), method: :delete, style: "font-size: 15px; display: block"%>
     </li>
     <%end%>
   </ul>
