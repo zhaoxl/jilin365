@@ -2,7 +2,7 @@
 	<ul class="banner-nr" id="banner-ul">
     <%@trade_info.trade_info_images.order("position asc").each do |banner|%>
     <li data-location-href="#" class="a-href" style="width: 640px;">
-      <img class="img-responsive" src="<%= banner.image.url%>" alt="#">
+      <img class="img-responsive" src="<%= banner.image.url%>" alt="#" onerror="this.src='/images/miss.jpg';">
     </li>
 		<%end%>
 	</ul>
@@ -94,7 +94,7 @@
 				<li class="clearfix">
 					<a href="<%= trade_info_path(info)%>">
   					<div class="img">
-  						<img src="<%= info.front_image.try(:url)%>" />
+  						<img src="<%= info.front_image.try(:url)%>" onerror="this.src='/images/miss.jpg';" />
   					</div>
   					<div class="content">
   						<p class="title"><%= truncate_u(info.title, 12, '')%></p>
