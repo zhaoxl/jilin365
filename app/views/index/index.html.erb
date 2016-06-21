@@ -2,7 +2,7 @@
 	<ul class="banner-nr" id="banner-ul">
     <%Banner.order("position asc").each do |banner|%>
     <li data-location-href="<%= banner.url%>" class="a-href" style="width: 640px;">
-      <img class="img-responsive" src="<%= banner.image.url%>" alt="<%= banner.description%>">
+      <img class="img-responsive" src="<%= banner.image.url%>" alt="<%= banner.description%>" onerror="this.src='/images/miss.jpg';">
     </li>
 		<%end%>
 	</ul>
@@ -18,7 +18,7 @@
     <%@trade_categories[0..3].each do |category|%>
     <li>
     	<a href="<%= trade_infos_path(rc: category.id)%>">
-				<img src="<%= category.logo.url%>" />
+				<img src="<%= category.logo.url%>" onerror="this.src='/images/miss.jpg';" />
 				<p class="color-gray"><%= category.name%></p>
 			</a>
     </li>
@@ -29,7 +29,7 @@
     <%@trade_categories[4..-1].each do |category|%>
     <li>
     	<a href="<%= trade_infos_path(rc: category.id)%>">
-				<img src="<%= category.logo.url%>" />
+				<img src="<%= category.logo.url%>" onerror="this.src='/images/miss.jpg';" />
 				<p class="color-gray"><%= category.name%></p>
 			</a>
     </li>
@@ -55,7 +55,7 @@
 				<li class="clearfix">
 					<a href="<%= trade_info_path(info)%>">
             <div class="img">
-              <img src="<%= info.front_image.try(:url)%>" />
+              <img src="<%= info.front_image.try(:url)%>" onerror="this.src='/images/miss.jpg';" />
             </div>
   					<div class="content">
   						<p class="title"><%= truncate_u(info.title, 12, '')%></p>
@@ -94,7 +94,7 @@
 				<li class="clearfix">
 					<a href="<%= card_path(card)%>">
             <div class="img_card">
-  						<img src="<%= card.logo.try(:url)%>" />
+  						<img src="<%= card.logo.try(:url)%>" onerror="this.src='/images/miss.jpg';" />
             </div>
   					<div class="content">
   						<p class="title"><%= card.name%></p>
@@ -131,7 +131,7 @@
 				<li class="clearfix">
 					<a href="<%= card_path(card)%>">
             <div class="img_card">
-  						<img src="<%= card.logo.try(:url)%>" />
+  						<img src="<%= card.logo.try(:url)%>" onerror="this.src='/images/miss.jpg';" />
             </div>
   					<div class="content">
   						<p class="title"><%= card.name%></p>

@@ -25,6 +25,7 @@ class TradeInfosController < AppBaseController
   
   def like
     TradeInfo.increment_counter(:like_count, params[:id])
+    flash[:notice] = "点赞成功！"
     redirect_to :back
   end
 end
