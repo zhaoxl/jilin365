@@ -1,14 +1,14 @@
-      <div class="input">
+    <div class="input">
       <span class="require">*</span><span class="title">信息标题：</span>
       <%= f.text_field :title, placeholder: "请输入信息标题", maxlength: "20"%>
     </div>
     <div class="input">
-      <span class="require">*</span><span class="title">描述：</span>
-      <%= f.text_field :desc, placeholder: "请输入描述", maxlength: "100"%>
+      <span class="require">*</span><span class="title">联系电话：</span>
+      <%= f.text_field :phone, placeholder: "请输入联系电话", maxlength: "15"%>
     </div>
     <div class="input">
-      <span class="require">*</span><span class="title">价格：</span>
-      <%= f.text_field :price, placeholder: "请输入出售价格", maxlength: "10"%>
+      <span class="require">*</span><span class="title">描述：</span>
+      <%= f.text_field :desc, placeholder: "请输入描述", maxlength: "100"%>
     </div>
     <%@attrs.each do |attr|%>
     <div class="input">
