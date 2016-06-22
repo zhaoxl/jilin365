@@ -27,13 +27,13 @@
     <%end%>
     <div class="input">
       <span class="title">地区：</span>
-      <%= f.select :city_code, options_for_select(Area.find(607).children.order("pinyin ASC").map{|area| [area.name, area.code]}, @trade_info.city_code||cookies[:city_code]), id: "area_city"%>
+      <%= f.select :city_code, options_for_select(Area.find(607).children.order("pinyin ASC").map{|area| [area.name, area.code]}, @trade_info.city_code||cookies[:city_code])%>
 			<%if @trade_info.city_code.present?%>
-      	<%= f.select :district_code, options_for_select(Area.where(parent_code: @trade_info.city_code).map{|area| [area.name, area.code]}, @trade_info.district_code), id: "area_district"%>
+      	<%= f.select :district_code, options_for_select(Area.where(parent_code: @trade_info.city_code).map{|area| [area.name, area.code]}, @trade_info.district_code)%>
 			<% elsif cookies[:city_code].present?%>
-				<%= f.select :district_code, options_for_select(Area.where(parent_code: cookies[:city_code]).map{|area| [area.name, area.code]}), id: "area_district"%>
+				<%= f.select :district_code, options_for_select(Area.where(parent_code: cookies[:city_code]).map{|area| [area.name, area.code]})%>
 			<%else%>
-				<%= f.select :district_code, {}, id: "area_district", style: "display: none"%>
+				<%= f.select :district_code, {}, style: "display: none"%>
 			<%end%>
     </div>
     <div class="input">
@@ -51,10 +51,10 @@
 <script>
 $(function(){
 	//get streets
-	$("#area_city").change(function(){
+	$("#trade_info_city_code").change(function(){
 		if($(this).val() == "")
 		{
-			$("#area_district").val("").hide();
+			$("#trade_info_district_code").val("").hide();
 			return false;
 		} 
 		
@@ -67,14 +67,14 @@ $(function(){
 			{
 				if(response.length == 0)
 				{
-					$("#area_district").html('<option value="" selected></option>').hide();
+					$("#trade_info_district_code").html('<option value="" selected></option>').hide();
 					return true;
 				}
 				var options = '';
 				$.each(response, function(index, city){
 					options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
 				});
-				$("#area_district").html(options).show();
+				$("#trade_info_district_code").html(options).show();
 			}
 		});
 	});
