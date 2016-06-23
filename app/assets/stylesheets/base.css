@@ -281,6 +281,7 @@ h1, h2, h3, h4, h5, h6 {
 .icon-shoucang:before { content: "\e604"; }
 .icon-zuobiao:before { content: "\e605"; }
 .icon-shouye:before { content: "\e609"; }
+.icon-dengdai:before { content: "\e616"; }
 .icon-iconsvgtixianjilu:before { content: "\e60b"; }
 .icon-jiantou-copy:before { content: "\e611"; }
 .icon-youhuiquan:before { content: "\e60c"; }
@@ -292,6 +293,7 @@ h1, h2, h3, h4, h5, h6 {
 .icon-icon-copy-copy:before { content: "\e612"; }
 .icon-icon-copy-copy1:before { content: "\e613"; }
 .icon-huiyuanshu:before { content: "\e608"; }
+.icon-jiantou:before { content: "\e617"; }
 .icon-shanghu:before { content: "\e60f"; }
 .icon-arrowRight-copy:before { content: "\e614"; }
 .icon-jiaoyijilu:before { content: "\e610"; }
@@ -344,4 +346,4 @@ h1, h2, h3, h4, h5, h6 {
 
 #prompt-bk{ position:fixed; width:100%; height:100%; top:0px;lef:0px;  background:#000; opacity:0.6; -webkit-opacity:0.6;}
 
-  
+.pullUpLabel{text-align: center; display: block;}

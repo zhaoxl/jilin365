@@ -40,7 +40,7 @@
 
 <div class="blank05"></div>
 
-<div class="info_list">
+<div id="info_list" class="info_list">
 	<div class="context">
 		<div class="header">
 			<div class="title">
@@ -49,40 +49,11 @@
 		</div>
 		<div class="body">
 			<ul class="info">
-				<% @trade_infos.each do |info|%>
-				<li class="clearfix">
-					<a href="<%= trade_info_path(info)%>" class="img">
-						<img src="<%= info.front_image.try(:url)%>" onerror="this.src='/images/miss.jpg';" />
-					</a>
-					<div class="content">
-						<p class="title">
-              <a href="<%= trade_info_path(info)%>">
-                <%= truncate_u(info.title, 12, '')%>
-              </a>
-              <span class="like">
-                <a href="<%= like_trade_info_path(id: info.id)%>" class="color-gray">
-                  <span class="iconfont color-red">
-                    &#xe600;
-                 	</span>
-                  <%= info.like_count.to_i%>
-                </a>
-              </span>
-            </p>
-            <a href="<%= trade_info_path(info)%>">
-  						<p class="desc color-gray"><%= info.desc%></p>
-            </a>
-						<div class="attrs">
-              <a href="<%= trade_info_path(info)%>" class=" color-red">
-                <%info.trade_info_attrs.where(list_display: true).each do |attr|%>
-  							<span><%= attr.value%></span>
-                <%end%>
-  							<span><%= info.phone%></span>
-              </a>
-						</div>
-					</div>
-				</li>
-				<%end%>
+				<%= render partial: "trade_infos/list.html.erb", locals: {datas: @trade_infos}%>
 			</ul>
+			<div id="pullUp">
+				<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+			</div>
 		</div>
 	</div>
 </div>
@@ -91,3 +62,12 @@
 <div class="space1 pr"></div>
 <div class="blank1"></div>
 <div class="blank05"></div>
+
+<%= content_for :javascript do%>
+<%= javascript_include_tag 'page', 'data-turbolinks-track' => true %>
+<script type="text/javascript">
+	var next_page_url = '<%= request.url%>';
+	var wrapper_id = 'info_list';
+	var list_content_path = '.info_list .body .info';
+</script>
+<%end%>

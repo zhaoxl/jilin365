@@ -10,7 +10,13 @@ class TradeInfosController < AppBaseController
     @trade_infos = @trade_infos.where(trade_info_category_id: params[:c]) if params[:c].present?
     @trade_infos = @trade_infos.where(district_code: params[:a]) if params[:a].present?
     @trade_infos = @trade_infos.where("title LIKE ?", "%#{params[:k]}%") if params[:k].present?
-    @trade_infos = @trade_infos.where(state: :payment)
+    @trade_infos = @trade_infos.where(state: :payment).page(params[:page]).per(5)
+    
+    if params[:page].to_i > 1
+      render "_list.html", layout: false
+    else
+      render "index"
+    end
   end
   
   def show
@@ -29,4 +35,5 @@ class TradeInfosController < AppBaseController
     flash[:notice] = "点赞成功！"
     redirect_to :back
   end
+  
 end

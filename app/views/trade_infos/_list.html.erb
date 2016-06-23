@@ -1,0 +1,33 @@
+<% (@trade_infos||datas).each do |info|%>
+<li class="clearfix">
+	<a href="<%= trade_info_path(info)%>" class="img">
+		<img src="<%= info.front_image.try(:url)%>" onerror="this.src='/images/miss.jpg';" />
+	</a>
+	<div class="content">
+		<p class="title">
+      <a href="<%= trade_info_path(info)%>">
+        <%= truncate_u(info.title, 12, '')%>
+      </a>
+      <span class="like">
+        <a href="<%= like_trade_info_path(id: info.id)%>" class="color-gray">
+          <span class="iconfont color-red">
+            &#xe600;
+         	</span>
+          <%= info.like_count.to_i%>
+        </a>
+      </span>
+    </p>
+    <a href="<%= trade_info_path(info)%>">
+			<p class="desc color-gray"><%= truncate_u(info.desc, 18, '...')%></p>
+    </a>
+		<div class="attrs">
+      <a href="<%= trade_info_path(info)%>" class=" color-red">
+        <%info.trade_info_attrs.where(list_display: true).each do |attr|%>
+				<span><%= attr.value%></span>
+        <%end%>
+				<span><%= info.phone%></span>
+      </a>
+		</div>
+	</div>
+</li>
+<%end%>

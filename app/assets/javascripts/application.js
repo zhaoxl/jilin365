@@ -14,3 +14,4 @@
 //= require zeptoandtouch
 //= require fx
 //= require fx_methods
+//= require iscroll
