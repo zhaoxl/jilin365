@@ -4,7 +4,8 @@ class TradeInfosController < AppBaseController
     @sub_categories = @root_category.children rescue []
     @areas = cookies[:city_code].present? ? Area.where(parent_code: cookies[:city_code]) : []
 
-    @trade_infos = TradeInfo.where(city_code: cookies[:city_code]) if cookies[:city_code].present?
+    @trade_infos = TradeInfo.order("like_count desc, created_at desc")
+    @trade_infos = @trade_infos.where(city_code: cookies[:city_code]) if cookies[:city_code].present?
     @trade_infos = @trade_infos.where(trade_info_category: @sub_categories) if params[:c].blank? && @sub_categories.present?
     @trade_infos = @trade_infos.where(trade_info_category_id: params[:c]) if params[:c].present?
     @trade_infos = @trade_infos.where(district_code: params[:a]) if params[:a].present?
