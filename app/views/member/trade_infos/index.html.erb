@@ -29,7 +29,7 @@
           <%= link_to "删除信息", delete_member_trade_info_path(info), class: "btn"%>
           <%= link_to "编辑信息", edit_member_trade_info_path(info), class: "btn"%>
 					<%if info.state == "pass"%>
-					<%= link_to "支付", new_member_payment_path(item_type: info.class.name, item_id: info.id), class: "btn"%>
+					<%= link_to "支付", member_payments_path(item_type: info.class.name, item_id: info.id, category: "wechat"), class: "btn"%>
 					<%end%>
         </div>
       </li>

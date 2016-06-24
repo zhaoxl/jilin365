@@ -57,7 +57,7 @@ class WechatController < AppBaseController
     if res.success?
       Rails.logger.debug("set prepay_id: #{res["prepay_id"]}")
       @pay_p = {
-        appId: Settings.wechat.appid,
+        appId: ENV["JILIN365_WECHAT_APP_ID"],
         timeStamp: Time.now.to_i.to_s,
         nonceStr: SecureRandom.hex,
         package: "prepay_id=#{res["prepay_id"]}",
