@@ -20,8 +20,12 @@ class TradeInfo < ActiveRecord::Base
       transitions :from => :create, :to => :cancel
     end
     
+    event :set_state_pass do
+      transitions :from => [:create], :to => :pass
+    end
+    
     event :set_state_payment do
-      transitions :from => [:create], :to => :payment
+      transitions :from => [:create, :pass], :to => :payment
     end
     
     event :set_state_lock do

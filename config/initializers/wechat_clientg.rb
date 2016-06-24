@@ -1,0 +1,1 @@
+$wechat_client ||= Wechat::ApiLoader.with({})

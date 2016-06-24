@@ -3,7 +3,7 @@ class Member::PaymentsController < Member::BaseController
     begin
       amount = 0
       category = params[:category]
-      payment = Payment.new(item_type: params[:item_type], item_id: params[:item_id])
+      payment = Payment.new(item_type: params[:item_type], item_id: params[:item_id], user_id: current_user.id)
       order = params[:item_type].constantize.find(payment.item_id)
       ActiveRecord::Base.transaction do
         case category

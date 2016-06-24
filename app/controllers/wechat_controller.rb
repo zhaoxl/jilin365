@@ -47,7 +47,7 @@ class WechatController < AppBaseController
       out_trade_no:     "%08d" % payment.id, # prepay order number
       total_fee:        (payment.amount.to_f*100).to_i,          # 注意：单位是分，不是元
       spbill_create_ip: '127.0.0.1',
-      notify_url:       'http://jt.fannybay.net/wechat/pay_notify',
+      notify_url:       "#{ENV["JILIN365_DOMAIN"]}/wechat/pay_notify",
       trade_type:       'JSAPI',
       nonce_str:        SecureRandom.uuid.tr('-', ''),
       openid:           current_user.open_id
@@ -88,7 +88,6 @@ class WechatController < AppBaseController
         )
         order.save
       end
-      #TODO:支付成功后，减库存
       Rails.logger.debug("支付成功")
       render xml: {
         return_code: "SUCCESS",

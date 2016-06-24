@@ -1,0 +1,21 @@
+default: &default
+  appid: ENV["JILIN365_WECHAT_APP_ID"]
+  secret: ENV["JILIN365_WECHAT_APP_SECRET"]
+  # agentid:  1
+# Or if using public account, only need above two line
+#  appid: "my_appid"
+#  secret: "my_secret"
+  token:    "wechat_token"
+  access_token: "tmp/wechat/access_token"
+  encrypt_mode: false # if true must fill encoding_aes_key
+  encoding_aes_key:  "my_encoding_aes_key"
+  jsapi_ticket: "tmp/wechat/[user_name]/jsapi_ticket"
+
+production:
+  <<: *default
+development:
+  <<: *default
+  trusted_domain_fullname: "http://your_dev.proxy.qqbrowser.cc"
+test:
+  <<: *default
+  

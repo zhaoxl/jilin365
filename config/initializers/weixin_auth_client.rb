@@ -1,0 +1,1 @@
+$weixin_auth_client ||= WeixinAuthorize::Client.new(ENV["JILIN365_WECHAT_APP_ID"], ENV["JILIN365_WECHAT_APP_SECRET"])
