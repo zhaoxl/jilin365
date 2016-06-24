@@ -18,7 +18,7 @@ function pullUpAction () {
 }
 
 //初始化绑定iScroll控件 
-document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 document.addEventListener('DOMContentLoaded', loaded, false);
 
 function loaded() {
