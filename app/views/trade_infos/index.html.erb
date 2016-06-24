@@ -40,7 +40,7 @@
 
 <div class="blank05"></div>
 
-<div id="info_list" class="info_list">
+<div class="info_list">
 	<div class="context">
 		<div class="header">
 			<div class="title">
@@ -64,10 +64,10 @@
 <div class="blank05"></div>
 
 <%= content_for :javascript do%>
-<%= javascript_include_tag 'page', 'data-turbolinks-track' => true %>
 <script type="text/javascript">
 	var next_page_url = '<%= request.url%>';
-	var wrapper_id = 'info_list';
+	var wrapper_id = 'wrap';
 	var list_content_path = '.info_list .body .info';
 </script>
+<%= javascript_include_tag 'page', 'data-turbolinks-track' => true %>
 <%end%>
