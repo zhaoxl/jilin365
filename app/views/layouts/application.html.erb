@@ -12,7 +12,7 @@
     <%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body id="body" style="position: absolute; left: 0; top: 0px; bottom: 0px; width: 100%; z-index: 10;">
     <div id="wrap" class="wrap">
       <%unless @hidden_search_bar%>
       <div id="header">

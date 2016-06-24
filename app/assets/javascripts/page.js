@@ -17,10 +17,6 @@ function pullUpAction () {
 	page += 1;
 }
 
-//初始化绑定iScroll控件 
-// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-document.addEventListener('DOMContentLoaded', loaded, false);
-
 function loaded() {
 	pullUpEl = document.getElementById('pullUp');	
 	pullUpOffset = pullUpEl.offsetHeight;
@@ -51,3 +47,8 @@ function loaded() {
 		}
 	});
 }
+
+
+//初始化绑定iScroll控件 
+// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+// document.addEventListener('DOMContentLoaded', loaded, false);

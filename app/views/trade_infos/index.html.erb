@@ -40,23 +40,27 @@
 
 <div class="blank05"></div>
 
-<div id="info_list" class="info_list">
-	<div class="context">
-		<div class="header">
-			<div class="title">
-				<%= @root_category.try(:name) || "信息列表"%>
+	<div class="info_list">
+		<div class="context">
+			<div class="header">
+				<div class="title">
+					<%= @root_category.try(:name) || "信息列表"%>
+				</div>
 			</div>
-		</div>
-		<div class="body">
-			<ul class="info">
-				<%= render partial: "trade_infos/list.html.erb", locals: {datas: @trade_infos}%>
-			</ul>
-			<div id="pullUp">
-				<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+			<div style="position: relative;">
+				<div class="body">
+					<div>
+						<ul class="info clearfix">
+							<%= render partial: "trade_infos/list.html.erb", locals: {datas: @trade_infos}%>
+						</ul>
+						<div id="pullUp">
+							<span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 <div class="blank05"></div>
 <div class="space1 pr"></div>
@@ -64,10 +68,18 @@
 <div class="blank05"></div>
 
 <%= content_for :javascript do%>
+<%= javascript_include_tag 'page', 'data-turbolinks-track' => true %>
 <script type="text/javascript">
 	var next_page_url = '<%= request.url%>';
-	var wrapper_id = 'info_list';
+	var wrapper_id = 'body';
 	var list_content_path = '.info_list .body .info';
+
+	//初始化绑定iScroll控件 
+	// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	$(function(){
+		loaded();
+	});
+			
+	
 </script>
-<%= javascript_include_tag 'page', 'data-turbolinks-track' => true %>
 <%end%>
