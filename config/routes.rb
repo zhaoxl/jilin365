@@ -253,10 +253,16 @@ Rails.application.routes.draw do
     root 'index#index'
     resources :account_books
     resources :index
-    resources :collects
+    resources :collects do 
+      member do
+        get :delete
+      end
+    end
+    
     resources :trade_infos do 
       member do
         get :delete
+        get :pay
       end
       collection do 
         get :upload_image

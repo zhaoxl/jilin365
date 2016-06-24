@@ -15,7 +15,6 @@ class Admin::TradeInfoCategoriesController < Admin::BaseController
   
   def create
     data = TradeInfoCategory.new(post_params)
-    data.show_price = params[:show_price] == "true"
     data.save
     flash[:success] = "添加成功"
     
@@ -30,7 +29,6 @@ class Admin::TradeInfoCategoriesController < Admin::BaseController
       when "reject" then
         @data.set_state_reject!
       end
-      @data.show_price = params[:show_price] == "true"
       @data.assign_attributes(post_params)
       @data.save
       flash[:success] = "编辑成功"

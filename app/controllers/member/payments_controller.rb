@@ -20,10 +20,10 @@ class Member::PaymentsController < Member::BaseController
           order.set_state_payment!
           redirect_to payment.goto and return if payment.goto.present?
         when "wechat" then
-          if payment.item_type == "Order"
+          if payment.item_type == "TradeInfo"
             payment.amount = order.total_fee
-            payment.desc = order.order_products.map{|op| "#{op.name}x#{op.total}"}*"、"
-            payment.goto = "/member/orders/#{order.id}"
+            payment.desc = order.title
+            payment.goto = "/member/trade_infos/#{order.id}"
             payment.save
           elsif payment.item_type == "Recharge"
             payment.amount = order.amount

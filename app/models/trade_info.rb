@@ -11,6 +11,7 @@ class TradeInfo < ActiveRecord::Base
   aasm column: :state do
     state :cancel
     state :create, :initial => true
+    state :pass
     state :payment
     state :lock
     state :expire

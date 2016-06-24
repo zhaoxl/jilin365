@@ -13,10 +13,18 @@
 			<%= f.text_field :price_unit, class: 'form-control' %>
 		</div>
 		<div class="form-group">
+			<label for="exampleInputPassword1">列表隐藏手机号</label>
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :list_hide_phone%>
+        </label>
+      </div>
+		</div>
+		<div class="form-group">
 			<label for="exampleInputPassword1">显示价格</label>
       <div class="checkbox">
         <label>
-          <input type="checkbox" name="show_price" value="true" "<%= @data.show_price? ? "checked" : ""%> />
+          <%= f.check_box :show_price%>
         </label>
       </div>
 		</div>

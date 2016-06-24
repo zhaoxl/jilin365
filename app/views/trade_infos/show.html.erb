@@ -103,6 +103,7 @@
                 <%info.trade_info_attrs.where(list_display: true).each do |attr|%>
   							<span><%= attr.value%></span>
                 <%end%>
+								<%unless info.trade_info_category.list_hide_phone%><span><%= info.phone%></span><%end%>
   						</div>
   					</div>
           </a>

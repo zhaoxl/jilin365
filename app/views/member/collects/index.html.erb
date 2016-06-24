@@ -24,7 +24,7 @@
 					</div>
 				</div>
         <div class="btns">
-          <a href="#" class="del">删除信息</a>
+          <%= link_to "删除信息", delete_member_collect_path(collect), class: "del"%>
         </div>
       </li>
       <%end%>

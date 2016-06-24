@@ -16,6 +16,7 @@ zh-CN:
         states:
           cancel: 已作废
           create: 待审核
-          payment: 正常
+          pass: 未付款
+          payment: 已付款
           lock: 已锁定
           expire: 已过期

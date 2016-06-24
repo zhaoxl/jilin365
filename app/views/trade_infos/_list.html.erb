@@ -25,7 +25,7 @@
         <%info.trade_info_attrs.where(list_display: true).each do |attr|%>
 				<span><%= attr.value%></span>
         <%end%>
-				<span><%= info.phone%></span>
+				<%unless info.trade_info_category.list_hide_phone%><span><%= info.phone%></span><%end%>
       </a>
 		</div>
 	</div>

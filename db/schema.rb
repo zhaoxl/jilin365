@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621025332) do
+ActiveRecord::Schema.define(version: 20160624122907) do
 
   create_table "account_books", force: true do |t|
     t.integer  "user_id"
@@ -98,6 +98,19 @@ ActiveRecord::Schema.define(version: 20160621025332) do
     t.datetime "updated_at"
   end
 
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.string   "desc",       limit: 500
+    t.string   "scode"
+    t.decimal  "amount",                 precision: 10, scale: 2, default: 0.0
+    t.string   "state"
+    t.string   "goto",       limit: 500
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "recharges", force: true do |t|
     t.integer  "user_id"
     t.string   "scode"
@@ -172,13 +185,15 @@ ActiveRecord::Schema.define(version: 20160621025332) do
     t.string  "logo"
     t.integer "position"
     t.integer "parent_id"
-    t.integer "lft",                                                    null: false
-    t.integer "rgt",                                                    null: false
-    t.integer "depth",                                   default: 0,    null: false
-    t.integer "children_count",                          default: 0,    null: false
-    t.boolean "show_price",                              default: true
+    t.integer "lft",                                                     null: false
+    t.integer "rgt",                                                     null: false
+    t.integer "depth",                                    default: 0,    null: false
+    t.integer "children_count",                           default: 0,    null: false
+    t.boolean "show_price",                               default: true
     t.string  "price_unit"
-    t.decimal "price",          precision: 10, scale: 2
+    t.decimal "price",           precision: 10, scale: 2
+    t.boolean "hide_phone"
+    t.boolean "list_hide_phone"
   end
 
   create_table "trade_info_category_attrs", force: true do |t|

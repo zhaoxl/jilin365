@@ -70,14 +70,14 @@ class Member::TradeInfosController < Member::BaseController
     #所有暂存图片转入本条消息
     TradeInfoImage.where(user: current_user).where(trade_info_id: nil).update_all({trade_info_id: info.id})
     
-    flash[:notice] = "修改成功"
+    flash[:notice] = "修改成功！"
     redirect_to member_trade_infos_path
   end
   
   def delete
     @trade_info = current_user.trade_infos.find(params[:id])
     @trade_info.destroy!
-    flash[:notice] = "删除成功"
+    flash[:notice] = "删除成功！"
     redirect_to :back
   end
   
@@ -101,11 +101,12 @@ class Member::TradeInfosController < Member::BaseController
   end
   
   def upload_image_destroy
-    
-      TradeInfoImage.where(user: current_user).find(params[:image]).destroy!
-
-    
+    TradeInfoImage.where(user: current_user).find(params[:image]).destroy!
     redirect_to :back
+  end
+  
+  def pay
+    
   end
   
   
