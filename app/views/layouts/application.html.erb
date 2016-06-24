@@ -12,7 +12,7 @@
     <%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-  <body id="body" style="position: absolute; left: 0; top: 0px; bottom: 0px; width: 100%; z-index: 10;">
+  <body id="body" style="position: absolute; left: 0; top: 0px; bottom: 5rem; width: 100%; z-index: 10;">
     <div id="wrap" class="wrap">
       <%unless @hidden_search_bar%>
       <div id="header">
@@ -37,15 +37,6 @@
       
       <%= yield %>
     </div>
-
-
-    <div class="blank05"></div>
-    <div class="space1 pr"></div>
-    <div class="blank1"></div>
-    <div class="blank1"></div>
-    <div class="blank1"></div>
-    <div class="blank1"></div>
-    <div class="blank05"></div>
     
     <%unless @hide_footer%>
     <%= render partial: "/layouts/footer.html.erb"%>
