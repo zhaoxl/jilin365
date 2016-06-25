@@ -23,7 +23,7 @@ class Member::PaymentsController < Member::BaseController
           if payment.item_type == "TradeInfo"
             payment.amount = order.total_fee
             payment.desc = order.title
-            payment.goto = "/member/trade_infos/#{order.id}"
+            payment.goto = "/member/trade_infos"
             payment.save
           elsif payment.item_type == "Recharge"
             payment.amount = order.amount
