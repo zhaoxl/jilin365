@@ -26,6 +26,9 @@
 				</a>
         <div class="btns clearfix">
 					<span class="state color-gray"><%= t "activerecord.attributes.trade_info.states.#{info.state}"%></span>
+					<%if info.state == "pass"%>
+          <span class="total_fee color-red">￥<%= info.total_fee%></span>
+          <%end%>
           <%= link_to "删除信息", delete_member_trade_info_path(info), class: "btn"%>
           <%= link_to "编辑信息", edit_member_trade_info_path(info), class: "btn"%>
 					<%if info.state == "pass"%>

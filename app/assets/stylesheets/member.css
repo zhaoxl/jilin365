@@ -46,6 +46,7 @@ body{background: white;}
 .collect .index .list li .content .attrs{display: block; float: left;}
 .collect .index .list li .btns{width: 100%; padding-top: 1rem; padding-bottom: 1rem; clear: both;}
 .collect .index .list li .btns .state{line-height: 1.7rem;}
+.collect .index .list li .btns .total_fee{line-height: 1.7rem;}
 .collect .index .list li .btns .del{padding: 0.2rem; background: #fff5f4; border: solid 1px #f96751; color: #f96751; text-align: center; float: right; padding-left: 1rem; padding-right: 1rem;}
 
 .trade_info .form{padding: 1rem; background: white;}
