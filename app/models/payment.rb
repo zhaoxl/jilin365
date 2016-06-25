@@ -29,7 +29,7 @@ class Payment < ActiveRecord::Base
           user: self.user,
           item: self.item,
           amount: self.amount,
-          title: "供求信息"
+          title: "供求信息",
           description: self.item.try(:title)
         )
       end
