@@ -20,3 +20,8 @@ zh-CN:
           payment: 已付款
           lock: 已锁定
           expire: 已过期
+      withdraw:
+        states:
+          create: 待处理
+          finish: 已处理
+          invalid: 已拒绝

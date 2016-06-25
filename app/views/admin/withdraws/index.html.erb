@@ -14,9 +14,9 @@
 							<tr>
 								<th><label><input type="checkbox" />全选</label></th>
 								<th>用户</th>
-								<th>收益余额</th>
+								<th>余额</th>
 								<th>提现金额</th>
-								<th>已锁定收益余额</th>
+								<th>已锁定余额</th>
 								<th>状态</th>
 								<th>操作</th>
 							</tr>
@@ -33,10 +33,10 @@
 									</div>
 								</td>
 								<td><%= withdraw.user.try(:name)%></td>
-								<td><%= withdraw.user.wallet.try(:income_balance)%></td>
-								<td><%= withdraw.user.wallet.try(:income_lock)%></td>
+								<td><%= withdraw.user.wallet.try(:balance)%></td>
+								<td><%= withdraw.user.wallet.try(:lock)%></td>
 								<td><%= withdraw.amount%></td>
-								<td class="state_<%= withdraw.state%>"><%= t "activerecord.withdraw.states.#{withdraw.state}"%></td>
+								<td class="state_<%= withdraw.state%>"><%= t "activerecord.attributes.withdraw.states.#{withdraw.state}"%></td>
 								<td>
 									<a href="<%= edit_admin_withdraw_path(withdraw)%>">处理</a>
 								</td>

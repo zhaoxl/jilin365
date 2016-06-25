@@ -29,7 +29,7 @@
         </a>
       </li>
       <li>
-        <a href="<%= withdraw_member_wallets_path%>">
+        <a href="<%= new_member_withdraw_path%>">
           <img src="/images/member_index_nav_3.jpg" />
           <p>提现</p>
         </a>
@@ -49,10 +49,10 @@
   <div class="list_nav">
     <ul class="clearfix">
       <li>
-        <a href="<%= member_account_books_path%>"><span class="iconfont" style="color: #ee7b44">&#xe610;</span>消费记录</a>
+        <a href="<%= member_account_books_path(c: "TRADE_INFO_PAYMENT")%>"><span class="iconfont" style="color: #ee7b44">&#xe610;</span>消费记录</a>
       </li>
       <li>
-        <a href="#"><span class="iconfont" style="color: #5ec85a">&#xe60b;</span>提现记录</a>
+        <a href="<%= member_withdraws_path%>"><span class="iconfont" style="color: #5ec85a">&#xe60b;</span>提现记录</a>
       </li>
     </ul>
     <div class="space1 pr"></div>

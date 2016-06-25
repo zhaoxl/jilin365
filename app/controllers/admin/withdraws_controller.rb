@@ -13,7 +13,7 @@ class Admin::WithdrawsController < Admin::BaseController
   
   def update
     begin
-      @data.set_state_finish!
+      @data.send("set_state_#{params[:state]}!")
       flash[:notice] = '操作成功'
     rescue Wallet::InsufficientBalanceException => ex
       flash[:notice] = '操作失败，用户余额不足'

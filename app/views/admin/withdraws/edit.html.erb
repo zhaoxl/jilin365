@@ -10,12 +10,12 @@
 						<p class="form-control"><%= @data.user.try(:name)%></p>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">收益余额</label>
-						<p class="form-control"><%= @data.user.wallet.try(:income_balance)%></p>
+						<label for="exampleInputEmail1">余额</label>
+						<p class="form-control"><%= @data.user.wallet.try(:balance)%></p>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">已锁定收益余额</label>
-						<p class="form-control"><%= @data.user.wallet.try(:income_lock)%></p>
+						<label for="exampleInputEmail1">已锁定余额</label>
+						<p class="form-control"><%= @data.user.wallet.try(:lock)%></p>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">提现金额</label>
@@ -23,7 +23,8 @@
 					</div>
 				</div>
 				<div class="box-footer">
-					<button class="btn btn-primary" type="submit" onclick="return confirm('确认处理吗？操作不可逆！');">处理</button>
+					<button class="btn btn-primary" type="submit" onclick="return confirm('确认处理吗？操作不可逆！');" name="state" value="finish">提现成功</button>
+					<button class="btn btn-primary" type="submit" onclick="return confirm('确认处理吗？操作不可逆！');" name="state" value="invalid">拒绝</button>
 				</div>
 			<% end %>
 		</div>

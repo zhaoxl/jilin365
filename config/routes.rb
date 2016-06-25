@@ -286,12 +286,8 @@ Rails.application.routes.draw do
         get :qrcode
       end
     end
-    resources :wallets do
-      collection do
-        get :withdraw
-        post :withdraw_save
-      end
-    end
+    resources :wallets
+    resources :withdraws
     resources :recharges
     resources :payments do
       collection do
