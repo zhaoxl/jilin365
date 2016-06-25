@@ -5,6 +5,7 @@ class TradeInfo < ActiveRecord::Base
   belongs_to  :trade_info_category
   has_many    :trade_info_images, -> { order('position ASC') }, :dependent => :destroy
   has_many    :trade_info_attrs, :dependent => :destroy
+  has_many    :pay_logs, :as => :item
   
   include AASM
 
