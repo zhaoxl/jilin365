@@ -1,6 +1,7 @@
 class CardsController < AppBaseController
   def index
-    @cards = Card.all
+    @cards = Card.order("id DESC")
+    @cards = @cards.where(store_id: params[:s]) if params[:s].present?
   end
   
   def show
