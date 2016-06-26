@@ -1,15 +1,17 @@
 <div class="account_book">
   <%@logs.each do |log|%>
   <ul class="list">
-    <li class="color-gray clearfix">
-      <%= log.title%>：<span class="color-red">￥<%= log.amount%></span>
-      <span class="date color-white_gray"><%= log.created_at.strftime("%Y-%m-%d %H:%M:%S")%></span>
-    </li>
-    <div class="line1"></div>
-    <li class="color-black_gray">
-      <%= log.description%>
-    </li>
-    <div class="space1"></div>
+    <a href="<%= trade_info_path(log.item_id)%>">
+      <li class="color-gray clearfix">
+        <%= log.title%>：<span class="color-red">￥<%= log.amount%></span>
+        <span class="date color-white_gray"><%= log.created_at.strftime("%Y-%m-%d %H:%M:%S")%></span>
+      </li>
+      <div class="line1"></div>
+      <li class="color-black_gray">
+        <%= log.description%>
+      </li>
+      <div class="space1"></div>
+    </a>
   </ul>
   <%end%>
 </div>

@@ -1,8 +1,8 @@
 <div class="banner-box pr">
 	<ul class="banner-nr" id="banner-ul">
-    <%@trade_info.trade_info_images.order("position asc").each do |banner|%>
-    <li data-location-href="#" class="a-href" style="width: 640px;">
-      <img class="img-responsive" src="<%= banner.image.url%>" alt="#" onerror="this.src='/images/miss.jpg';">
+    <%@trade_info.trade_info_images.order("position asc").each_with_index do |banner, index|%>
+    <li data-img-index="<%= index%>" class="waterone" style="width: 100%;">
+      <img class="show_img img-responsive" src="<%= banner.image.url%>" alt="#" onerror="this.src='/images/miss.jpg';">
     </li>
 		<%end%>
 	</ul>
@@ -116,7 +116,12 @@
 
 <%= content_for :javascript do%>
     <%= javascript_include_tag 'banner', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'show_img', 'data-turbolinks-track' => true %>
 		<script type="text/javascript">
+      //banner
 			$.fn.slideBox();
+      //查看大图
+      var arrimg = $(".img-responsive");
+			$.fn.showPlayerBigImg(arrimg);
 		</script>
 <%end%>
