@@ -1,0 +1,13 @@
+<%@title = params[:title]||"编辑#{t("activerecord.attributes.card.category/#{params[:category]}")}"%>
+
+<div class="card">
+  <%= form_for @card, url: member_card_path(@card) do |f|%>
+    <div class="form">
+  		<%= render :partial => 'form', :locals => {f: f, card: @card }  %>
+      <div class="btn">
+        <input type="submit" value="提交" />
+      </div>
+    </div>
+  <%end%>
+</div>
+

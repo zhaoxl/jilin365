@@ -1,0 +1,27 @@
+<%@title = params[:title]||"我的#{t("activerecord.attributes.card.category/#{params[:category]}")}"%>
+
+<div class="card">
+  <div class="index">
+    <%if @cards.present?%>
+    <ul class="list">
+      <%@cards.each do |card|%>
+    	<li class="clearfix">
+    		<a href="<%= card_path(card)%>" class="img">
+    			<img src="<%= card.logo.try(:url)%>" />
+    		</a>
+    		<div class="content">
+    			<p class="title"><%= card.name%></p>
+    			<p class="desc color-gray"><%= card.desc%></p>
+    			<p class="phone color-red">电话：<%= card.phone%></p>
+    		</div>
+    	</li>
+      <%end%>
+    </ul>
+    <%else%>
+    <div class="list_empty">
+      这里什么都没有~~<<%= link_to "返回", :back%>>
+    </div>
+    <%end%>
+  </div>
+</div>
+

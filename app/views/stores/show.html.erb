@@ -1,9 +1,15 @@
 <div class="banner-box pr">
-	<ul class="banner-nr" id="banner-ul"><li data-location-href="/clpga/articles/6" class="a-href" style="width: 640px;"><img class="img-responsive" src="http://image.mastergolf.cn/assets/0bb1696d06680e6a9fc4df185b0c61f5.png"></li>
-		
+	<ul class="banner-nr" id="banner-ul">
+    <%@store.store_images.order("position asc").each_with_index do |banner, index|%>
+    <li data-img-index="<%= index%>" class="waterone" style="width: 100%;">
+      <img class="show_img img-responsive" src="<%= banner.image.url%>" alt="#" onerror="this.src='/images/miss.jpg';">
+    </li>
+		<%end%>
 	</ul>
 	<ul id="banner-dian" class="banner-dian pa" style="margin-left: -10px;">
-		<li class="current"></li>
+		<%@store.store_images.order("position asc").each_with_index do |banner, index|%>
+		<li class="<%= index == 0 ? "current" : ""%>"></li>
+		<%end%>
 	</ul>
 </div>
 
@@ -50,14 +56,14 @@
 <div class="store_show_block attrs">
   <ul>
     <li>
-<a href="<%= cards_path(c: 1, s: @store.id)%>">
+<a href="<%= cards_path(c: 0, s: @store.id)%>">
       <span class="icon">劵</span>
       本店优惠券
       <span class="iconfont more">&#xe60a;</span>
 </a>
     </li>
     <li>
-<a href="<%= cards_path(c: 2, s: @store.id)%>">
+<a href="<%= cards_path(c: 1, s: @store.id)%>">
       <span class="icon">卡</span>
       本店会员卡
       <span class="iconfont more">&#xe60a;</span>
@@ -83,7 +89,14 @@
 	</div>
 </div>
 
-<div class="blank05"></div>
-<div class="space1 pr"></div>
-<div class="blank1"></div>
-<div class="blank05"></div>
+<%= content_for :javascript do%>
+    <%= javascript_include_tag 'banner', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'show_img', 'data-turbolinks-track' => true %>
+		<script type="text/javascript">
+      //banner
+			$.fn.slideBox();
+      //查看大图
+      var arrimg = $(".img-responsive");
+			$.fn.showPlayerBigImg(arrimg);
+		</script>
+<%end%>

@@ -1,0 +1,50 @@
+<%= f.hidden_field :category%>
+<div class="input">
+  <span class="require">*</span><span class="title">名称：</span>
+  <%= f.text_field :name%>
+</div>
+<div class="input">
+  <span class="require">*</span><span class="title">描述：</span>
+  <%= f.text_field :desc%>
+</div>
+<div class="input">
+  <span class="require">*</span><span class="title">联系电话：</span>
+  <%= f.text_field :phone%>
+</div>
+<div class="input">
+  <span class="require">*</span><span class="title">剩余数量：</span>
+  <%= f.text_field :count%>
+</div>
+<div class="input">
+  <span class="require">*</span><span class="title">截止日期：</span>
+  <%= f.text_field :end_at%>
+</div>
+<div class="input">
+  <span class="require">*</span><span class="title">图片：</span>
+  <%= f.file_field :logo%>
+</div>
+<div class="input">
+  <span class="require">*</span><span class="title">使用规则：</span>
+  <%= f.text_area :content%>
+</div>
+
+<%= content_for :javascript do%>
+<%= stylesheet_link_tag 'datepicker', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'datepicker', 'data-turbolinks-track' => true %>
+
+<script>
+$(function(){
+  var _date = document.getElementById('card_end_at');
+  _date.onfocus = function(e) {
+    _date.blur();
+    var datePicker = new DatePicker({
+      confirmCbk: function(data) {
+        _date.value = data.year + '-' + data.month + '-' + data.day;
+      }
+    });
+    datePicker.open();
+  };
+
+});
+</script>
+<%end%>

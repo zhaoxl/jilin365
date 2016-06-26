@@ -272,7 +272,12 @@ Rails.application.routes.draw do
       end
     end
     resources :stores
-    resources :cards
+    resources :cards do
+      member do
+        get :delete
+      end
+    end
+    resources :user_cards
     resources :orders do
       member do
         get :set_state

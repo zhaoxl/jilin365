@@ -1,4 +1,4 @@
-<%@title = params[:title]||"我的#{t("activerecord.attributes.card.category/#{params[:category]}")}"%>
+<%@title = params[:title]||"#{t("activerecord.attributes.card.category/#{params[:category]}")}管理"%>
 
 <div class="card">
   <div class="index">
@@ -6,14 +6,22 @@
     <ul class="list">
       <%@cards.each do |card|%>
     	<li class="clearfix">
-    		<a href="<%= card_path(card)%>" class="img">
-    			<img src="<%= card.logo.try(:url)%>" />
+    		<a href="<%= card_path(card)%>">
+          <div class="img">
+            <img src="<%= card.logo.try(:url)%>" />
+          </div>
+          <div class="content">
+      			<p class="title"><%= card.name%></p>
+      			<p class="desc color-gray"><%= card.desc%></p>
+      			<p class="phone color-red">电话：<%= card.phone%></p>
+          </div>
     		</a>
-    		<div class="content">
-    			<p class="title"><%= card.name%></p>
-    			<p class="desc color-gray"><%= card.desc%></p>
-    			<p class="phone color-red">电话：<%= card.phone%></p>
-    		</div>
+        <div class="btns">
+					<span class="state color-gray">已领：<%= card.user_cards.count.to_i%>张</span>
+					<span class="state color-gray">剩余：<%= card.count.to_i%>张</span>
+          <%= link_to "删除", delete_member_card_path(card), class: "btn"%>
+          <%= link_to "编辑", edit_member_card_path(card), class: "btn"%>
+        </div>
     	</li>
       <%end%>
     </ul>
@@ -22,6 +30,7 @@
       这里什么都没有~~<<%= link_to "返回", :back%>>
     </div>
     <%end%>
+    <a href="<%= new_member_card_path(category: params[:category])%>" class="link_btn">添加<%= t("activerecord.attributes.card.category/#{params[:category]}")%></a>
   </div>
 </div>
 

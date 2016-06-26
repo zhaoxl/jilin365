@@ -103,15 +103,34 @@ body{background: white;}
 .store .form input{color: #dddddd; line-height: 2rem; border: none;}
 .store .form textarea{color: #dddddd; line-height: 2rem; border: none; width: 77%;}
 .store .form .btn input[type=submit]{width: 100%; margin: 0.5rem auto 0.5rem auto; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none;}
+.store .form .link_btn{width: 49%; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none; float: left;}
+.store .form .link_btn:last-child{float: right;}
 
 .card .index .list{width: 100%; background: white;}
-.card .index .list li{width: 100%; margin-left: 0.5rem; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: solid 1px #dddddd; }
+.card .index .list li{padding: 1rem;; border-bottom: solid 1px #dddddd; }
 .card .index .list li .img{float: left; width: 35%; height: 5rem; display: block;}
 .card .index .list li .img img{width: 100%; height: 100%;}
 .card .index .list li .content{float: left; height: 5rem; padding-left: 0.5rem;}
-.card .index .list li .content .title{font-weight: bold; font-size: 1.5rem;}
+.card .index .list li .content .title{font-weight: bold; font-size: 1.5rem; color: black;}
 .card .index .list li .content .desc{padding-top: 0.4rem; padding-bottom: 0.4rem;}
 .card .index .list li .content .phone{}
+.card .index .list li .btns .state{line-height: 1.7rem;}
+.card .index .list li .btns{width: 100%; padding-top: 1rem; padding-bottom: 1rem; clear: both;}
+.card .index .list li .btns .btn{padding: 0.2rem; background: #fff5f4; border: solid 1px #f96751; color: #f96751; text-align: center; float: right; padding-left: 1rem; padding-right: 1rem; margin-left: 0.5rem;}
+.card .index .link_btn{display: block; margin: 1rem; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none;}
   
+.card .form{}
+.card .form{padding: 1rem; background: white;}
+.card .form .input{border-bottom: solid 1px #dddddd; padding: 0.3rem;}
+.card .form .require{color: red;}
+.card .form .title{color: #999999; line-height: 2rem; padding-left: 0.2rem; padding-right: 0.5rem;}
+.card .form input{color: #dddddd; line-height: 2rem; border: none;}
+.card .form textarea{color: #dddddd; line-height: 2rem; border: none; width: 77%;}
+.card .form .btn input[type=submit]{width: 100%; margin: 0.5rem auto 0.5rem auto; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none;}
+.card .form .link_btn{width: 49%; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none; float: left;}
+.card .form .link_btn:last-child{float: right;}
+
+
+
 .list_empty{padding-top: 5rem; padding-bottom: 5rem; background: white; text-align: center;}
 .list_empty a{color: red;}

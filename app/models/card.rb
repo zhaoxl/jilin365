@@ -1,4 +1,5 @@
 class Card < ActiveRecord::Base
+  acts_as_paranoid
   enum category: [:coupon_card, :discount_card]
   
   belongs_to  :store

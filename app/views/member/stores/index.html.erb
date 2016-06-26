@@ -21,8 +21,10 @@
       <span class="require">*</span><span class="title">上传照片：</span>
     </div>
     <div class="btn">
-      <input type="submit" value="提交" />
+      <input type="submit" value="保存" />
     </div>
+    <a href="<%= !current_user.store.new_record? ? member_cards_path(category: 0) : "#"%>" class="link_btn">优惠券管理</a>
+    <a href="<%= !current_user.store.new_record? ? member_cards_path(category: 1) : "#"%>" class="link_btn">打折卡管理</a>
     <%end%>
   </div>
 </div>
