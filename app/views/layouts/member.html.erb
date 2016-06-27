@@ -24,13 +24,17 @@
 		
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= yield :javascript%>
-    <%if flash[:notice].present?%>
+    
 		<script type="text/javascript">
-			removePrompt = function(url,callback,delaytime) {
+		$(function(){
+      //提示框
+			removePrompt = function(msg, url,callback,delaytime) {
+        $(".back-prompt-p").html(msg);
 				if(!Boolean(delaytime)){
 					delaytime=1000;
 				}
 				var _prompt_box = $(document).find(".prompt");
+        _prompt_box.show();
 				setTimeout(function() {
 					_prompt_box.css({
 						'-webkit-transition': '' + 0.2 + 's  linear',
@@ -39,7 +43,7 @@
 						'transform': 'scale(0,0)'
 					})
 					_prompt_box.bind('webkitTransitionEnd transitionend', function() {
-						this.remove()
+            // this.remove()
 						if(callback){
 					   	callback(url)
 							}
@@ -48,14 +52,19 @@
 			};
 	
 			var _html = '';
-			_html += '<div class="prompt-box pf prompt" id="prompt-box">';
-			_html += '<p class="back-prompt-p"><%= flash[:notice]%></p>';
+			_html += '<div class="prompt-box pf prompt" id="prompt-box" style="display: none">';
+			_html += '<p class="back-prompt-p"></p>';
 			_html += '</div>';
-			$('body').append(_html)
+			$('body').append(_html);
+		});
+		</script>
+    
+    <%if flash[:notice].present?%>
+		<script type="text/javascript">
 			<%if session[:goto].present?%>
-			removePrompt('<%= session.delete(:goto)%>');
+			removePrompt('<%= flash[:notice]%>', '<%= session.delete(:goto)%>');
 			<%else%>
-			removePrompt();
+			removePrompt('<%= flash[:notice]%>');
 			<%end%>
 		</script>
     <%end%>

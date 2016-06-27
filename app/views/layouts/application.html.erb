@@ -49,15 +49,12 @@
 		$(function(){
 			//搜索
 			$(".search_btn").click(function(){
-				if($(this).prev().val() != "")
-					$(this).parent().submit();
+				$(this).parent().submit();
 			});
-		});
-		</script>
-		
-    <%if flash[:notice].present?%>
-		<script type="text/javascript">
-			removePrompt = function(url,callback,delaytime) {
+      
+      //提示框
+			removePrompt = function(msg, url,callback,delaytime) {
+        $(".back-prompt-p").html(msg);
 				if(!Boolean(delaytime)){
 					delaytime=1000;
 				}
@@ -80,14 +77,18 @@
 	
 			var _html = '';
 			_html += '<div class="prompt-box pf prompt" id="prompt-box">';
-			_html += '<p class="back-prompt-p"><%= flash[:notice]%></p>';
+			_html += '<p class="back-prompt-p"></p>';
 			_html += '</div>';
 			$('body').append(_html);
-			
+		});
+		</script>
+		
+    <%if flash[:notice].present?%>
+		<script type="text/javascript">
 			<%if session[:goto].present?%>
-			removePrompt('<%= session.delete(:goto)%>');
+			removePrompt('<%= flash[:notice]%>', '<%= session.delete(:goto)%>');
 			<%else%>
-			removePrompt();
+			removePrompt('<%= flash[:notice]%>');
 			<%end%>
 		</script>
     <%end%>
