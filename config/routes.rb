@@ -271,7 +271,13 @@ Rails.application.routes.draw do
         get :new_category
       end
     end
-    resources :stores
+    resources :stores do
+      collection do 
+        get :upload_image
+        post :upload_image_save
+        get :upload_image_destroy
+      end
+    end
     resources :cards do
       member do
         get :delete

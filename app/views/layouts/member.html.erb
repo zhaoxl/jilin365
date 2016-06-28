@@ -26,37 +26,35 @@
     <%= yield :javascript%>
     
 		<script type="text/javascript">
-		$(function(){
-      //提示框
-			removePrompt = function(msg, url,callback,delaytime) {
-        $(".back-prompt-p").html(msg);
-				if(!Boolean(delaytime)){
-					delaytime=1000;
-				}
-				var _prompt_box = $(document).find(".prompt");
-        _prompt_box.show();
-				setTimeout(function() {
-					_prompt_box.css({
-						'-webkit-transition': '' + 0.2 + 's  linear',
-						'transition': '' + 0.2 + 's  linear',
-						'-webkit-transform': 'scale(0,0)',
-						'transform': 'scale(0,0)'
-					})
-					_prompt_box.bind('webkitTransitionEnd transitionend', function() {
-            // this.remove()
-						if(callback){
-					   	callback(url)
-							}
-					})
-				}, delaytime);
-			};
-	
-			var _html = '';
-			_html += '<div class="prompt-box pf prompt" id="prompt-box" style="display: none">';
-			_html += '<p class="back-prompt-p"></p>';
-			_html += '</div>';
-			$('body').append(_html);
-		});
+    //提示框
+		removePrompt = function(msg, url,callback,delaytime) {
+      $(".back-prompt-p").html(msg);
+			if(!Boolean(delaytime)){
+				delaytime=1000;
+			}
+			var _prompt_box = $(document).find(".prompt");
+      _prompt_box.show();
+			setTimeout(function() {
+				_prompt_box.css({
+					'-webkit-transition': '' + 0.2 + 's  linear',
+					'transition': '' + 0.2 + 's  linear',
+					'-webkit-transform': 'scale(0,0)',
+					'transform': 'scale(0,0)'
+				})
+				_prompt_box.bind('webkitTransitionEnd transitionend', function() {
+          // this.remove()
+					if(callback){
+				   	callback(url)
+						}
+				})
+			}, delaytime);
+		};
+
+		var _html = '';
+		_html += '<div class="prompt-box pf prompt" id="prompt-box" style="display: none">';
+		_html += '<p class="back-prompt-p"></p>';
+		_html += '</div>';
+		$('body').append(_html);
 		</script>
     
     <%if flash[:notice].present?%>
