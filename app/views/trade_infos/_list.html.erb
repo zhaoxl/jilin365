@@ -3,7 +3,7 @@
 	<a href="<%= trade_info_path(info)%>" class="img">
 		<img src="<%= info.front_image.try(:url)%>" onerror="this.src='/images/miss.jpg';" />
 	</a>
-	<div class="content">
+	<div class="content" style="width: 78%">
 		<p class="title">
       <a href="<%= trade_info_path(info)%>">
         <%= truncate_u(info.title, 12, '')%>

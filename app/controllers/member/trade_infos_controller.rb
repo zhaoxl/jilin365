@@ -23,6 +23,8 @@ class Member::TradeInfosController < Member::BaseController
     info = current_user.trade_infos.build(title: post_params[:title], desc: post_params[:desc], phone: post_params[:phone], content: post_params[:content], trade_info_category: category)
     info.expired_at = Time.now +  params[:day].to_i.days
     info.total_fee = params[:day].to_i * category.price.to_f
+    info.city_code = post_params[:city_code]
+    info.district_code = post_params[:district_code]
     
     (params[:attrs]||[]).each do |attr|
       info.trade_info_attrs << info.trade_info_attrs.build(

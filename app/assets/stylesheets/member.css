@@ -30,6 +30,8 @@ body{background: white;}
 
 .recharge .new{background: white; padding: 1rem;}
 .recharge .new .money{line-height: 3rem;}
+.recharge .new .money .require{color: red; display:inline-block; line-height:2rem;}
+.recharge .new .money .title{line-height: 2rem; display: inline-block;}
 .recharge .new .money input{border: none;}
 .recharge .new .btn{}
 .recharge .new .btn input[type=submit]{width: 100%; margin: 0.5rem auto 0.5rem auto; background: #eb4f38; color: white; text-align: center; line-height: 3rem; border: none;}
