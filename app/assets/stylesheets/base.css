@@ -347,3 +347,6 @@ h1, h2, h3, h4, h5, h6 {
 #prompt-bk{ position:fixed; width:100%; height:100%; top:0px;lef:0px;  background:#000; opacity:0.6; -webkit-opacity:0.6;}
 
 .pullUpLabel{text-align: center; display: block;}
+
+.big-img-box{ width: 100%;  height:100%; background: #000000; top: 0px;  left: 0px; max-width: 640px; z-index: 10000;}
+.big-img-box img{  max-height: 100%;}

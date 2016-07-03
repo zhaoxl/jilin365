@@ -1,13 +1,14 @@
+<% banners = @store.store_images.order("position asc")%>
 <div class="banner-box pr">
 	<ul class="banner-nr" id="banner-ul">
-    <%@store.store_images.order("position asc").each_with_index do |banner, index|%>
+    <%banners.each_with_index do |banner, index|%>
     <li data-img-index="<%= index%>" class="waterone" style="width: 100%;">
       <img class="show_img img-responsive" src="<%= banner.image.url%>" alt="#" onerror="this.src='/images/miss.jpg';">
     </li>
 		<%end%>
 	</ul>
 	<ul id="banner-dian" class="banner-dian pa" style="margin-left: -10px;">
-		<%@store.store_images.order("position asc").each_with_index do |banner, index|%>
+		<%banners.each_with_index do |banner, index|%>
 		<li class="<%= index == 0 ? "current" : ""%>"></li>
 		<%end%>
 	</ul>
@@ -96,7 +97,7 @@
       //banner
 			$.fn.slideBox();
       //查看大图
-      var arrimg = $(".img-responsive");
+      var arrimg = <%=raw banners.map{|b| b.image.url}.to_json%>;
 			$.fn.showPlayerBigImg(arrimg);
 		</script>
 <%end%>
