@@ -49,7 +49,7 @@
       </a>
     </span>
     <span class="right">
-      <a href="<%= like_trade_info_path(id: @trade_info.id)%>" class="color-gray">
+      <a href="<%= TradeInfoUserLike.can_like?(current_user, @trade_info) ? like_trade_info_path(id: @trade_info.id) : "#"%>" class="color-gray">
         <span class="iconfont color-red">
           &#xe600;
        	</span>

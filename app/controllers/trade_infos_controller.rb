@@ -31,8 +31,14 @@ class TradeInfosController < AppBaseController
   end
   
   def like
-    TradeInfo.increment_counter(:like_count, params[:id])
-    flash[:notice] = "点赞成功！"
+    begin
+      TradeInfoUserLike.like(current_user, TradeInfo.info(params[:id]))
+      flash[:notice] = "点赞成功！"
+    rescue TradeInfoUserLike::TradeInfoUserLike
+      flash[:notice] = "点赞失败！"
+    rescue Exception
+      flash[:notice] = "点赞失败！"
+    end
     redirect_to :back
   end
   
