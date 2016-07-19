@@ -49,12 +49,21 @@
       </a>
     </span>
     <span class="right">
-      <a href="<%= TradeInfoUserLike.can_like?(current_user, @trade_info) ? like_trade_info_path(id: @trade_info.id) : "#"%>" class="color-gray">
+			<%if TradeInfoUserLike.can_like?(current_user, @trade_info)%>
+      <a href="<%= like_trade_info_path(id: @trade_info.id)%>" class="color-gray">
         <span class="iconfont color-red">
           &#xe600;
        	</span>
         点赞
       </a>
+			<%else%>
+      <a href="#" class="color-gray">
+        <span class="iconfont color-gray">
+          &#xe600;
+       	</span>
+        点赞
+      </a>
+			<%end%>
     </span>
   </div>
 </div>
