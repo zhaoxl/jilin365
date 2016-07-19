@@ -32,7 +32,7 @@ class TradeInfosController < AppBaseController
   
   def like
     begin
-      TradeInfoUserLike.like(current_user, TradeInfo.info(params[:id]))
+      TradeInfoUserLike.like(current_user, TradeInfo.find(params[:id]))
       flash[:notice] = "点赞成功！"
     rescue TradeInfoUserLike::TradeInfoUserLike
       flash[:notice] = "点赞失败！"
