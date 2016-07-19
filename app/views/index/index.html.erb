@@ -59,7 +59,7 @@
             </div>
   					<div class="content" style="width: 78%">
   						<p class="title"><%= truncate_u(info.title, 12, '')%></p>
-  						<p class="desc color-gray"><%= truncate_u(info.desc, 25, '...')%></p>
+  						<p class="desc color-gray"><%= truncate_u(info.desc, 20, '...')%></p>
   						<div class="attrs color-red">
                 <%info.trade_info_attrs.where(list_display: true).each do |attr|%>
   							<span><%= attr.value%></span>
