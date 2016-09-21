@@ -1,7 +1,8 @@
 class IndexController < AppBaseController
-  layout false
   
   def index
+    current_user
+    
     #如果用户地区丢失自动设置为长春
     cookies[:city_code] = "220100" if cookies[:city_code].blank? || cookies[:city_name].blank?
     cookies[:city_name] = "长春市" if cookies[:city_code].blank?|| cookies[:city_name].blank?
